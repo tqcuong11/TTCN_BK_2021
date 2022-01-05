@@ -33,35 +33,28 @@
         <div class="container">
             <div class="row">
 
-
+            
                 <div class="col-sm-12 left-sidebar">
                     <div class="product-details">
                         <!--product-details-->
                         <div class="col-sm-4">
                             <div class="view-product">
-                                <img src="images/product-details/ip133.jpg" alt="" />
-                                <h3>ZOOM</h3>
+                                <img src="<%- product.img[0] %>.jpg" alt=""  />
+                                
                             </div>
                             <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
-                                    <div class="item active">
-                                        <a href=""><img src="images/product-details/ip131.png" alt=""></a>
-                                        <a href=""><img src="images/product-details/ip132.png" alt=""></a>
-
+                                    <div class="item active text-center">
+                                        <a href=""><img src="<%- product.img[0] %>.jpg" alt="" style="width: 50%;" ></a>                                       
                                     </div>
-                                    <div class="item">
-                                        <a href=""><img src="images/product-details/ip131.png" alt=""></a>
-                                        <a href=""><img src="images/product-details/ip132.png" alt=""></a>
-
+                                    <div class="item text-center">
+                                        <a href=""><img src="<%- product.img[1] %>.jpg" alt="" style="width: 50%;" ></a>
                                     </div>
-                                    <div class="item">
-                                        <a href=""><img src="images/product-details/ip131.png" alt=""></a>
-                                        <a href=""><img src="images/product-details/ip132.png" alt=""></a>
-
+                                    <div class="item text-center">                                      
+                                        <a href=""><img src="<%- product.img[2] %>.jpg" alt="" style="width: 50%;" ></a>
                                     </div>
-
                                 </div>
 
                                 <!-- Controls -->
@@ -77,16 +70,14 @@
                         <div class="col-sm-8">
                             <div class="product-information">
                                 <!--/product-information-->
-                                <img src="images/product-details/new.jpg" class="newarrival" alt="" />
-                                <h2>IPhone 13 Pro Max 1TB</h2>
-                                <p>Giá: 340.000.000 đ</p>
-
+                                
+                                <h2><%- product.name %>-<%- product.color %>-<%- product.storage %></h2>
+                                <p><%- product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")  %> <sup>đ</sup></p>
                                 <span>
-                                <span> <img src="images/product-details/rating.png" alt="" /></span>
-                                <span>| 1k Đánh giá</span>
-                                <span>| 2k đã bán</span>
-
+                                    <span> <img src="img/product-details/rating.png" alt="" /></span>
+                                    <span>| <%- product.review_count %> Đánh giá</span>
                                 </span>
+
 
                                 <p><b>Tình trang:</b> Mới</p>
 
@@ -99,7 +90,7 @@
                                 <button type="button" class="btn btn-fefault cart">
                                     Mua ngay
                                 </button>
-                                <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
+                                <a href=""><img src="img/product-details/share.png" class="share img-responsive" alt="" /></a>
                             </div>
                             <!--/product-information-->
                         </div>
@@ -266,7 +257,7 @@
 
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="item active">
+                                <div class="item active text-center">
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
