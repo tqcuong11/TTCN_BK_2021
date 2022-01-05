@@ -1,4 +1,4 @@
-const Products=require("../models/Product");
+const Products = require("../models/Product");
 
 const SiteControler={
     home: async (req,res,next)=>{
@@ -19,4 +19,4 @@ const SiteControler={
     }
 }
 
-module.exports= SiteControler;
+module.exports = SiteControler;
