@@ -15,7 +15,7 @@ db.connect();
 app.use(express.static("./public"));
 
 /* urlencoded, json and cookie reader */
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 app.use(cookieParser());
 
