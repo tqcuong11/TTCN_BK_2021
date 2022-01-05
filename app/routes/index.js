@@ -1,7 +1,7 @@
-const siteRouter = require("./siteRoutes")
+const siteRouter = require("./siteRoutes");
 
 function route(app) {
-  app.use("/", siteRouter)
+  app.use("/", siteRouter);
 }
 
-module.exports = route
+module.exports = route;
