@@ -1,5 +1,4 @@
 const Products = require("../models/Product");
-const Admin = require("../models/Admin");
 
 const SiteControler = {
   home: async (req, res, next) => {
