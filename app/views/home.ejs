@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Home |PoorShop</title>
+    <title>Home | Shop</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/prettyPhoto.css" rel="stylesheet" />
@@ -187,9 +187,11 @@
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
-                      <a href="#"><img src="<%- product.img[0] %>.jpg" alt="" /></a>
-                      <h2><%- product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> <sup>đ</sup></h2>
-                      <p><%- product.name %> - <%- product.color %> - <%- product.storage %>GB</p>
+                      <a href="/<%- product.slug %>">
+                        <img src="<%- product.img[0] %>.jpg" alt="" />
+                        <h2><%- product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> <sup>đ</sup></h2>
+                        <p><%- product.name %> - <%- product.color %> - <%- product.storage %>GB</p>
+                     </a>
                     </div>
                   </div>
                 </div>
