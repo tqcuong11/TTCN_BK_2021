@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Search | E-Shopper</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/prettyPhoto.css" rel="stylesheet" />
+    <link href="css/price-range.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!--/head-->
+
+  <body>
+    <%- include("partials/header") %>
+    <div class="container">
+      <div class="col-sm-12 padding-right">
+        <div class="features_items">
+          <!--features_items-->
+          <h2 class="title text-center">Kết quả tìm kiếm</h2>
+          
+          <% products.forEach(product=>{ %>
+            <div class="col-sm-4">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                  <div class="productinfo text-center">
+                    <a href="/<%- product.slug %>">
+                      <img src="<%- product.img[0] %>.jpg" alt="" />
+                      <h2><%- product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> <sup>đ</sup></h2>
+                      <p><%- product.name %> - <%- product.color %> - <%- product.storage %>GB</p>
+                   </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer") %>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
