@@ -8,6 +8,7 @@ const db = require("./config/db");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const ejs = require("ejs");
 
 db.connect();
 
@@ -35,7 +36,25 @@ app.use(morgan("tiny"));
 app.set("view engine", "ejs");
 app.set("views", "./app/views");
 
-/* Route */
+// session
+const expressSession = require("express-session");
+app.use(
+  expressSession({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+//state login
+global.loggedIn = null;
+
+app.use("*", (req, res, next) => {
+  loggedIn = req.session.userId;
+  next();
+});
+
+// Route
 route(app);
 
 app.listen(port);

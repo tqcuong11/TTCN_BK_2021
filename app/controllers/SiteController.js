@@ -13,10 +13,6 @@ const SiteControler = {
     if (product) res.render("product-detail", { product });
     else next();
   },
-
-  login(req, res) {
-    res.render("login");
-  },
 };
 
-module.exports= SiteControler;
+module.exports = SiteControler;

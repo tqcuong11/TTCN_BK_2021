@@ -1,3 +1,7 @@
-module.exports = (req, res) => {
-  res.render("register");
+const newUser = {
+  register(req, res) {
+    res.render("register");
+  },
 };
+
+module.exports = newUser;
