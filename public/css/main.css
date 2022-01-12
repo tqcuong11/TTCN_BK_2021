@@ -996,6 +996,16 @@ h2.title {
     background: #FE980F;
     color: #FFFFFF;
 }
+.cart_quantity{
+  
+    position: absolute;
+    padding:0px 4px;
+    color: #fff;
+    font-size: 12px;
+    top:-12px;
+    left:15px;
+  
+}
 
 .choose {
     border-top: 1px solid #F7F7F0;

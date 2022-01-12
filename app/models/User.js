@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 const bcrypt = require("bcrypt");
 var uniqueValidator = require("mongoose-unique-validator");
 
@@ -10,7 +11,9 @@ const UserSchema = new Schema(
       unique: true,
     },
     password: String,
-    cart:[{type:String,ref:'products'}]
+    cart:{
+      type: [{type : ObjectId,ref:'products'}]
+    }
   },
   { timestamps: true }
 );

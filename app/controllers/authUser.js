@@ -10,6 +10,7 @@ const authUser = {
         bcrypt.compare(password, user.password, (error, same) => {
           if (same) {
             req.session.userId = user._id;
+            res.cookie('isLoggedIn', 'true');
             res.redirect("/");
           } else {
             res.redirect("/login");

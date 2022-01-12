@@ -83,13 +83,11 @@
 
                                 <label>Số lượng:</label>
                                 <input type="text" value="3" />
-                                <button type="button" class="btn btn-fefault cart">
+                                <button type="button" class="btn btn-fefault cart add-btn" data-id='<%- product._id %>'>
 										<i class="fa fa-shopping-cart"></i>
 										Thêm vào giỏ hàng
 								</button>
-                                <button type="button" class="btn btn-fefault cart">
-                                    Mua ngay
-                                </button>
+                                <form action="" id="add-form"></form>
                                 <a href=""><img src="img/product-details/share.png" class="share img-responsive" alt="" /></a>
                             </div>
                             <!--/product-information-->
@@ -346,17 +344,8 @@
 
 
     <%- include("partials/footer") %>
-
-
-
-
-
-    <script src="js/jquery.js"></script>
-    <script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+    <%- include("partials/scripts") %>
+    <script src="/js/product-detail.js"></script>
 
 </body>
 

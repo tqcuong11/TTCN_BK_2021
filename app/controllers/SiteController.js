@@ -26,6 +26,7 @@ const SiteControler = {
 
   logout(req, res) {
     req.session.destroy(() => {
+      res.cookie('isLoggedIn', 'true');
       res.redirect("/");
     });
   },

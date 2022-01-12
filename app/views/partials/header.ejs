@@ -60,7 +60,7 @@
               <!-- login -->
               <% if(loggedIn) { %>
               <li>
-                <a href="/cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a>
+                <a href="/cart"><i class="fa fa-shopping-cart"></i></a>
               </li>
               <li>
                 <a href="/logout"><i class="fa-user"></i> Đăng xuất </a>
@@ -68,6 +68,13 @@
               <% } %>
               <!-- not login -->
               <% if(!loggedIn) { %>
+                <li>
+                  <a href="/cart"><i class="fa fa-shopping-cart" style="position: relative;"></i>
+                    <span class="cart_quantity no-user" style="display: none" >          
+                      <b></b>           
+                    </span>
+                   </a>
+                </li>
               <li>
                 <a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a>
               </li>
@@ -114,3 +121,4 @@
   <!--/header-bottom-->
 </header>
 <!--/header-->
+<script src="/js/header.js"></script>
