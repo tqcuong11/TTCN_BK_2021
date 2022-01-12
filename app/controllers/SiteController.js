@@ -13,6 +13,22 @@ const SiteControler = {
     if (product) res.render("product-detail", { product });
     else next();
   },
+
+  register(req, res) {
+    res.render("register", {
+      errors: req.flash("validationErrors"),
+    });
+  },
+
+  login(req, res) {
+    res.render("login");
+  },
+
+  logout(req, res) {
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
+  },
 };
 
 module.exports = SiteControler;
