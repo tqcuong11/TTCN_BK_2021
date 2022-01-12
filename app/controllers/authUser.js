@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const path = require("path");
 
-const loginUser = {
+const authUser = {
   loginUser(req, res) {
     const { username, password } = req.body;
     User.findOne({ username: username }, (error, user) => {
@@ -19,7 +20,18 @@ const loginUser = {
       }
     });
   },
+
+  storeUser(req, res) {
+    User.create(req.body, (error, user) => {
+      if (error) {
+        const validationErrors = Object.keys(error.errors).map((key) => error.errors[key].message);
+        req.flash("validationErrors", validationErrors);
+        return res.redirect("/register");
+      }
+      res.redirect("/login");
+    });
+  },
 };
 
 //export
-module.exports = loginUser;
+module.exports = authUser;

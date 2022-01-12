@@ -15,8 +15,7 @@ const CartController={
             
         }
     },
-    add:,
-    delete:
+
 }
 
 module.exports=CartController;
