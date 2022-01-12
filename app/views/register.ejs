@@ -6,13 +6,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>register| E-Shopper</title>
-    <link href="./css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./css/font-awesome.min.css" rel="stylesheet" />
-    <link href="./css/prettyPhoto.css" rel="stylesheet" />
-    <link href="./css/price-range.css" rel="stylesheet" />
-    <link href="./css/animate.css" rel="stylesheet" />
-    <link href="./css/main.css" rel="stylesheet" />
-    <link href="./css/responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/prettyPhoto.css" rel="stylesheet" />
+    <link href="css/price-range.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
   </head>
   <body>
     <%- include("partials/header") %>
@@ -24,6 +24,9 @@
             <div class="signup-form">
               <!--sign up form-->
               <h2>Đăng ký</h2>
+              <% if(errors != null && errors.length > 0){ %> <% for (var i = 0; i < errors.length; i++) { %>
+              <li class="list-group-item"><%= errors[i] %></li>
+              <% } %> <% } %>
               <form action="/users/register" method="POST">
                 <input type="text" placeholder="Tên đăng nhập" id="username" name="username" required />
                 <input type="password" placeholder="Mật khẩu" id="password" name="password" required />

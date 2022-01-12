@@ -4,7 +4,11 @@ const path = require("path");
 const storeUser = {
   storeUser(req, res) {
     User.create(req.body, (error, user) => {
-      //   res.render("login");
+      if (error) {
+        const validationErrors = Object.keys(error.errors).map((key) => error.errors[key].message);
+        req.flash("validationErrors", validationErrors);
+        return res.redirect("/register");
+      }
       res.redirect("/login");
     });
   },

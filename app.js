@@ -12,6 +12,10 @@ const ejs = require("ejs");
 
 db.connect();
 
+//flash
+const flash = require("connect-flash");
+app.use(flash());
+
 app.use(express.static("./public"));
 
 /* urlencoded, json and cookie reader */
