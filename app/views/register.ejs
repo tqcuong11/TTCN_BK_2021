@@ -13,16 +13,9 @@
     <link href="css/animate.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
     <link href="css/responsive.css" rel="stylesheet" />
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
   </head>
-  <!--/head-->
-
   <body>
     <%- include("partials/header") %>
-
     <section id="form">
       <!--form-->
       <div class="container">
@@ -31,11 +24,11 @@
             <div class="signup-form">
               <!--sign up form-->
               <h2>Đăng ký</h2>
-              <form action="/register" method="POST">
+              <form action="/users/register" method="POST">
                 <input type="text" placeholder="Tên đăng nhập" required />
                 <input type="password" placeholder="Mật khẩu" required />
-                <input type="email" placeholder="Mail" required />
-                <input type="text" placeholder="Số điện thoại" required />
+                <!-- <input type="email" placeholder="Mail" required />
+                <input type="text" placeholder="Số điện thoại" required /> -->
                 <button type="submit" class="btn btn-default">Đăng ký</button>
               </form>
             </div>
@@ -45,9 +38,7 @@
       </div>
     </section>
     <!--/form-->
-
     <%- include("partials/footer") %>
-
     <script src="js/jquery.js"></script>
     <script src="js/price-range.js"></script>
     <script src="js/jquery.scrollUp.min.js"></script>
