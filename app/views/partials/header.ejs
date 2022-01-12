@@ -54,12 +54,21 @@
               <li class="search_box">
                 <input type="text" placeholder="Search" />
               </li>
+              <!-- login -->
+              <% if(loggedIn) { %>
               <li>
-                <a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a>
+                <a href="/cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng </a>
               </li>
+              <li>
+                <a href="/logout"><i class="fa fa-lock"></i> Đăng xuất </a>
+              </li>
+              <% } %>
+              <!-- not login -->
+              <% if(!loggedIn) { %>
               <li>
                 <a href="/login"><i class="fa fa-lock"></i> Đăng nhập</a>
               </li>
+              <% } %>
             </ul>
           </div>
         </div>

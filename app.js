@@ -8,14 +8,18 @@ const db = require("./config/db");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-// const authRoute = require("./routes/ath");
+const ejs = require("ejs");
 
 db.connect();
+
+//flash
+const flash = require("connect-flash");
+app.use(flash());
 
 app.use(express.static("./public"));
 
 /* urlencoded, json and cookie reader */
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -36,7 +40,25 @@ app.use(morgan("tiny"));
 app.set("view engine", "ejs");
 app.set("views", "./app/views");
 
-/* Route */
+// session
+const expressSession = require("express-session");
+app.use(
+  expressSession({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+//state login
+global.loggedIn = null;
+
+app.use("*", (req, res, next) => {
+  loggedIn = req.session.userId;
+  next();
+});
+
+// Route
 route(app);
 
 app.listen(port);
