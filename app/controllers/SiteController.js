@@ -24,7 +24,10 @@ const SiteControler = {
 
   async search(req, res) {
     const search = req.query.search;
-    const products = await Products.find({"name": "iphone"});
+    const products = await Products.find({name:{
+      $regex:`.*${req.query.search}.*`,
+      $options:"$i"
+    }});
     res.render('search', {products});
     }
 

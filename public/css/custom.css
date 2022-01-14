@@ -1,0 +1,78 @@
+.padding-top-120 {
+    padding-top: 120px;
+}
+
+.contactinfo {
+    color: #ffffff;
+    padding: 11px;
+}
+
+.container_flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+}
+
+.header-middle .container .row {
+    border-bottom: none;
+}
+
+.logo {
+    margin: 0 12px;
+}
+
+.logo img{
+    height: 70px;
+    width: auto;
+}
+
+.search-container {
+    margin: auto;
+    width: 60%;
+    padding: auto;
+}
+
+.shop-menu {
+    margin: 0 auto;
+    display: flex;
+    align-items: center ;
+}
+
+.search-box{
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 80%;
+    border-radius: 3px;
+    margin: 8px;
+    border: none;
+    outline: none;
+    height: 34px;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.shop-menu a {
+    color: #ffffff;
+}
+
+a:hover {
+    color: darkblue;
+}
+
+.shop-menu .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 12px;
+}
+
+.shop-menu .btn-group i {
+    color: #ffffff;
+    padding-left: 4px;
+}
+
+.shop-menu .btn-group a.dropdown-item {
+    color: darkblue;
+}
