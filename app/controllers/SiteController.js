@@ -1,6 +1,6 @@
 const Products = require("../models/Product");
 
-const SiteControler = {
+const SiteController = {
   home: async (req, res, next) => {
     const products = await Products.find({});
     if (products) res.render("home", { products });
@@ -24,13 +24,14 @@ const SiteControler = {
 
   async search(req, res) {
     const search = req.query.search;
-    const products = await Products.find({name:{
-      $regex:`.*${req.query.search}.*`,
-      $options:"$i"
-    }});
-    res.render('search', {products});
-    }
-
+    const products = await Products.find({
+      name: {
+        $regex: `.*${req.query.search}.*`,
+        $options: "$i",
+      },
+    });
+    res.render("search", { products });
+  },
 };
 
-module.exports = SiteControler;
+module.exports = SiteController;
