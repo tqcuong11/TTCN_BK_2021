@@ -1,16 +1,14 @@
-const router = require("express").Router();
+const express = require('express');
+const router = express.Router();
+const auth = require('../controllers/Auth');
+const siteController = require('../controllers/SiteController');
+const verifyToken = require('../middlewares/verifyToken');
 
-const siteController = require("../controllers/SiteController");
-const authinUserController = require("../controllers/authUser");
-const checkAuthMiddleware = require("../middleware/checkAuthMiddleware");
-
-router.get("/:slug", siteController.detail);
-router.get("/login", siteController.login);
-router.get("/register", checkAuthMiddleware, siteController.register);
-router.post("/auth/register", checkAuthMiddleware, authinUserController.storeUser);
-router.post("/auth/login", checkAuthMiddleware, authinUserController.loginUser);
-router.get("/logout", siteController.logout);
-router.get("/", siteController.home);
-router.use((req, res) => res.render("notfound"));
+router.get('/login', siteController.login);
+router.post('/login', auth.login);
+router.get('/register', siteController.register);
+router.post('/register', auth.register);
+router.get('/', verifyToken, siteController.home);
+router.post('/', siteController.logout);
 
 module.exports = router;

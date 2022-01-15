@@ -2,17 +2,17 @@ const addToCartBtn=document.querySelector('.add-btn');
 const addToCartForm=document.querySelector('#add-form');
 
     addToCartBtn.addEventListener('click',()=>{
-        const courseId=addToCartBtn.getAttribute("data-id");
+        const productId=addToCartBtn.getAttribute("data-id");
         if (getCookie('isLoggedIn')==='true'){
-            addToCartForm.action=`/cart/add/${courseId}`;
+            addToCartForm.action=`/cart/add/${productId}`;
             addToCartForm.submit();
         }
         else {
             let cartList=getCookie('cart');
             if (!cartList || !Array.isArray(JSON.parse(cartList))) cartList=[];
             else cartList=JSON.parse(cartList);
-            if (cartList.length===0||!cartList.find(e=>e===courseId))
-                cartList.push(courseId);
+            if (cartList.length===0||!cartList.find(e=>e===productId))
+                cartList.push(productId);
             document.cookie=`cart=${JSON.stringify(cartList)}`;
             document.location.reload();
         }

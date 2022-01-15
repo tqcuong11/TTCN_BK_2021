@@ -58,16 +58,15 @@
                 <a href="/"><i></i> Trang chủ </a>
               </li> -->
               <!-- login -->
-              <% if(loggedIn) { %>
+              <% if(user.full_name) { %>
               <li>
                 <a href="/cart"><i class="fa fa-shopping-cart"></i></a>
               </li>
               <li>
-                <a href="/logout"><i class="fa-user"></i> Đăng xuất </a>
+                <a href=""><i class="fa-user"></i> <%- user.full_name %></a>
               </li>
-              <% } %>
+              <% } else{ %>
               <!-- not login -->
-              <% if(!loggedIn) { %>
                 <li>
                   <a href="/cart"><i class="fa fa-shopping-cart" style="position: relative;"></i>
                     <span class="cart_quantity no-user" style="display: none" >          

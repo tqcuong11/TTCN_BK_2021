@@ -1,33 +1,42 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
-const bcrypt = require("bcrypt");
-var uniqueValidator = require("mongoose-unique-validator");
 
-const UserSchema = new Schema(
+const User = new Schema(
   {
-    username: {
+    full_name: {
       type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
       unique: true,
     },
-    password: String,
-    cart:{
-      type: [{type : ObjectId,ref:'products'}]
-    }
+    password: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+    },
+    role_id: {
+      type: Number,
+      // required: true,
+    },
+    products: {
+      type: [{ type: ObjectId, ref: 'products' }],
+      
+    },
+    cart: {
+      type: [{ type: ObjectId, ref: 'products' }],
+    },
+    refreshToken: {
+      type: String,
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
-UserSchema.plugin(uniqueValidator);
-
-//hash password
-UserSchema.pre("save", function (next) {
-  const user = this;
-  bcrypt.hash(user.password, 10, (error, hash) => {
-    user.password = hash;
-    next();
-  });
-});
-
-// export model
-const User = mongoose.model("User", UserSchema);
-module.exports = User;
+module.exports = mongoose.model('users', User);

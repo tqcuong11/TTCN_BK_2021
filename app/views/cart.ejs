@@ -39,7 +39,9 @@
                 <div class="col-lg-1"></div>
             </div>
             <div class="row">
-                <% user.cart.forEach(e=>{ %>
+                <% if (user.cart)
+                    if (user.cart.length!==0){
+                     user.cart.forEach(e=>{ %>
                     <div class="cart-item" style="padding: 15px 0; border-bottom: 1px solid #ccc;">
                         <div class="row text-center">
                             <div class="col-lg-4"><%- e.name %> - <%- e.storage %> - <%- e.color %></div>
@@ -47,11 +49,12 @@
                             <div class="col-lg-2">1</div>
                             <div class="col-lg-2"><%- e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></div>
                             <div class="col-lg-1"><input type="checkbox" name="select-box" id=""></div>
-                            <div class="col-lg-1"><i class="fa fa-times"></i></div>
+                            <div class="col-lg-1 remove-btn btn" data-id="<%- e._id %>"><i class="fa fa-times"></i></div>
                         </div>
                     </div>
 
-                <% }) %>
+                <% }) } %>
+                <form action="" id="delete-form"></form>
             </div>
         </div>
     </section>
@@ -90,6 +93,7 @@
     <!--/#do_action-->
     <%- include("partials/footer") %>
     <%- include("partials/scripts") %>
+    <script src="/js/cart.js"></script>
 
  
 </body>

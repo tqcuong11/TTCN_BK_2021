@@ -30,6 +30,7 @@ a {
     -moz-transition: 300ms;
     -o-transition: 300ms;
     transition: 300ms;
+    text-decoration: none;
 }
 
 h1,

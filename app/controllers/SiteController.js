@@ -1,35 +1,53 @@
-const Products = require("../models/Product");
+const Product= require('../models/Product');
+const User = require('../models/User');
 
-const SiteControler = {
-  home: async (req, res, next) => {
-    const products = await Products.find({});
-    if (products) res.render("home", { products });
-    else next();
+const SiteController = {
+  // [GET] / home
+  home: async (req, res) => {
+    try {
+      const products = await Product.find({});
+      if (req.user) {
+        const user = await User.findOne({ _id: req.user });
+        res.render('home', { products, user });
+      } else {
+        res.render('home', { products, user: '' });
+      }
+    } catch (err) {
+      return res.render('error', {
+        err,
+        message: 'Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại',
+      });
+    }
   },
-
-  detail: async (req, res, next) => {
-    const product_slug = req.params.slug;
-    const product = await Products.findOne({ slug: product_slug }).exec();
-    if (product) res.render("product-detail", { product });
-    else next();
+  // [GET] / login
+  login: (req, res) => {
+    res.render('login');
   },
-
-  register(req, res) {
-    res.render("register", {
-      errors: req.flash("validationErrors"),
-    });
+  // [GET] / register
+  register: (req, res) => {
+    res.render('register');
   },
-
-  login(req, res) {
-    res.render("login");
-  },
-
-  logout(req, res) {
-    req.session.destroy(() => {
-      res.cookie('isLoggedIn', 'true');
-      res.redirect("/");
-    });
-  },
+  
+  // [POST] / info/logout
+  logout: async (req, res) => {
+    res.clearCookie('access_token');
+    res.clearCookie('refresh_token');
+    const refreshToken = req.cookies.refresh_token;
+    await User.updateOne({ refreshToken }, { refreshToken: '' });
+    try {
+      const products = await Product.find({});
+      res.cookie('isLoggedIn', 'false');
+      res.render('home', {
+        products: products,
+        user: '',
+      });
+    } catch (err) {
+      res.render('error', {
+        err,
+        message: 'Có lỗi khi nhận dữ liệu từ server, xin thử lại',
+      });
+    }
+  }
+ 
 };
-
-module.exports = SiteControler;
+module.exports = SiteController;
