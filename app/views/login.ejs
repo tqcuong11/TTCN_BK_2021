@@ -19,40 +19,12 @@
     <link rel="stylesheet" href="../css/login&register.css" />
     <script src="https://apis.google.com/js/api:client.js"></script>
     <style>
-      .invalid-info-message {
-        font-size: 15px;
-        color: #f33a58;
-        display: block;
-        margin-left: 12px;
-        text-align: left;
-        margin-top: -20px;
-        display: none;
-      }
-
       #form h3 {
         margin-bottom: 20px;
       }
       #form .form-group {
         margin-top: 10px;
         margin-bottom: 0;
-      }
-      .form-group .form-message {
-        margin-top: -20px;
-        display: none;
-      }
-      .social {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-      }
-      .google_btn,
-      .facebook_btn {
-        width: 50%;
-        gap: 5px;
-      }
-      .google_btn {
-        background-color: #e64839;
       }
       .other .forgot_password {
         color: red;
@@ -68,19 +40,13 @@
             <div class="wrap_input">
               <input
                 type="text"
-                class="email_or_phone login_input"
-                id="email_or_phone"
-                placeholder="Nhập số điện thoại hoặc email"
-                name="email_or_phone"
+                class="email login_input"
+                id="email"
+                placeholder="Nhập  email"
+                name="email"
               />
               <span class="focus-input"></span>
             </div>
-            <span class="form-message email_or_phone_message"
-              >Số điện thoại hoặc email không được để trống</span
-            >
-            <span class="invalid-info-message"
-              >Email hoặc mật khẩu không chính xác</span
-            >
           </div>
           <div class="form-group">
             <div class="wrap_input">
@@ -93,16 +59,12 @@
               />
               <span class="focus-input"></span>
             </div>
-            <span class="form-message password_message"
-              >Mật khẩu không được để trống</span
-            >
-            <span class="invalid-info-message"
-              >Email hoặc mật khẩu không chính xác</span
-            >
           </div>
-          <button id="login" type="button" class="btn form_btn txt">
+          <div id="login"  class="btn form_btn txt">
             ĐĂNG NHẬP
-          </button>          
+          </div>  
+          <span class="form-message"></span>
+          <span class="invalid-info-message"><%- message %></span>        
           <div class="other txt">
             <span>Bạn chưa có tài khoản?</span>
             <a href="/register" class="register">Đăng ký mới</a>

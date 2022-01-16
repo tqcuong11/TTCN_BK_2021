@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang quản trị tài khoản Unica.vn</title>
+    <title>Đăng kí | Walmart</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Icons"
       rel="stylesheet"
@@ -18,13 +18,6 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/login&register.css" />
     <style>
-      .invalid-info-message {
-        font-size: 15px;
-        color: #f33a58;
-        display: block;
-        margin-left: 12px;
-        text-align: left;
-      }
       #form .wrap_input {
         margin-bottom: 0;
       }
@@ -61,15 +54,12 @@
               />
               <span class="focus-input"></span>
             </div>
-            <span class="form-message"></span>
           </div>
           <div class="form-group">
             <div class="wrap_input">
               <input id="email" type="text" name="email" placeholder="Email" />
               <span class="focus-input"></span>
             </div>
-            <span class="form-message"></span>
-            <span class="invalid-info-message"></span>
           </div>
           <div class="form-group">
             <div class="wrap_input">
@@ -81,7 +71,6 @@
               />
               <span class="focus-input"></span>
             </div>
-            <span class="form-message"></span>
           </div>
           <div class="form-group">
             <div class="wrap_input">
@@ -92,10 +81,11 @@
               />
               <span class="focus-input"></span>
             </div>
-            <span class="form-message"></span>
           </div>
 
-          <button type="submit" class="btn form_btn txt">ĐĂNG KÝ</button>
+          <div class="btn form_btn txt">ĐĂNG KÝ</div>
+          <span class="form-message"></span>
+          <span class="invalid-info-message"><%- message %></span>
           <div class="or txt"><span>Hoặc</span></div>
           <div class="other txt">
             <span>Bạn có tài khoản?</span>
@@ -105,9 +95,7 @@
         </form>
       </div>
     </div>
-    <script src="../js/valid.js"></script>
-    <script src="../js/register.js"></script>
-
+    <script src='/js/register.js'></script>
   </body>
 </html>
 

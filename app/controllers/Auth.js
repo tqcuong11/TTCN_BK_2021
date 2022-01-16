@@ -1,29 +1,30 @@
 require('dotenv').config();
-const User = require('../models/User.js');
+const User = require('../models/User');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 
 const auth = {
   // [POST] /Register
   register: async (req, res) => {
+    
     const email = req.body.email;
-    const phone_number = req.body.phone_number;
     const password = req.body.password;
     try {
       // check for existing user
       const user =
-        (await User.findOne({ email }));
+        (await User.findOne({ email }));        
       if (user) {
-        return res.json({ success: false });
+        return res.render("register",{message:"Email đã tồn tại! Vui lòng đăng nhập hoặc dùng email khác"});
       } else {
         //   all good
         const hashedPassword = await argon2.hash(password);
         await User.create({
-          ...req.body,
+          full_name: req.body.full_name,
+          email:req.body.email,
           password: hashedPassword,
           role_id: 0,
         });
-        return res.json({ success: true });
+        return res.redirect('/login');
       }
     } catch (err) {
       console.log(err);
@@ -37,18 +38,20 @@ const auth = {
   },
   // [POST] /Login
   login: async (req, res) => {
-    const { email_or_phone, password } = req.body;
+    const { email, password } = req.body;
     try {
       const user =
-        (await User.findOne({ email: email_or_phone })) ;
+        (await User.findOne({ email: email })) ;
+        console.log(user);
       //   check for existing email or phone
       if (!user) {
-        return res.json({ success: false });
+        return res.render('login',{message:"Tên đăng nhập hoặc mật khẩu không đúng!"});
       }
       //   authenticate password
       const isPasswordValid = await argon2.verify(user.password, password);
+      console.log(isPasswordValid)
       if (!isPasswordValid) {
-        return res.json({ success: false });
+        return res.render('login',{message:"Tên đăng nhập hoặc mật khẩu không đúng!"});
       }
       //   all good
       const accessToken = jwt.sign(
@@ -72,7 +75,7 @@ const auth = {
         httpOnly: true,
         // secure: true;
       });
-      return res.json({ success: true });
+      return res.redirect("/");
     } catch (err) {
       res
         .status(500)

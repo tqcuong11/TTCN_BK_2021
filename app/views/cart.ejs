@@ -28,68 +28,85 @@
 
 <body>
     <%- include("partials/header") %>
-    <section id="cart_items" style="margin-bottom: 30px;">
-        <div class="container">
-            <div class="row text-center " style="margin-bottom: 10px; padding: 10px 0 ; background-color: #fe980f;">
-                <div class="col-lg-4">Sản phẩm</div>
-                <div class="col-lg-2">Giá</div>
-                <div class="col-lg-2">Số lượng</div>
-                <div class="col-lg-2">Tổng tiền</div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-1"></div>
-            </div>
-            <div class="row">
-                <% if (user.cart)
-                    if (user.cart.length!==0){
-                     user.cart.forEach(e=>{ %>
-                    <div class="cart-item" style="padding: 15px 0; border-bottom: 1px solid #ccc;">
-                        <div class="row text-center">
-                            <div class="col-lg-4"><%- e.name %> - <%- e.storage %> - <%- e.color %></div>
-                            <div class="col-lg-2"><%- e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></div>
-                            <div class="col-lg-2">1</div>
-                            <div class="col-lg-2"><%- e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></div>
-                            <div class="col-lg-1"><input type="checkbox" name="select-box" id=""></div>
-                            <div class="col-lg-1 remove-btn btn" data-id="<%- e._id %>"><i class="fa fa-times"></i></div>
+    <div class="cart">
+        <section id="cart_items have-item" style="margin-bottom: 30px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-7 col-sm-12">
+                        <div class="row text-center " style="margin-bottom: 10px; padding: 10px 0 ; background-color: #fe980f;">
+                            <div class="col-lg-4">Sản phẩm</div>
+                            <div class="col-lg-2">Giá</div>
+                            <div class="col-lg-2">Số lượng</div>
+                            <div class="col-lg-2">Tổng tiền</div>
+                            <div class="col-lg-2 " style="display:flex">
+                                <span>Chọn tất cả</span>
+                                <input type="checkbox" name="select-all" id="select-all">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <% if (user.cart)
+                                if (user.cart.length!==0){
+                                    let index=0;
+                                 user.cart.forEach(e=>{  %>
+                                <div class="cart-item" id='cart-item-<%- index %>' style="padding: 15px 0; border-bottom: 1px solid #ccc;">
+                                    <div class="row text-center" style="    display: flex; align-items: center; font-size: 16px;">
+                                        <div class="col-lg-4 " style=" display: flex;justify-content: left !important;align-items: center;">
+                                            <img src="<%- e.img[1] %>.jpg" 
+                                            alt="<%- e.name %> - <%- e.storage %> - <%- e.color %>"
+                                            style="width: 130px; margin:10px; border-radius: 10px;"
+                                            >
+                                            <span class="cart product-detail">
+                                                <%- e.name %> - <%- e.storage %> - <%- e.color %>
+                                            </span>                                    
+                                        </div>
+                                        <div class="col-lg-2 price-item" data='<%- e.price %>'>
+                                            <span><%- e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></span>
+                                            <sup>đ</sup>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="btn quantity-btn minus-btn " ><i class="fa fa-minus" aria-hidden="true"></i></i></div>
+                                            <span class="quantity-item">1</span>
+                                            <div class="btn quantity-btn add-btn" ><i class="fa fa-plus" aria-hidden="true"></i></div>
+                                        </div>
+                                        <div class="col-lg-2 ">
+                                            <span class="price-with-quantity"><%- e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></span>
+                                            <sup>đ</sup>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <input type="checkbox" name="select-box" class="select-item">
+                                            <div class=" remove-btn btn" data-id="<%- e._id %>" style="background-color: unset;">
+                                                <i class="fa fa-trash-o"></i></div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+            
+                            <% index++; }) } %>
+                            <form action="" id="delete-form" method="POST"></form>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-5 ">
+                        <div class="info-selected"  >
+                            <div>
+                               <div> <span>Tổng thanh toán:</span></div>
+                                <div style="margin-left:12px"><span>(<b class="quantity-selected">0</b> sản phẩm đã chọn)</span></div>
+                            </div>   
+                            <div>
+                                <span>Tổng tiền:</span>
+                                <b class="total-costs">0 </b><sup>đ</sup>
+                            </div> 
+                            <div class="btn payment-btn">MUA HÀNG</div>
+                        </div>
+                    </div>
+                </div>
 
-                <% }) } %>
-                <form action="" id="delete-form"></form>
             </div>
+        </section>
+        <!--/#cart_items-->    
+        <div class="container payment">
+            
         </div>
-    </section>
-    <!--/#cart_items-->
-
-    <section id="do_action">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="total_area pull-right">
-                        <ul>
-                            <li>Chọn sản phẩm: <span>  (3) </span></li>
-                        </ul>
-
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="total_area pull-right">
-                        <ul>
-                            <li>Tổng thanh toán: <span> 32.000.000đ</span></li>
-                        </ul>
-
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="total_area pull-right">
-                        <a class="btn btn-default check_out" href=""> Mua hàng </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
     <!--/#do_action-->
     <%- include("partials/footer") %>
     <%- include("partials/scripts") %>

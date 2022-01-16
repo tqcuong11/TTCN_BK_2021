@@ -178,7 +178,7 @@ body {
     background-color: #3b5998;
   }
   .other {
-    margin: 50px 0 30px 0;
+    margin-top: 20px ;
     font-size: 18px;
   }
   .other .register,
@@ -194,11 +194,13 @@ body {
   .form-group {
     margin-bottom: 15px;
   }
-  .form-group .form-message {
-    font-size: 1.5rem;
-    text-align: left;
+   .form-message {
+    color: #fa1037;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
     display: block;
-    padding-top: -15px;
+    padding-top: 15px;
     margin-left: 12px;
   }
   .form-group.invalid {
@@ -212,6 +214,13 @@ body {
   }
   .form-group.invalid .form-message {
     color: #f33a58;
+  }
+  .invalid-info-message{
+    font-size: 15px;
+    color: #fd1e43;
+    display: block;
+    margin-left: 12px;
+    text-align: center;
   }
   /* .other .forgot_password {
     color: red;

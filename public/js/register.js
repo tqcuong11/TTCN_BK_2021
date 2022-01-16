@@ -1,91 +1,49 @@
-Validator({
-  idForm: "#form",
-  formGroupSelector: ".form-group",
-  errorSelector: ".form-message",
-  passwordSelector: "#password",
-  passwordConfirmationSelector: "#password_confirmation",
-  passwordName: "password",
-  // selectOption_Name: "province",
-  captchaRequired: "yes",
-  rules: [
-    Validator.isRequired("#fullname", "Họ và tên không được để trống"),
-    Validator.isRequired("#email", "Email không được để trống"),
-    Validator.isRequired("#phone_number", "Số điện thoại không được để trống"),
-    Validator.isRequired("#password", "Mật khẩu không được để trống"),
-    Validator.isRequired("#password_confirmation", "Vui lòng xác nhận lại mật khẩu"),
-    // Validator.isRequired("#province"),
-    // Validator.isRequired("input[name='gender']"),
-    // Validator.isRequired("#avatar"),
-    Validator.isName("#fullname", "Vui lòng nhập lại họ và tên hợp lệ"),
-    Validator.isEmail("#email", "Vui lòng nhập lại email hợp lệ"),
-    Validator.isPhoneNumber("#phone_number", "Vui lòng nhập lại số điện thoại hợp lệ "),
-    // Validator.isAddress("#address"),
-    Validator.isMinLength("#password", 6, "Vui lòng nhập lại mật khẩu độ dài trên 6 ký tự"),
-    // Validator.isStrengthPassword(
-    //   "#password",
-    //   "Mật khẩu chưa đủ mạnh, phải dài trên 8 ký tự, chứa ít nhất một số, chữ thường, chữ hoa và ký tự đặc biệt",
-    // ),
-    Validator.isConfirmPassword(
-      "#password_confirmation",
-      () => {
-        return document.querySelector("#form #password").value
-      },
-      "Vui lòng nhập lại mật khẩu trùng khớp",
-    ),
-  ],
-  captchaErrorMessage: "Vui lòng nhập captcha",
-  onSubmit: function (data) {
-    // Post method to API server
-    var api = "/register"
-    var options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+$ = document.querySelector.bind(document);
+$$ = document.querySelectorAll.bind(document);
+
+const fullname=$('#fullname');
+const email=$('#email');
+const password=$('#password');
+const passwordConfirm=$('#password_confirmation');
+const formBtn=$('.btn.form_btn');
+const registerForm=$('#form');
+const formMessage=$(`.form-message`);
+const regexName =
+    /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/iu;
+const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const regexStrengthPassword = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
+
+formBtn.addEventListener('click',()=>{
+    if (ValidateFromRegister()){
+        registerForm.setAttribute('action','/register');
+        registerForm.submit();
+        setTimeout(isSuccess(),5000);
     }
-    fetch(api, options)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success == true) {
-          alert("Tài khoản của bạn đã được tạo thành công")
-          window.location.href = "/login"
-        } else {
-          var errMessage = document.querySelector(".invalid-info-message")
-          errMessage.innerText = "Email hoặc số điện thoại này đã tồn tại"
-          errMessage.style.display = "block"
-        }
-      })
-      .catch(() => alert("Có lỗi xảy ra khi gửi dữ liệu lên server, vui lòng kiểm tra kết nối mạng và thử lại"))
-  },
 })
-/* Fb login */
-function statusChangeCallback(response) {
-  // Called with the results from FB.getLoginStatus().
-  if (response.status === "connected") {
-    // Logged into your webpage and Facebook.
-    testAPI()
-  }
-  // else {
-  //   // Not logged into your webpage or we are unable to tell.
-  //   document.getElementById("status").innerHTML = "Please log " + "into this webpage."
-  // }
+
+
+function ValidateFromRegister(){
+    if (check(fullname,regexName,"tên",'')&&check(email,regexEmail,'email','')&&
+    check(password,regexStrengthPassword,'mật khẩu','Mật khẩu phải bao gồm ít nhất 8 chữ cái, có chứa chữ hoa, chữ thường , số và kí tự đặc biệt.')&&
+    checkConfirmPassword())
+    return true;
+    else return false;
 }
-
-
-
-function testAPI() {
-  // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-  FB.api("/me?fields=name,email", function (response) {
-    fbUserData = {
-      full_name: response.name,
-      email: response.email,
-      avatar: `https://graph.facebook.com/${response.id}/picture?type=square`,
+function check(element,regex,string1,string2){    
+    const value=element.value;
+    if (!value.length){
+        formMessage.innerHTML=`Vui lòng không được để trống ${string1} `;  
     }
-    localStorage.setItem("userDataStorage", JSON.stringify(fbUserData))
-    alert("Đăng nhập thành công, sẽ tự động chuyển sang trang chủ trong 3 giây")
-    setTimeout(() => {
-      window.location = "../"
-    }, 3000)
-  })
+    else if (!regex.test(value)){
+        formMessage.innerHTML=`Vui lòng nhập ${string1}  hợp lệ. ${string2}`;
+    } else return true;
 }
+function checkConfirmPassword(){
+    const value=passwordConfirm.value;
+    if (!value.length){
+        formMessage.innerHTML="Nhập lại mật khẩu không được để trống";
+    } else if (value!==password.value){
+        formMessage.innerHTML="Mật khẩu không trùng khớp. Vui lòng nhập lại";
+    } else return true;
+}
+

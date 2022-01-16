@@ -5,7 +5,6 @@ const Product=require('../models/Product');
 const CartController={
     index : async (req,res)=>{
         try {
-            console.log(req.session.userId);
             if (req.user){
                 const user= await User.findOne({_id:req.user});
                 let products=[];
