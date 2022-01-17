@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PoorShop! | </title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="css/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="css/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="css/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="css/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="css/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <nav class="nav navbar-nav" style="float: right;">
+                        <ul class=" navbar-right">
+                            <li class="nav-item dropdown js-nav" style="padding-left: 15px;">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">Tinhle
+                                    <span class="fa fa-chevron-down js-pro"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="taikhoan.html"> Tài khoản</a>
+
+
+                                    <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>PoorShop!</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Xin chào,</span>
+                            <h2>Tình Lê</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <a href="index2.html">
+                                    <li>Trang chủ </a>
+                                </li>
+                                </a>
+                                <li><a><i class="fa fa-edit"></i> Quản lý <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="nhanvien.html">Quản lý nhân viên</a></li>
+                                        <li><a href="sanpham.html">Quản lý hàng hóa</a></li>
+                                        <li><a href="khachhang.html">Quản lý khách hàng</a></li>
+                                        <li><a href="hoadon.html">Quản lý hóa đơn</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-bar-chart-o"></i> Báo cáo <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="baocaobanhang.html">Báo cáo bán hàng</a></li>
+                                        <li><a href="baocaonhanvien.html">Báo cáo nhân viên</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-user"></i> Tài khoản <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="taikhoan.html">Thông tin tài khoản</a></li>
+                                        <li><a href="login.html">Thoát</a></li>
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+
+
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="x_panel">
+                    <div class="">
+
+                        <h2>Quản lý nhân viên</h2>
+                    </div>
+
+                    <div class="h_content ">
+
+
+
+                        <div class="form-group form-inline">
+
+                            <div class="col-sm-4">
+                                <input type="hidden">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" name="" class="form-control left" id="" placeholder="ID/Tên nhân viên">
+
+                                <button id="search_btn" type="button" class="btn btn-primary left">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary left js-add-em">
+                                    <i class="fa fa-pencil"></i>
+                                    Thêm mới
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 ">
+                        <table class="table_e">
+                            <thead>
+                                <tr>
+                                    <th>IDNV</th>
+                                    <th>Tên nhân viên</th>
+                                    <th>Bộ phận</th>
+                                    <th>Địa chỉ</th>
+                                    <th>SĐT</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="file">
+                                    <td>nv01</td>
+                                    <td><a href="#">Lê Thị Tình</a></td>
+                                    <td>Bán hàng</td>
+                                    <td>Sen thủy</td>
+                                    <td>096869954</td>
+                                    <td class="text-center">
+                                        <button type="button" class="js-add-de">
+                                        <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button type="button" class=" right js-add-up">
+                                        <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button type="button" class=" right js-add-dele">
+                                        <i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr id="file1">
+                                    <td>nv02</td>
+                                    <td><a href="#">Lê Thị Tình</a></td>
+                                    <td>Bán hàng</td>
+                                    <td>Sen thủy</td>
+                                    <td>096869954</td>
+                                    <td class="text-center">
+                                        <button type="button" class="js-add-de">
+                                        <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button type="button" class=" right js-add-up">
+                                        <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button type="button" class=" right js-add-dele">
+                                        <i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="paging">
+                        <ul class="pagination right">
+                            <li><a href="#">Trang đầu</a></li>
+                            <li class="active"><a href="">1</a></li>
+                            <li><a href="#">Trang cuối</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- /page content -->
+
+            <!--Modal add-employee-->
+            <div id="addform" class="modal fade js-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content js-modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close js-modal-close">
+                                <span>x</span>
+                            </button>
+                            <h4 class="modal-title">Thêm nhân viên</h4>
+                        </div>
+
+                        <form action="" id="demo1" class="form-horizontal form-label-left">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                        <input type="hidden" name="id" value="0">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">IDNV</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="IDNV">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên NV</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="Tên nhân viên">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Bộ phận</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <select class="form-control" name="level" id="">
+                                            <option value="1">Bán hàng</option>
+                                            <option value="2">Thủ kho</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giới tính</label>
+                                    <label class="col-md-3">
+                                        <input type="radio" value="0" name="radio" checked>
+                                        <span>Nam</span>
+                                    </label>
+                                    <label class="col-md-3">
+                                         <input type="radio" value="1" name="radio">
+                                         <span>Nữ</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="Địa chỉ">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="SĐT">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="gmail">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-default">Thoát</button>
+                                <button class="btn btn-primary">Lưu</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--/modal add-->
+
+            <!--Modal detail-->
+            <div id="detailform" class="modal fade js-modal1">
+                <div class="modal-dialog">
+                    <div class="modal-content js-modal-content1">
+                        <div class="modal-header">
+                            <button type="button" class="close js-modal-close1">
+                                <span>x</span>
+                            </button>
+                            <h4 class="modal-title">Thông tin chi tiết</h4>
+                        </div>
+
+                        <form action="" id="demo2" class="form-horizontal form-label-left">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                        <input type="hidden" name="id" value="0">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">IDNV</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">NV01</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên NV</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">Lê Thị Tình</label>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Bộ phận</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">Bán hàng</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giới tính</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">Nữ</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">Sen Thủy</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">0968699534</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <label for="" class="form-control">tinhle@gmail.com</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default">Thoát</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--/modal detail-->
+
+            <!--Modal update-->
+            <div id="updateform" class="modal fade js-modal2">
+                <div class="modal-dialog">
+                    <div class="modal-content js-modal-content2">
+                        <div class="modal-header">
+                            <button type="button" class="close js-modal-close2">
+                                <span>x</span>
+                            </button>
+                            <h4 class="modal-title">Chỉnh sửa thông tin nhân viên</h4>
+                        </div>
+
+                        <form action="" id="demo3" class="form-horizontal form-label-left">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                        <input type="hidden" name="id" value="0">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">IDNV</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="IDNV" value="NV01">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên NV</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="Tên nhân viên" value="Lê Thị Tình">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Bộ phận</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <select class="form-control" name="level" id="">
+                                            <option value="1">Bán hàng</option>
+                                            <option value="2">Thủ kho</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giới tính</label>
+                                    <label class="col-md-3">
+                                        <input type="radio" value="0" name="radio" checked>
+                                        <span>Nam</span>
+                                    </label>
+                                    <label class="col-md-3">
+                                         <input type="radio" value="1" name="radio">
+                                         <span>Nữ</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="Địa chỉ" value="Sen Thủy">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="SĐT" value="0968699534">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
+                                    <div class="col-md-7  col-xs-12">
+                                        <input type="text" name="" id="" class="form-control" placeholder="gmail" value="tinhle@gmai.com">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-default">Thoát</button>
+                                <button class="btn btn-primary">Lưu</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--/modal update-->
+
+            <!--Modal delete-->
+            <div id="deleteform" class="modal fade js-modal3">
+                <div class="modal-dialog">
+                    <div class="modal-content js-modal-content3">
+                        <div class="modal-header">
+                            <button type="button" class="close js-modal-close3">
+                                <span>x</span>
+                            </button>
+                            <h4 class="modal-title">Xóa mục này</h4>
+                        </div>
+                        <div class="modal-body">Bạn chắc chắn muốn xóa mục này chứ?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger"> Xóa</button>
+                            <button class="btn btn-default js-cancel"> Hủy bỏ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/modal delete-->
+
+
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Quản lý web bán điện thoại<a href="https://colorlib.com">PoorShop</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="js/nprogress.js"></script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment.min.js"></script>
+    <script src="js/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="js/bootstrap-wysiwyg.min.js"></script>
+    <script src="js/jquery.hotkeys.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.min.js"></script>
+
+    <script>
+        const Addbtn = document.querySelector('.js-add-em')
+        const modal = document.querySelector('.js-modal')
+        const modal1 = document.querySelector('.js-modal1')
+        const modal2 = document.querySelector('.js-modal2')
+
+        const modal3 = document.querySelector('.js-modal3')
+
+        const modalClose = document.querySelector('.js-modal-close')
+        const modalClose1 = document.querySelector('.js-modal-close1')
+        const modalClose2 = document.querySelector('.js-modal-close2')
+
+        const modalClose3 = document.querySelector('.js-modal-close3')
+
+        const modalContent = document.querySelector('.js-modal-content')
+        const modalContent1 = document.querySelector('.js-modal-content1')
+        const modalContent2 = document.querySelector('.js-modal-content2')
+        const modalContent3 = document.querySelector('.js-modal-content3')
+
+        const details = document.querySelectorAll('.js-add-de')
+        const updates = document.querySelectorAll('.js-add-up')
+        const deles = document.querySelectorAll('.js-add-dele')
+        const cancel = document.querySelector('.js-cancel')
+
+        function showAdd() {
+            modal.classList.add("in")
+        }
+
+        function showDetail() {
+            modal1.classList.add("in")
+        }
+
+        function showUpdate() {
+            modal2.classList.add("in")
+        }
+
+        function showDelete() {
+            modal3.classList.add("in")
+        }
+
+        function hiden() {
+            modal.classList.remove("in")
+        }
+
+        function hiden1() {
+            modal1.classList.remove("in")
+        }
+
+        function hiden2() {
+            modal2.classList.remove("in")
+        }
+
+        function hiden3() {
+            modal3.classList.remove("in")
+        }
+
+        Addbtn.addEventListener('click', showAdd)
+        for (const detail of details) {
+            detail.addEventListener('click', showDetail)
+        }
+
+        for (const update of updates) {
+            update.addEventListener('click', showUpdate)
+        }
+
+        for (const dele of deles) {
+            dele.addEventListener('click', showDelete)
+        }
+        cancel.addEventListener('click', hiden3)
+        modalClose.addEventListener('click', hiden)
+        modalClose1.addEventListener('click', hiden1)
+        modalClose2.addEventListener('click', hiden2)
+        modalClose3.addEventListener('click', hiden3)
+
+        modal.addEventListener('click', hiden)
+        modalContent.addEventListener('click', function(event) {
+            event.stopPropagation()
+        })
+
+        modal1.addEventListener('click', hiden1)
+        modalContent1.addEventListener('click', function(event) {
+            event.stopPropagation()
+        })
+
+        modal2.addEventListener('click', hiden2)
+        modalContent2.addEventListener('click', function(event) {
+            event.stopPropagation()
+        })
+
+        modal3.addEventListener('click', hiden3)
+        modalContent3.addEventListener('click', function(event) {
+            event.stopPropagation()
+        })
+    </script>
+
+
+
+</body>
+
+</html>

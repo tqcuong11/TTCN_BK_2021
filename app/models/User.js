@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
+// const ROLE = {
+//   ADMIN = 'admin',
+//   BASIC = 'basic '
+// }
+
 const User = new Schema(
   {
     full_name: {
