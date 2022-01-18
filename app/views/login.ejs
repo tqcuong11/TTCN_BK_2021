@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walmart </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://use.fontawesome.com/4611f582cf.js"></script>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/login&register.css" />
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <style>
+      #form h3 {
+        margin-bottom: 20px;
+      }
+      #form .form-group {
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      .other .forgot_password {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">      
+      <div class="wrap">
+        <form id="form" method="POST">
+          <h3 class="txt">ĐĂNG NHẬP</h3>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input
+                type="text"
+                class="email login_input"
+                id="email"
+                placeholder="Nhập  email"
+                name="email"
+              />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input
+                type="password"
+                class="password login_input"
+                id="password"
+                placeholder="Nhập mật khẩu"
+                name="password"
+              />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div id="login"  class="btn form_btn txt">
+            ĐĂNG NHẬP
+          </div>  
+          <span class="form-message"></span>
+          <span class="invalid-info-message"><%- message %></span>        
+          <div class="other txt">
+            <span>Bạn chưa có tài khoản?</span>
+            <a href="/register" class="register">Đăng ký mới</a>
+            <br />
+            <a href="#" class="forgot_password">Quên mật khẩu?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="../js/login.js"></script>
+  </body>
+</html>
