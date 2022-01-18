@@ -23,20 +23,20 @@
             <div class="h_content">
               <div class="form-group form-inline">
                 <div class="col-sm-4">
-                  <input type="hidden" />
+                  <input type="text" name="" class="form-control left" id="" placeholder="ID/Tên nhân viên" />
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" name="" class="form-control left" id="" placeholder="ID/Tên nhân viên" />
-
                   <button id="search_btn" type="button" class="btn btn-primary left">
                     <i class="fa fa-search"></i>
                   </button>
                 </div>
                 <div class="col-sm-4">
-                  <button type="button" class="btn btn-primary left js-add-em">
-                    <i class="fa fa-pencil"></i>
-                    Thêm mới
-                  </button>
+                  <a href="/admin/newEmployee">
+                    <button type="button" class="btn btn-primary left js-add-em">
+                      <i class="fa fa-pencil-alt"></i>
+                      Thêm mới
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -45,52 +45,33 @@
               <table class="table_e">
                 <thead>
                   <tr>
-                    <th>IDNV</th>
                     <th>Tên nhân viên</th>
-                    <th>Bộ phận</th>
-                    <th>Địa chỉ</th>
-                    <th>SĐT</th>
+                    <th>Email</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr id="file">
-                    <td>nv01</td>
-                    <td><a href="#">Lê Thị Tình</a></td>
-                    <td>Bán hàng</td>
-                    <td>Sen thủy</td>
-                    <td>096869954</td>
+                  <% employees.forEach(employee=>{ %>
+                  <tr>
+                    <td>
+                      <div><%- employee.full_name %></div>
+                    </td>
+                    <td>
+                      <div><%- employee.email %></div>
+                    </td>
                     <td class="text-center">
                       <button type="button" class="js-add-de">
                         <i class="fa fa-eye"></i>
                       </button>
                       <button type="button" class="right js-add-up">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fa fa-pencil-alt"></i>
                       </button>
                       <button type="button" class="right js-add-dele">
-                        <i class="fa fa-trash-o"></i>
+                        <i class="fa fa-trash-alt"></i>
                       </button>
                     </td>
                   </tr>
-
-                  <tr id="file1">
-                    <td>nv02</td>
-                    <td><a href="#">Lê Thị Tình</a></td>
-                    <td>Bán hàng</td>
-                    <td>Sen thủy</td>
-                    <td>096869954</td>
-                    <td class="text-center">
-                      <button type="button" class="js-add-de">
-                        <i class="fa fa-eye"></i>
-                      </button>
-                      <button type="button" class="right js-add-up">
-                        <i class="fa fa-pencil"></i>
-                      </button>
-                      <button type="button" class="right js-add-dele">
-                        <i class="fa fa-trash-o"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  <% }) %>
                 </tbody>
               </table>
             </div>
@@ -106,93 +87,6 @@
         </div>
 
         <!-- /page content -->
-
-        <!--Modal add-employee-->
-        <div id="addform" class="modal fade js-modal">
-          <div class="modal-dialog">
-            <div class="modal-content js-modal-content">
-              <div class="modal-header">
-                <button type="button" class="close js-modal-close">
-                  <span>x</span>
-                </button>
-                <h4 class="modal-title">Thêm nhân viên</h4>
-              </div>
-
-              <form action="" id="demo1" class="form-horizontal form-label-left">
-                <div class="modal-body">
-                  <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                      <input type="hidden" name="id" value="0" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">IDNV</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="IDNV" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên NV</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="Tên nhân viên" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Bộ phận</label>
-                    <div class="col-md-7 col-xs-12">
-                      <select class="form-control" name="level" id="">
-                        <option value="1">Bán hàng</option>
-                        <option value="2">Thủ kho</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giới tính</label>
-                    <label class="col-md-3">
-                      <input type="radio" value="0" name="radio" checked />
-                      <span>Nam</span>
-                    </label>
-                    <label class="col-md-3">
-                      <input type="radio" value="1" name="radio" />
-                      <span>Nữ</span>
-                    </label>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="Địa chỉ" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="SĐT" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="gmail" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="modal-footer">
-                  <button class="btn btn-default">Thoát</button>
-                  <button class="btn btn-primary">Lưu</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!--/modal add-->
 
         <!--Modal detail-->
         <div id="detailform" class="modal fade js-modal1">
@@ -271,93 +165,6 @@
         </div>
         <!--/modal detail-->
 
-        <!--Modal update-->
-        <div id="updateform" class="modal fade js-modal2">
-          <div class="modal-dialog">
-            <div class="modal-content js-modal-content2">
-              <div class="modal-header">
-                <button type="button" class="close js-modal-close2">
-                  <span>x</span>
-                </button>
-                <h4 class="modal-title">Chỉnh sửa thông tin nhân viên</h4>
-              </div>
-
-              <form action="" id="demo3" class="form-horizontal form-label-left">
-                <div class="modal-body">
-                  <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <input type="hidden" name="id" value="0" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">IDNV</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="IDNV" value="NV01" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên NV</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="Tên nhân viên" value="Lê Thị Tình" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Bộ phận</label>
-                    <div class="col-md-7 col-xs-12">
-                      <select class="form-control" name="level" id="">
-                        <option value="1">Bán hàng</option>
-                        <option value="2">Thủ kho</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giới tính</label>
-                    <label class="col-md-3">
-                      <input type="radio" value="0" name="radio" checked />
-                      <span>Nam</span>
-                    </label>
-                    <label class="col-md-3">
-                      <input type="radio" value="1" name="radio" />
-                      <span>Nữ</span>
-                    </label>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="Địa chỉ" value="Sen Thủy" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="SĐT" value="0968699534" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
-                    <div class="col-md-7 col-xs-12">
-                      <input type="text" name="" id="" class="form-control" placeholder="gmail" value="tinhle@gmai.com" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="modal-footer">
-                  <button class="btn btn-default">Thoát</button>
-                  <button class="btn btn-primary">Lưu</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!--/modal update-->
-
         <!--Modal delete-->
         <div id="deleteform" class="modal fade js-modal3">
           <div class="modal-dialog">
@@ -383,9 +190,7 @@
         <!-- /footer content -->
       </div>
     </div>
-
     <%- include("partials/admin-scripts") %>
-
     <script>
       const Addbtn = document.querySelector(".js-add-em");
       const modal = document.querySelector(".js-modal");

@@ -17,25 +17,13 @@
         <div class="right_col" role="main">
           <div class="x_panel">
             <div class="">
-              <h2>Quản lý đơn hàng</h2>
+              <h2>Quản lý khách hàng</h2>
             </div>
-            <!-- <div class="h_content">
-              <div class="form-group form-inline">
-                <div class="col-sm-8">
-                  <button id="search_btn" type="button" class="btn btn-primary right">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </div>
 
-                <div class="col-sm-8">
-                  <input type="datetime-local" name="" class="form-control right" id="" placeholder="" />
-                </div>
-              </div>
-            </div> -->
             <div class="h_content">
               <div class="form-group form-inline">
                 <div class="col-sm-4">
-                  <input type="datetime-local" name="" class="form-control right" id="" placeholder="" />
+                  <input type="text" name="" class="form-control left" id="" placeholder="Mã/Tên/SĐT" />
                 </div>
                 <div class="col-sm-4">
                   <button id="search_btn" type="button" class="btn btn-primary left">
@@ -49,32 +37,55 @@
               <table class="table_e">
                 <thead>
                   <tr>
-                    <th>Mã đơn hàng</th>
+                    <th>Mã khách hàng</th>
                     <th>Tên khách hàng</th>
                     <th>Địa chỉ</th>
                     <th>SĐT</th>
-                    <th>Ngày đặt hàng</th>
-                    <th class="text-center">Chi tiết đơn hàng</th>
-                    <th class="text-center">Xác nhận</th>
-                    <th class="text-center">Hủy đơn hàng</th>
+                    <th class="text-center">Chi tiết mua hàng</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr id="file">
-                    <td>DH01</td>
+                    <td>KH01</td>
                     <td><a href="#">Lê Thị Tình</a></td>
                     <td>Sen thủy</td>
                     <td>096869954</td>
-                    <td>21/06/2022</td>
+                    <td class="text-center">
+                      <a href="chitietmuahang">
+                        <button type="button" class="right js-add-up">
+                          <i class="fa fa-eye"></i>
+                        </button>
+                      </a>
+                    </td>
                     <td class="text-center">
                       <button type="button" class="js-add-de">
-                        <i class="fa fa-eye"></i>
+                        <i class="fa fa fa-search-plus"></i>
+                      </button>
+
+                      <button type="button" class="right js-add-dele">
+                        <i class="fa fa-trash-alt"></i>
                       </button>
                     </td>
+                  </tr>
+
+                  <tr id="file1">
+                    <td>KH02</td>
+                    <td><a href="#">Lê Thị Tình</a></td>
+                    <td>Sen thủy</td>
+                    <td>096869954</td>
                     <td class="text-center">
-                      <input type="checkbox" />
+                      <a href="chitietmuahang">
+                        <button type="button" class="right js-add-up">
+                          <i class="fa fa-eye"></i>
+                        </button>
+                      </a>
                     </td>
                     <td class="text-center">
+                      <button type="button" class="js-add-de">
+                        <i class="fa fa fa-search-plus"></i>
+                      </button>
+
                       <button type="button" class="right js-add-dele">
                         <i class="fa fa-trash-alt"></i>
                       </button>
@@ -93,6 +104,7 @@
             </div>
           </div>
         </div>
+
         <!-- /page content -->
 
         <!--Modal detail-->
@@ -103,60 +115,56 @@
                 <button type="button" class="close js-modal-close1">
                   <span>x</span>
                 </button>
+                <h4 class="modal-title">Thông tin chi tiết</h4>
               </div>
-              <div class="modal-body form-horizontal">
-                <h1 class="text-center">Hóa đơn bán hàng</h1>
-                <h2 class="text-center">[Mã HĐ:HD01]</h2>
-                <div class="row">
-                  <div class="col-md-12">
-                    <p>
-                      <span>
-                        <i class="icon-user"></i>
-                        Người bán:
-                      </span>
-                      Lê Thị Tình
-                    </p>
-                    <p><span> Ngày: </span> 21/06/2000</p>
-                    <p><span>Tên khách hàng:</span> Lê Mỹ An</p>
-                    <p><span> Địa chỉ nhận hàng: </span> Sen Thủy</p>
-                    <p><span>Sđt:</span> 0968699534</p>
+
+              <form action="" id="demo2" class="form-horizontal form-label-left">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <input type="hidden" name="id" value="0" />
+                    </div>
                   </div>
-                  <h3>Chi tiết sản phẩm</h3>
 
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="text-center">STT</th>
-                        <th class="text-center">Sản phẩm</th>
-                        <th class="text-center">Số lượng</th>
-                        <th class="text-center">Đơn vị</th>
-                        <th class="text-center">Giá</th>
-                        <th class="text-center">Thành tiền</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">Iphone 13 mini</td>
-                        <td class="text-center">01</td>
-                        <td class="text-center">Cái</td>
-                        <td class="text-center">20.000.000 VNĐ</td>
-                        <td class="text-center">20.000.000 VNĐ</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="bold text-right">
-                  <h4>Thuế GTGT :10%</h4>
-                </div>
-                <div class="bold text-right">
-                  <h4>Tổng cộng :22.000.000 VNĐ</h4>
-                </div>
-              </div>
+                  <div class="form-group">
+                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Mã khách hàng</label>
+                    <div class="col-md-7 col-xs-12">
+                      <label for="" class="form-control">KH01</label>
+                    </div>
+                  </div>
 
-              <div class="modal-footer">
-                <button class="btn btn-default">Thoát</button>
-              </div>
+                  <div class="form-group">
+                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên khách hàng</label>
+                    <div class="col-md-7 col-xs-12">
+                      <label for="" class="form-control">Lê Thị Tình</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
+                    <div class="col-md-7 col-xs-12">
+                      <label for="" class="form-control">Sen Thủy</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
+                    <div class="col-md-7 col-xs-12">
+                      <label for="" class="form-control">0968699534</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
+                    <div class="col-md-7 col-xs-12">
+                      <label for="" class="form-control">tinhle@gmail.com</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-default">Thoát</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -187,7 +195,9 @@
         <!-- /footer content -->
       </div>
     </div>
+
     <%- include("partials/admin-scripts") %>
+
     <script>
       const modal1 = document.querySelector(".js-modal1");
 
@@ -201,6 +211,7 @@
       const modalContent3 = document.querySelector(".js-modal-content3");
 
       const details = document.querySelectorAll(".js-add-de");
+      const updates = document.querySelectorAll(".js-add-up");
       const deles = document.querySelectorAll(".js-add-dele");
       const cancel = document.querySelector(".js-cancel");
 

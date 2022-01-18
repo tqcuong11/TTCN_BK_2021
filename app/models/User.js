@@ -1,11 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
-
-// const ROLE = {
-//   ADMIN = 'admin',
-//   BASIC = 'basic '
-// }
 
 const User = new Schema(
   {
@@ -30,11 +25,10 @@ const User = new Schema(
       // required: true,
     },
     products: {
-      type: [{ type: ObjectId, ref: 'products' }],
-      
+      type: [{ type: ObjectId, ref: "products" }],
     },
     cart: {
-      type: [{ type: ObjectId, ref: 'products' }],
+      type: [{ type: ObjectId, ref: "products" }],
     },
     refreshToken: {
       type: String,
@@ -44,4 +38,4 @@ const User = new Schema(
     timestamps: true,
   }
 );
-module.exports = mongoose.model('users', User);
+module.exports = mongoose.model("users", User);

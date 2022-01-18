@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const AdminController = require("../controllers/AdminController");
+const auth = require("../controllers/Auth");
 const verifyToken = require("../middlewares/verifyToken");
 
-router.get("/nhanvien", verifyToken, AdminController.manageStaffs);
-router.get("/sanpham", verifyToken, AdminController.manageProducts);
-router.get("/khachhang", verifyToken, AdminController.manageCustomers);
+router.get("/employees", verifyToken, AdminController.listEmployees);
+router.get("/products", verifyToken, AdminController.listProducts);
+router.get("/newEmployee", verifyToken, AdminController.newEmployee);
+router.post("/addEmployee", verifyToken, AdminController.addEmployee);
+router.get("/customers", verifyToken, AdminController.manageCustomers);
 router.get("/hoadon", AdminController.manageBills);
 router.get("/", verifyToken, AdminController.dashboard);
 
