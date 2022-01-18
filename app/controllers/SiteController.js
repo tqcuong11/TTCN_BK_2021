@@ -2,6 +2,7 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 const SiteController = {
+<<<<<<< HEAD
   // [GET] / home
   home: async (req, res) => {
     try {
@@ -18,6 +19,12 @@ const SiteController = {
         message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
       });
     }
+=======
+  home: async (req, res, next) => {
+    const products = await Products.find({});
+    if (products) res.render("home", { products });
+    else next();
+>>>>>>> 34b6fbf05e1ce096c28609e2e0ebf566ffe1fe48
   },
 
   // [GET] / detail
@@ -66,13 +73,14 @@ const SiteController = {
 
   async search(req, res) {
     const search = req.query.search;
-    const products = await Products.find({name:{
-      $regex:`.*${req.query.search}.*`,
-      $options:"$i"
-    }});
-    res.render('search', {products});
-    }
-
+    const products = await Products.find({
+      name: {
+        $regex: `.*${req.query.search}.*`,
+        $options: "$i",
+      },
+    });
+    res.render("search", { products });
+  },
 };
 
 module.exports = SiteController;
