@@ -2,6 +2,8 @@ require("dotenv").config();
 const Product = require("../models/Product");
 const User = require("../models/User");
 const argon2 = require("argon2");
+const path = require("path");
+const fileUpload = require("express-fileupload");
 
 const AdminController = {
   // [GET] / login
@@ -84,6 +86,16 @@ const AdminController = {
         message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
       });
     }
+  },
+
+  //
+  newProduct: async (req, res) => {
+    const user = await User.findOne({ _id: req.user });
+    res.render("newProduct", { user });
+  },
+  // [POST] / add employee
+  addProduct: (req, res) => {
+    res.redirect("/admin/products");
   },
 
   manageCustomers: async (req, res) => {
