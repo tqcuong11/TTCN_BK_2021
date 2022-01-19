@@ -14,7 +14,7 @@ const Product = new Schema(
     color: { type: String },
     price: { type: Number },
     review_count: { type: Number },
-    img: { type: String },
+    img: { type: Array },
     slug: { type: String, unique: true },
   },
   {
