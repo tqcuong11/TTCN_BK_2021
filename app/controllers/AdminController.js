@@ -11,7 +11,8 @@ const AdminController = {
     try {
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
-        res.render("admin", { user });
+        const employees = await User.find({ role_id: 1 });
+        res.render("admin", { user,employees });
       } else {
         res.redirect("/");
       }
@@ -22,6 +23,7 @@ const AdminController = {
       });
     }
   },
+
 
   // [GET] / list of products
   listProducts: async (req, res) => {
@@ -35,25 +37,7 @@ const AdminController = {
     } catch (error) {}
   },
 
-  // [GET] / list employees
-
-  listEmployees: async (req, res) => {
-    try {
-      const employees = await User.find({ role_id: 1 });
-      if (req.user) {
-        const user = await User.findOne({ _id: req.user });
-        res.render("employees", { user, employees });
-      } else {
-        res.render("employees", { user: "" });
-      }
-    } catch (err) {
-      return res.render("error", {
-        err,
-        message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
-      });
-    }
-  },
-
+  
   //
   newEmployee: async (req, res) => {
     const user = await User.findOne({ _id: req.user });

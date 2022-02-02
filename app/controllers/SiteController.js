@@ -52,10 +52,7 @@ const SiteController = {
     try {
       const products = await Product.find({});
       res.cookie("isLoggedIn", "false");
-      res.render("home", {
-        products: products,
-        user: "",
-      });
+      res.redirect('/');
     } catch (err) {
       res.render("error", {
         err,

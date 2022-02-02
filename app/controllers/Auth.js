@@ -75,7 +75,14 @@ const auth = {
         httpOnly: true,
         // secure: true;
       });
-      return res.redirect("/");
+      switch(user.role_id){
+        case 0: res.redirect("/");
+          break;
+        case 1: res.redirect("/employee");
+          break;
+        case 2: res.redirect("/admin");
+          break;
+      }
     } catch (err) {
       res
         .status(500)
