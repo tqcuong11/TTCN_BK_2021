@@ -37,11 +37,11 @@ const SiteController = {
 
   // [GET] / login
   login: (req, res) => {
-    res.render("login",{message:''});
+    res.render("login", { message: "" });
   },
   // [GET] / register
   register: (req, res) => {
-    res.render("register",{message:''});
+    res.render("register", { message: "" });
   },
 
   // [POST] / info/logout
