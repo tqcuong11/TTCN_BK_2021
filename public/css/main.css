@@ -30,6 +30,7 @@ a {
     -moz-transition: 300ms;
     -o-transition: 300ms;
     transition: 300ms;
+    text-decoration: none;
 }
 
 h1,
@@ -216,7 +217,7 @@ a#scrollUp i {
 }
 
 .shop-menu ul li:first-child {
-    padding-right: 140px;
+    padding-right: 110px;
 }
 
 .shop-menu ul li:last-child {
@@ -288,6 +289,7 @@ a#scrollUp i {
     background-image: url(../images/home/searchicon.png);
     background-repeat: no-repeat;
     background-position: 375px;
+    border-radius: 5px;
 }
 
 
@@ -996,6 +998,55 @@ h2.title {
     background: #FE980F;
     color: #FFFFFF;
 }
+.cart_quantity{  
+    position: absolute;
+    padding:0px 4px;
+    color: #fff;
+    font-size: 12px;
+    top:-12px;
+    left:15px;
+  
+}
+.quantity-btn{
+    font-size: 15px !important; 
+    color:#000;
+    background-color: unset;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin: 0 10px;
+}
+.info-selected{
+     background-color: #e6dfdf;
+     margin-left:20px;
+      padding:10px 10px; 
+      border-radius: 10px;
+}
+.info-selected>div{
+    margin: 10px ;
+    padding:10px 0;
+    border-bottom:1px solid #ccc;
+}
+.info-selected .payment-btn{
+    background-color: rgb(235, 11, 11);
+    width: 90%;
+    padding:10px;
+}
+
+.remove-btn{
+    background-color: unset;
+}
+.remove-btn i{
+    font-size: 16px!important;
+    color: #000;
+    position: relative;
+    top: -2px;
+}
+.remove-btn:hover i{
+    font-size: 16px !important;
+    color: red;
+
+}
 
 .choose {
     border-top: 1px solid #F7F7F0;
@@ -1316,15 +1367,6 @@ h2.title {
     margin-top: 15px;
 }
 
-.cart {
-    background: #FE980F;
-    border: 0 none;
-    border-radius: 0;
-    color: #FFFFFF;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    margin-left: 20px;
-}
 
 .shop-details-tab {
     border: 1px solid #F7F7F0;

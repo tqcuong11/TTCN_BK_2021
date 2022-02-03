@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+<div class="order">
+    <div class="container">
+        <div class="row text-center " style="margin: 10px 0; font-size: 16px;border: 1px solid #ccc; font-weight: bold;">
+            <div class="col-sm-1" style="border-right: 1px solid #ccc;padding: 5px 0;">STT</div>
+            <div class="col-sm-3" style="border-right: 1px solid #ccc; padding: 5px 0;">Tên sản phẩm</div>
+            <div class="col-sm-2" style="border-right: 1px solid #ccc; padding: 5px 0;">Số lượng</div>
+            <div class="col-sm-2" style="border-right: 1px solid #ccc; padding: 5px 0;">Thành tiền</div>
+            <div class="col-sm-2" style="border-right: 1px solid #ccc; padding: 5px 0;">Ngày đặt hàng</div>
+            <div class="col-sm-2" style="padding: 5px 0;">Tình trạng</div>
+        </div>
+        <% orders.forEach((order,index)=>{ %>
+            <div class="row text-center" style="font-size: 16px; border-bottom: 1px solid #ccc; padding:10px 0; margin: 10px 0;">
+                <div class="col-sm-1"><%- index+1 %></div>
+                <div class="col-sm-7">
+                    <% order.order.forEach(item=>{%>
+                        <div class="row" style="padding-bottom: 15px;">
+                            <div class="col-sm-5 text-left">
+                                <div class="row">
+                                    <div class="col-sm-4"><img src="<%- item.product.img[0]%>.jpg" alt="" style="width: 80px;"></div>
+                                    <div class="col-sm-8"><%- item.product.name%>-<%-item.product.storage%>-<%-item.product.color %></div>
+                                </div>                                
+                            </div>
+                            <div class="col-sm-3"><%- item.count %></div>
+                            <div class="col-sm-4"><%- (item.product.price*item.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")  %><sup>đ</sup></div>
+                        </div>
+                    <%})%>
+                </div>                
+                <div class="col-sm-2">
+                    <%-new Date(order.createdAt).getDate() %>/<%-new Date(order.createdAt).getMonth() %>/<%-new Date(order.createdAt).getFullYear() %>
+                </div>
+                <% if(order.status===false) { %>
+                    <div class="col-sm-2" style="color:red; font-weight: bold;"> Chưa xác nhận </div>
+                <%} else if(order.status===true){ %>
+                    <div class="col-sm-2"style="color: green; font-weight: bold;"> Đã xác nhận </div>                
+                <%}%> 
+            </div>
+        <% })%>
+        
+    </div>
+</div>
+<!--/#do_action-->
+<%- include("partials/footer") %>
+<%- include("partials/scripts") %>
+
+</body>
+</html>

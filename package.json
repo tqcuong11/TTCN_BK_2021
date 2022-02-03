@@ -2,7 +2,7 @@
   "name": "unica-js",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon --inspect app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,15 +11,20 @@
   "license": "ISC",
   "dependencies": {
     "argon2": "^0.28.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.1.2",
     "mongoose-slug-generator": "^1.0.4",
+    "mongoose-unique-validator": "^3.0.0",
+    "multer": "^1.4.4",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
