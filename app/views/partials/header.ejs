@@ -101,11 +101,27 @@
                   <i class="fa fa-user"></i> 
                   <%- user.full_name %>
                 </a>
-                <ul role="menu" class="sub-menu">
-                  <li><a href="/admin">Admin</a></li>
-                  <li><a href="#">Thông tin</a></li>
-                  <li><a href="/logout" class="active">Đăng xuất</a></li>
-                </ul>
+                <% if (user.role_id===0){ %>
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="#">Cập nhật thông tin</a></li>
+                    <li><a href="/order">Đơn hàng của tôi</a></li>
+                    <li><a href="/logout" class="active">Đăng xuất</a></li>
+                  </ul>
+                <% } else if (user.role_id===1){ %>                  
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="#">Quản lý</a></li>
+                    <li><a href="#">Cập nhật thông tin</a></li>
+                    <li><a href="/logout" class="active">Đăng xuất</a></li>
+                  </ul>
+                <%} else {%>
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="/admin">Quản lý</a></li>
+                    <li><a href="/logout" class="active">Đăng xuất</a></li>
+                  </ul>  
+                
+                
+                <%} %>
+
               </li>
               <% } else{ %>
               <!-- not login -->

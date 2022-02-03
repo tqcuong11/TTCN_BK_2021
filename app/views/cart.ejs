@@ -18,8 +18,8 @@
                             <% if (user.cart)
                                 if (user.cart.length!==0){
                                     let index=0;
-                                 user.cart.forEach(e=>{  %>
-                                <div class="cart-item" id='cart-item-<%- index %>' style="padding: 15px 0; border-bottom: 1px solid #ccc;">
+                                 user.cart.forEach((e,index)=>{  %>
+                                <div class="cart-item" id='cart-item-<%- index %>' data="<%- e._id %>" style="padding: 15px 0; border-bottom: 1px solid #ccc;">
                                     <div class="row text-center" style="    display: flex; align-items: center; font-size: 16px;">
                                         <div class="col-lg-4 " style=" display: flex;justify-content: left !important;align-items: center;">
                                             <img src="<%- e.img[1] %>.jpg" 
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
             
-                            <% index++; }) } %>
+                            <% }) } %>
                             <!-- Delete products-->
                             <form action="" id="delete-form" method="GET"></form>
                         </div>
@@ -82,9 +82,6 @@
     <!--/#do_action-->
     <%- include("partials/footer") %>
     <%- include("partials/scripts") %>
-    <script src="/js/cart.js"></script>
-
- 
+    <script src="/js/cart.js"></script> 
 </body>
-
 </html>

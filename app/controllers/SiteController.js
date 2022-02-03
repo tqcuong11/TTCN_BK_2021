@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
 const User = require("../models/User");
+const Order=require("../models/Order");
 
 const SiteController = {
   // [GET] / home
@@ -76,5 +77,42 @@ const SiteController = {
       res.render("search", { products, user: "" });
     }
   },
+  // GET :/order
+  order: async (req,res)=>{
+    if (req.user){
+      const user= await User.findOne({_id:req.user});
+      const orders=await Order.find({user_id:req.user})
+                              .sort({status:1});
+        
+      for (let i=0;i<orders.length;i++){
+        for (let j=0;j<orders[i].order.length;j++){
+          product = await Product.findOne({_id : orders[i].order[j].product_id});
+          orders[i].order[j].product=product;
+        }
+      }
+      res.render('orders',{user,orders});
+    }
+    
+  },
+  // POST /order
+  addOrder: async (req,res)=>{
+    if (req.user){
+      const order=req.body.order;
+      await Order.create({
+        user_id: req.user,
+        order:order,        
+      })
+     const user=await User.findOne({_id:req.user});
+     let cart=user.cart;
+     order.map(item=>{
+       cart=cart.filter(e=>e.toString()!==item.product_id);
+     })
+     await User.updateOne(
+       { _id:req.user},
+       {$set: {cart:cart}}
+       );   
+     res.json({mes:'success'}) ;
+    } 
+  }
 };
 module.exports = SiteController;
