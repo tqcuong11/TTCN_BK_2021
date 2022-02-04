@@ -27,7 +27,6 @@ const auth = {
         return res.redirect('/login');
       }
     } catch (err) {
-      console.log(err);
       return res
         .status(500)
         .render('error', {
@@ -42,14 +41,12 @@ const auth = {
     try {
       const user =
         (await User.findOne({ email: email })) ;
-        console.log(user);
       //   check for existing email or phone
       if (!user) {
         return res.render('login',{message:"Tên đăng nhập hoặc mật khẩu không đúng!"});
       }
       //   authenticate password
       const isPasswordValid = await argon2.verify(user.password, password);
-      console.log(isPasswordValid)
       if (!isPasswordValid) {
         return res.render('login',{message:"Tên đăng nhập hoặc mật khẩu không đúng!"});
       }

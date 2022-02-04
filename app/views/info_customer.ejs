@@ -1,0 +1,73 @@
+<%- include("partials/header") %>
+<div class="container" style="margin-bottom: 30px;">
+    <form
+      method="POST"
+      action="/<%= user._id %>?_method=PATCH"
+     
+    >
+      <h1 style="text-align: center; font-size: 30px">Cập nhật hồ sơ</h1>
+      <div style="margin-bottom: 10px;">
+        <label  class="form-label">Họ và tên</label>
+        <input
+          type="text"
+          class="form-control"
+          value="<%= user.full_name%>"
+          name="full_name"
+          required
+        />
+      </div>
+      <div style="margin-bottom: 10px;">
+        <label  class="form-label">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          value="<%= user.email %>"
+          name="email"
+          readonly
+        />
+      </div>   
+      <div style="margin-bottom: 10px;">
+        <label  class="form-label">Số điện thoại</label>
+        <input
+          type="text"
+          class="form-control"          
+          value="<% if (user.phone) %> <%- user.phone %>"
+          name="phone"
+          required
+        />
+      </div>    
+      <div style="margin-bottom: 10px;">
+        <label  class="form-label">Giới tính</label>
+        <% if (user.sex===0){ %>
+            <input type="radio" name="sex" id="" value="0"  required checked> <% }else { %>
+                <input type="radio" name="sex" id="" value="0"  required>
+        <% } %>
+        Nam
+        <% if (user.sex===1){ %>
+            <input type="radio" name="sex" id="" value="1"  required checked> <% }else { %>
+                <input type="radio" name="sex" id="" value="1"  required>
+        <% } %>
+        Nữ
+      </div>
+      <div style="margin-bottom: 10px;">
+        <label  class="form-label">Địa chỉ</label>
+        <input
+          type="text"
+          class="form-control"
+          value="<% if (user.address) %> <%- user.address %>"
+          name="address"
+          required
+        />
+      </div> 
+      <button type="submit" class="btn btn-primary" 
+        style="padding: 8px 20px;
+        font-size: 16px;
+        border-radius: 5px;">
+      Lưu lại</button>
+    </form>
+  </div>
+<%- include("partials/footer") %>
+<%- include("partials/scripts") %>
+
+</body>
+</html>

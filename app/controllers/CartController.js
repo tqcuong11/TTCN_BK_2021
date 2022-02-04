@@ -15,7 +15,6 @@ const CartController = {
       } else {
         const user = {};
         let cart = req.cookies.cart;
-        console.log(cart);
         let products = [];
         if (cart) {
           cart = JSON.parse(cart);

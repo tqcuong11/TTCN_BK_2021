@@ -17,8 +17,14 @@ const User = new Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
+    address:{
+      type:String,
+    },
+    phone:{
+      type:String,
+    },
+    sex:{
+      type:Number,
     },
     role_id: {
       type: Number,

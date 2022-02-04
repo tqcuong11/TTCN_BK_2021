@@ -4,6 +4,8 @@ const auth = require("../controllers/Auth");
 const siteController = require("../controllers/SiteController");
 const verifyToken = require("../middlewares/verifyToken");
 
+router.patch('/:customerId',verifyToken,siteController.updateInfo);
+router.get('/info',verifyToken,siteController.infoUser)
 router.post('/order',verifyToken,siteController.addOrder);
 router.get('/order',verifyToken,siteController.order);
 router.get("/login", siteController.login);

@@ -64,7 +64,7 @@ const AdminController = {
         return res.redirect("/admin/employees");
       }
     } catch (err) {
-      console.log(err);
+      
       return res.status(500).render("error", {
         err,
         message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
