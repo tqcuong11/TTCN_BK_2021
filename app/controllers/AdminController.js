@@ -12,7 +12,7 @@ const AdminController = {
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
         const employees = await User.find({ role_id: 1 });
-        res.render("admin", { user,employees });
+        res.render("admin", { user, employees });
       } else {
         res.redirect("/");
       }
@@ -23,21 +23,18 @@ const AdminController = {
       });
     }
   },
-
-
   // [GET] / list of products
   listProducts: async (req, res) => {
     try {
       if (req.user) {
+        const products = await Product.find({});
         const user = await User.findOne({ _id: req.user });
-        res.render("products", { user });
+        res.render("products", { products, user });
       } else {
         res.render("products", { user: "" });
       }
     } catch (error) {}
   },
-
-  
   //
   newEmployee: async (req, res) => {
     const user = await User.findOne({ _id: req.user });
@@ -61,7 +58,7 @@ const AdminController = {
           password: hashedPassword,
           role_id: 1,
         });
-        return res.redirect("/admin/employees");
+        return res.redirect("/admin/");
       }
     } catch (err) {
       
@@ -78,15 +75,29 @@ const AdminController = {
     res.render("newProduct", { user });
   },
   // [POST] / add employee
-  addProduct: (req, res) => {
-    res.redirect("/admin/products");
+  addProduct: async (req, res) => {
+    await Product.create({
+      brand: req.body.brand,
+      type: req.body.type,
+      name: req.body.name,
+      storage: req.body.storage,
+      color: req.body.color,
+      price: req.body.price,
+      img: [req.body.image1, req.body.image2, req.body.image3],
+      // img: req.body.image2,
+      // img: req.body.image3,
+      slug: req.body.slug,
+      review_count: 1000,
+    });
+    res.redirect("/admin/manage-products");
   },
 
   manageCustomers: async (req, res) => {
     try {
+      const customers = await User.find({ role_id: 0 });
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
-        res.render("customers", { user });
+        res.render("customers", { customers, user });
       } else {
         res.render("customers", { user: "" });
       }

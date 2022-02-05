@@ -20,7 +20,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="/admin/addProduct" method="POST" enctype="multipart/form-data">
+            <form action="/admin/addProduct" method="POST">
               <h1>Thêm sản phẩm</h1>
               <div>
                 <input id="brand" type="text" name="brand" class="form-control" placeholder="Brand" required="" />
@@ -32,29 +32,33 @@
                 <input id="name" type="text" name="name" class="form-control" placeholder="Name" required="" />
               </div>
               <div>
-                <input id="storage" type="text" name="storage" class="form-control" placeholder="Storage" required="" />
+                <input id="storage" type="number" name="storage" class="form-control" placeholder="Storage" required="" />
               </div>
               <div>
                 <input id="color" type="text" name="color" class="form-control" placeholder="Color" required="" />
               </div>
               <div>
-                <input id="price" type="text" name="price" class="form-control" placeholder="Price" required="" />
+                <input id="price" type="number" name="price" class="form-control" placeholder="Price" required="" />
               </div>
               <div>
                 <input id="slug" type="text" name="slug" class="form-control" placeholder="Slug" required="" />
               </div>
               <!-- img -->
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls">
-                  <input type="file" class="form-control" id="image" name="image" placeholder="Image" required accept="image/png, image/jpeg, image/svg+xml,application/pdf" multiple />
-                </div>
+              <div>
+                <input id="image1" type="text" name="image1" class="form-control" placeholder="Image 1" required="" />
+              </div>
+              <div>
+                <input id="image2" type="text" name="image2" class="form-control" placeholder="Image 2" required="" />
+              </div>
+              <div>
+                <input id="image3" type="text" name="image3" class="form-control" placeholder="Image 3" required="" />
               </div>
               <!-- /img -->
               <div>
                 <button type="submit" class="btn" id="sendMessageButton">Thêm</button>
               </div>
               <div>
-                <a href="/admin/products">Quay lại</a>
+                <a href="/admin/manage-products">Quay lại</a>
               </div>
             </form>
           </section>

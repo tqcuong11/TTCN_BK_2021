@@ -37,60 +37,33 @@
               <table class="table_e">
                 <thead>
                   <tr>
-                    <th>Mã khách hàng</th>
                     <th>Tên khách hàng</th>
-                    <th>Địa chỉ</th>
-                    <th>SĐT</th>
-                    <th class="text-center">Chi tiết mua hàng</th>
+                    <th>Email</th>
+                    <th>Trạng thái</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr id="file">
-                    <td>KH01</td>
-                    <td><a href="#">Lê Thị Tình</a></td>
-                    <td>Sen thủy</td>
-                    <td>096869954</td>
-                    <td class="text-center">
-                      <a href="chitietmuahang">
-                        <button type="button" class="right js-add-up">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                      </a>
+                  <% customers.forEach(customer=>{ %>
+                  <tr>
+                    <td>
+                      <div><%- customer.full_name %></div>
                     </td>
-                    <td class="text-center">
-                      <button type="button" class="js-add-de">
-                        <i class="fa fa fa-search-plus"></i>
+                    <td>
+                      <div><%- customer.email %></div>
+                    </td>
+                    <td></td>
+                    <td>
+                      <button type="button" class="right js-add-up">
+                        <i class="fa fa-pencil-alt"></i>
                       </button>
 
-                      <button type="button" class="right js-add-dele">
+                      <button type="button" class="right js-add-dele" id="btn-delete">
                         <i class="fa fa-trash-alt"></i>
                       </button>
                     </td>
                   </tr>
-
-                  <tr id="file1">
-                    <td>KH02</td>
-                    <td><a href="#">Lê Thị Tình</a></td>
-                    <td>Sen thủy</td>
-                    <td>096869954</td>
-                    <td class="text-center">
-                      <a href="chitietmuahang">
-                        <button type="button" class="right js-add-up">
-                          <i class="fa fa-eye"></i>
-                        </button>
-                      </a>
-                    </td>
-                    <td class="text-center">
-                      <button type="button" class="js-add-de">
-                        <i class="fa fa fa-search-plus"></i>
-                      </button>
-
-                      <button type="button" class="right js-add-dele">
-                        <i class="fa fa-trash-alt"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  <% }) %>
                 </tbody>
               </table>
             </div>
