@@ -6,12 +6,23 @@ const SiteController = {
   // [GET] / home
   home: async (req, res) => {
     try {
-      const products = await Product.find({});
+      let products = await Product.find({});
+      let brands=[];
+      let storages=[];
+      products.map(product=>{
+        if (!brands.includes(product.brand))
+          brands.push(product.brand);
+        if (!storages.includes(product.storage))
+          storages.push(product.storage);
+      })    
+        storages=storages.sort(function(a, b) {
+          return b-a;
+        });
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
-        res.render("home", { products, user });
+        res.render("home", { products, user ,brands,storages});
       } else {
-        res.render("home", { products, user: "" });
+        res.render("home", { products, user: "" ,brands,storages});
       }
     } catch (err) {
       return res.render("error", {
@@ -22,6 +33,28 @@ const SiteController = {
   },
   // POST: home
   getProduct: async (req,res)=>{
+    try {
+      const startFrom=req.body.startFrom;
+    const limit=6;
+    let products=await Product.find();
+    if (req.query.c&&req.query.c.length){
+      products=products.filter(product=>product.brand===req.query.c);
+    }
+    if (req.query.s&&req.query.s.length){
+      products=products.filter(product=>product.storage.toString()===req.query.s);
+    }
+    const length=products.length;
+    const result=products.slice(startFrom,startFrom+limit);
+    if (startFrom+limit>=length){
+      res.json({products:result,end:true})
+    } else res.json({products:result});
+    } catch (error) {
+      res.render("error", {
+        error,
+        message: "Có lỗi khi nhận dữ liệu từ server, xin thử lại",
+      });
+    }
+    
 
   },
 

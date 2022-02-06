@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators" style="bottom: -40px;">
                                 <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                                 <li data-target="#slider-carousel" data-slide-to="1"></li>
                                 <li data-target="#slider-carousel" data-slide-to="2"></li>
@@ -47,12 +47,12 @@
                                 </div>
                             </div>
 
-                            <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <!-- <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next" style="right: -30px;">
                                 <i class="fa fa-angle-right"></i>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -65,52 +65,49 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="left-sidebar">
-                            <div class="brands_products">
+                            <div class="brands_products" style="margin-bottom: 20px;">
                                 <!--brands_products-->
                                 <h2>Hãng sản xuất</h2>
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li>
-                                            <a href="#">Iphone</a>
+                                            <a href="/">Tất cả</a>
                                         </li>
+                                      <% brands.map(brand=>{%>
                                         <li>
-                                            <a href="#">SamSung </a>
+                                            <a href="/?c=<%- brand %>"><%- brand %></a>
                                         </li>
+                                      <%})%>                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="brands_products">
+                                <!--brands_products-->
+                                <h2>Dung lượng</h2>
+                                <div class="brands-name">
+                                    <ul class="nav nav-pills nav-stacked">
                                         <li>
-                                            <a href="#">Xiaomi</a>
+                                            <a href="/">Tất cả</a>
                                         </li>
-                                        
+                                      <% storages.map(storage=>{%>
+                                        <li>
+                                            <a href="/?s=<%- storage %>"><%- storage %> GB</a>
+                                        </li>
+                                      <%})%>                                        
                                     </ul>
                                 </div>
                             </div>
                             <!--/category-products-->
-
-                            <div class="brands_products">
-                                <!--brands_products-->
-                                <h2>Mức giá</h2>
-                                <div class="brands-name">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li>
-                                            <a href="#">Tất cả</a>
-                                        </li>                                        
-                                        <li>
-                                            <a href="#">Từ 8-20 triệu</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Trên 20 triệu</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!--/brands_products-->                          
+                        
                         </div>
                     </div>
 
                     <div class="col-sm-9 padding-right">
+                        <h2 class="title text-center">Dòng sản phẩm</h2>
                         <div class="features_items">
                             <!--features_items-->
-                            <h2 class="title text-center">Dòng sản phẩm</h2>
-                            <% products.forEach(product=>{ %>
+                            
+                            <!-- <% products.forEach(product=>{ %>
                                 <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
@@ -126,7 +123,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <% }) %>                                  
+                                <% }) %>                                   -->
+                        </div>
+                        <div class="loadmore " style="display: flex; justify-content: center; margin-bottom: 20px;">
+                            <div class="loadmore-btn btn">
+                                XEM THÊM
+                            </div>                                
                         </div>
 
                         <!--features_items-->                 
@@ -137,7 +139,8 @@
         </section>
 
         <%- include("partials/footer") %>
-        <%- include("partials/scripts") %>          
+        <%- include("partials/scripts") %> 
+        <script src="/js/home.js"></script>         
 </body>
 
 </html>

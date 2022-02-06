@@ -15,6 +15,7 @@ router.post("/register", auth.register);
 router.get("/search", verifyToken, siteController.search);
 router.get("/logout", siteController.logout);
 router.get("/:slug", verifyToken, siteController.detail);
+router.post("/",siteController.getProduct);
 router.get("/", verifyToken, siteController.home);
 
 module.exports = router;

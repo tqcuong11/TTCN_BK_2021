@@ -126,7 +126,9 @@ function calTotalCost() {
 }
 paymentBtn.addEventListener("click", async () => {
   if (getCookie("isLoggedIn") === "true") {
-    let order = [];
+    const agreeOrder=confirm("Bạn chắc chắn muốn mua sản phẩn này!!");
+    if (agreeOrder){
+      let order = [];
     cartList.forEach((e) => {
       const cartItemId = e.getAttribute("id");
       const selectItem = $(`#${cartItemId} .select-item`);
@@ -149,11 +151,12 @@ paymentBtn.addEventListener("click", async () => {
         });
         const data = await res.json();
         if (data.mes) {
-          location.reload();
+          location.href="/order"
         }
       } catch (error) {
         console.log(error);
       }
+    }    
     }
   } else {
     location.href = "/login";

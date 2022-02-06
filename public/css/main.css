@@ -310,13 +310,14 @@ a#scrollUp i {
 
 ul.sub-menu {
     position: absolute;
-    top: 30px;
+    top: 62px;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 220px;
+    border-radius: 5px;
+    width: 120%;
     -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
     display: none;
@@ -2533,4 +2534,21 @@ textarea {
 
 .contact-info .social-networks ul li a:hover {
     color: #FE980F;
+}
+#slider-carousel {
+    margin-top: 10px;
+}
+#slider-carousel img{
+    height: 260px;
+    width: 90%;
+    float: left;
+}
+.carousel-inner .item {
+    padding-left: 0;
+    text-align: center;
+    
+}
+.col-sm-6{
+    padding-left: 0;
+    padding-right: 0;
 }
