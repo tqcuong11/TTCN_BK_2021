@@ -62,12 +62,13 @@ const SiteController = {
   detail: async (req, res, next) => {
     const product_slug = req.params.slug;
     const product = await Product.findOne({ slug: product_slug }).exec();
+    const sameProducts=await Product.find({brand:product.brand});
     if (req.user) {
       const user = await User.findOne({ _id: req.user });
-      if (product) res.render("product-detail", { product, user });
+      if (product) res.render("product-detail", { product, user,sameProducts });
       else next();
     } else {
-      if (product) res.render("product-detail", { product, user: "" });
+      if (product) res.render("product-detail", { product, user: "",sameProducts });
       else next();
     }
   },

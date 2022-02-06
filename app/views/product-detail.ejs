@@ -58,8 +58,9 @@
 										<i class="fa fa-shopping-cart"></i>
 										Thêm vào giỏ hàng
 								</button>
-
                                 </div>
+                                <p style="margin-top: 15px; color: #fe980f;">Sản phẩm đẹp.<br> Thiết kế sang trọng, tinh tế.<br> Dung lượng lớn đảm bảo nhu cầu của người dùng.<br>
+                                Tích hợp nhiều tính năng.<br></p>
 
                                 <form action="" id="add-form"></form>
                                 
@@ -87,77 +88,33 @@
 
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="item active text-center">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <a href=""><img src="images/product-details/ip131.png" alt="" /></a>
-                                                    <h2>21.000.000đ</h2>
-                                                    <p>Ip 13 mini</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
+                                <% for (let i=0;i<sameProducts.length;i+=3){ 
+                                    if (i===0){ %>
+                                        <div class="item active text-center">
+                                    <%}else{ %>
+                                        <div class="item">
+                                    <% } %>                                    
+                                        <% for (let j=i;j<i+3;j++){ 
+                                            product=sameProducts[j];
+                                            if (product){ %>
+                                                <div class="col-sm-4">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
+                                                            <div class="productinfo text-center">
+                                                                <a href="/<%- product.slug %>"><img src="<%- product.img[0]%>.jpg" alt="" /></a>
+                                                                <h2 style="margin-top: 15px;"><%- product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> <sup>đ</sup></h2>
+                                                                <p><%- product.name %>-<%- product.color %>-<%- product.storage %></p>
+                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            
+                                        <% }} %>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <a href=""><img src="images/product-details/ip131.png" alt="" /></a>
-                                                    <h2>21.000.000đ</h2>
-                                                    <p>Ip 13 mini</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <a href=""><img src="images/product-details/ip131.png" alt="" /></a>
-                                                    <h2>21.000.000đ</h2>
-                                                    <p>Ip 13 mini</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <a href=""><img src="images/product-details/ip131.png" alt="" /></a>
-                                                    <h2>21.000.000đ</h2>
-                                                    <p>Ip 13 mini</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <a href=""><img src="images/product-details/ip131.png" alt="" /></a>
-                                                    <h2>21.000.000đ</h2>
-                                                    <p>Ip 13 mini</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <a href=""><img src="images/product-details/ip131.png" alt="" /></a>
-                                                    <h2>21.000.000đ</h2>
-                                                    <p>Ip 13 mini</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    
+                                <% } %>                             
+                              
                             </div>
                             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                                 <i class="fa fa-angle-left"></i>
