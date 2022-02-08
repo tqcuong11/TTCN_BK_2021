@@ -8,6 +8,18 @@ const Order=new Schema({
             ref:'users',
             required:true
         },
+        user_name: {
+            type: String,
+            default: "",
+        },
+        user_address:{
+            type:String,
+            default: "",
+          },
+        user_phone:{
+            type:String,
+            default: "",
+        },
         order: [{
             product_id:{type:ObjectId},
             count: {type:Number, default:1}

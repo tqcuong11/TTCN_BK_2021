@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 const Order=require("../models/Order");
 
-const SiteController = {
+const employeeController = {
   // [GET] / home
   home: async (req, res) => {
     try {
@@ -65,6 +65,42 @@ const SiteController = {
       });
     }
   },
+  // [GET] /employee/customers
+  manageCustomers: async (req, res) => {
+    try {
+      if (req.user) {
+        const user = await User.findOne({ _id: req.user });
+        const customers = await User.find({role_id: 0});
+        res.render("customers", { user, customers });
+      } else {
+        res.render("customers", { user: "" });
+      }
+    } catch (error) {}
+  },
+
+  manageBills: async (req, res) => {
+    try {
+      if (req.user) {
+        const bills = await Order.find({ });
+        // const bills = [];
+        // const hoadons = await Order.find({ });
+        // hoadons.forEach(bill=>{
+        //   const user = User.findOne({_id : bill.user_id});
+        //   bill.user_name = user.full_name;
+        //   bill.user_address = user.address;
+        //   bill.user_phone = user.phone;
+        //   console.log(user);
+        //   // console.log(bill.user_id);
+        //   bills.push(bill);
+        // });     
+        // console.log(bills);   
+        const user = await User.findOne({ _id: req.user });
+        res.render("hoadon", { user, bills });
+      } else {
+        res.render("hoadon", { user: "" });
+      }
+    } catch (error) {}
+  },
 
   async search(req, res) {
     const search = req.query.search;
@@ -112,9 +148,6 @@ const SiteController = {
         const order=req.body.order;
         await Order.create({
           user_id: req.user,
-          user_name: req.user.name,
-          user_address: req.user.address,
-          user_phone: req.user.phone,         
           order:order,        
         })
        const user=await User.findOne({_id:req.user});
@@ -166,4 +199,4 @@ const SiteController = {
     }
   }
 };
-module.exports = SiteController;
+module.exports = employeeController;
