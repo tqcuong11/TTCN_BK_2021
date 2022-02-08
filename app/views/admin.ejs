@@ -45,19 +45,21 @@
               <table class="table_e">
                 <thead>
                   <tr>
+                    <th>STT</th>
                     <th>Tên nhân viên</th>
                     <th>Email</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% employees.forEach(employee=>{ %>
+                  <% for(var i = 0; i < employees.length; i++) { %>
                   <tr>
+                    <td><%- i + 1 %></td>
                     <td>
-                      <div><%- employee.full_name %></div>
+                      <div><%- employees[i].full_name %></div>
                     </td>
                     <td>
-                      <div><%- employee.email %></div>
+                      <div><%- employees[i].email %></div>
                     </td>
                     <td class="text-center">
                       <button type="button" class="js-add-de">
@@ -72,7 +74,7 @@
                       </button>
                     </td>
                   </tr>
-                  <% }) %>
+                  <% } %>
                 </tbody>
               </table>
             </div>

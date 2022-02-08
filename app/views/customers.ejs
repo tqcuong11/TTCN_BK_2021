@@ -37,6 +37,7 @@
               <table class="table_e">
                 <thead>
                   <tr>
+                    <th>STT</th>
                     <th>Tên khách hàng</th>
                     <th>Email</th>
                     <th>Trạng thái</th>
@@ -44,13 +45,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% customers.forEach(customer=>{ %>
+                  <% for(var i = 0; i < customers.length; i++) { %>
                   <tr>
+                    <td><%- i + 1 %></td>
                     <td>
-                      <div><%- customer.full_name %></div>
+                      <div><%- customers[i].full_name %></div>
                     </td>
                     <td>
-                      <div><%- customer.email %></div>
+                      <div><%- customers[i].email %></div>
                     </td>
                     <td></td>
                     <td>
@@ -63,7 +65,7 @@
                       </button>
                     </td>
                   </tr>
-                  <% }) %>
+                  <% } %>
                 </tbody>
               </table>
             </div>
