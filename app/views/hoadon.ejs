@@ -242,6 +242,12 @@
       modalContent3.addEventListener("click", function (event) {
         event.stopPropagation();
       });
+
+      document.getElementById('checkbox').onclick = function(e){
+        if (this.checked){
+          res.redirect("/admin/products");
+        }
+      }
     </script>
   </body>
 </html>
