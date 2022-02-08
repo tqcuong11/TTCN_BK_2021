@@ -24,24 +24,12 @@
 
                     <div class="h_content ">
 
-
-
                         <div class="form-group form-inline">
-
                             <div class="col-sm-9">
                                 <button id="search_btn" type="button" class="btn btn-primary right">
                                     <i class="fa fa-search"></i>
                                 </button>
-
-                                <select name="" id="category" class="right form-control">
-                                    <option value="">Danh mục</option>
-                                    <option value="">Iphone</option>
-                                    <option value="">Samsung</option>
-                                    <option value="">Xiaomi</option>
-                                    <option value="">Vivo</option>
-                                    <option value="">Vsmart</option>
-                                </select>
-                                <div class="col-sm-7"><input type="text" name="" class="form-control right" id="" placeholder="Mã/Tên sản phẩm"></div>
+                                <div class="col-sm-7"><input type="text" name="" class="form-control right " id="search-text" placeholder="Tên sản phẩm"></div>
                             </div>
 
 
@@ -62,19 +50,21 @@
                     </div>
 
                     <div class="col-md-12 col-sm-12 ">
-                        <table class="table_e">
+                        <table class="table_e text-center">
                             <thead>
                                 <tr>
+                                    <th>STT</th>
                                     <th>Tên sản phẩm</th>
                                     <th>Dòng sản phẩm</th>
                                     <th>Giá nhập</th>
                                     <th>Màu sắc</th>
+                                    <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% for(var i = 0; i < products.length; i++) { %>
                                 <tr>
-                                  <td>
+                                  <td style="padding: 10px 0;">
                                     <div><%- i + 1 %></div>
                                   </td>
                                   <td>
@@ -90,207 +80,29 @@
                                     <div><%- products[i].color %></div>
                                   </td>
                                   <td class="text-center">
-                                    <button type="button" class="js-add-de">
+                                    <button type="button" class="js-add-de" onclick="location.href='/<%- products[i].slug %>'">
                                       <i class="fa fa-eye"></i>
                                     </button>
                                     <button type="button" class="right js-add-up">
                                       <i class="fa fa-pencil-alt"></i>
-                                    </button>              
-                                    <button type="button" class="right js-add-dele" id="btn-delete">
-                                      <i class="fa fa-trash-alt"></i>
-                                    </button>
+                                    </button>  
                                   </td>
                                 </tr>
                                 <% } %>
                               </tbody>
                         </table>
+                        <div class="loadmore" style="float: right;" onclick="getProduct()">
+                            <button class="loadmore-btn">XEM THÊM</button>
+                        </div>
                     </div>
 
-                    <div class="paging">
-                        <ul class="pagination right">
-                            <li><a href="#">Trang đầu</a></li>
-                            <li class="active"><a href="">1</a></li>
-                            <li><a href="#">Trang cuối</a></li>
-                        </ul>
-                    </div>
                 </div>
 
             </div>
 
             <!-- /page content -->
 
-            <!--Modal detail-->
-            <div id="detailform" class="modal fade js-modal1">
-                <div class="modal-dialog ">
-                    <div class="modal-content js-modal-content1">
-                        <div class="modal-header">
-                            <button type="button" class="close js-modal-close1">
-                                <span>x</span>
-                            </button>
-                            <h4 class="modal-title">Thông tin chi tiết sản phẩm</h4>
-                        </div>
-
-                        <form action="" id="demo2" class="form-horizontal form-label-left">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                        <input type="hidden" name="id" value="0">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Mã sản phẩm</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">IP01</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên sản phẩm</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">Iphone 13 promax</label>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Dòng sản phẩm</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">Iphone</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giá nhập</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">32.000.000 VND</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Ngày nhập</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">12/06/2021</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Số Lượng</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">09</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-default">Thoát</button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!--/modal detail-->
-
-            <!--Modal update-->
-            <div id="updateform" class="modal fade js-modal2">
-                <div class="modal-dialog ">
-                    <div class="modal-content js-modal-content2">
-                        <div class="modal-header">
-                            <button type="button" class="close js-modal-close2">
-                                <span>x</span>
-                            </button>
-                            <h4 class="modal-title">Chỉnh sửa thông tin sản phẩm</h4>
-                        </div>
-
-                        <form action="" id="demo3" class="form-horizontal form-label-left">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                        <input type="hidden" name="id" value="0">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Mã sản phẩm</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <label for="" class="form-control">IP01</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên sản phẩm</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <input type="text" name="" id="" class="form-control" placeholder="Tên nhân viên" value="Iphone 13 promax">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Dòng sản phẩm</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <select class="form-control" name="level" id="">
-                                            <option value="1">Iphone</option>
-                                            <option value="2">Samsung</option>
-                                            <option value="3">Xiaomi</option>
-                                            <option value="4">Vivo</option>
-                                            <option value="5">Vsmart</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Giá nhập</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <input type="text" name="" id="" class="form-control" placeholder="gia" value="32.000.000VND">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Ngày Nhập</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <input type="datetime-local" name="" id="" class="form-control" placeholder="Ngày nhập" value="12/06/2021">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Số lượng</label>
-                                    <div class="col-md-7  col-xs-12">
-                                        <input type="text" name="" id="" class="form-control" placeholder="so luong" value="09">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button class="btn btn-default">Thoát</button>
-                                <button class="btn btn-primary">Lưu</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!--/modal update-->
-
-            <!--Modal delete-->
-            <div id="deleteform" class="modal fade js-modal3">
-                <div class="modal-dialog ">
-                    <div class="modal-content js-modal-content3">
-                        <div class="modal-header">
-                            <button type="button" class="close js-modal-close3">
-                                <span>x</span>
-                            </button>
-                            <h4 class="modal-title">Xóa mục này</h4>
-                        </div>
-                        <div class="modal-body">Bạn chắc chắn muốn xóa mục này chứ?</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger"> Xóa</button>
-                            <button class="btn btn-default js-cancel"> Hủy bỏ</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/modal delete-->
+            
 
             <!-- footer content -->
             <%- include("partials/admin-footer") %>
@@ -301,102 +113,77 @@
     <%- include("partials/admin-scripts") %>
 
     <script>
-        const Addbtn = document.querySelector('.js-add-em')
-        const modal = document.querySelector('.js-modal')
-        const modal1 = document.querySelector('.js-modal1')
-        const modal2 = document.querySelector('.js-modal2')
+        const table=document.querySelector('.table_e tbody');
+        const loadmoreBtn=document.querySelector('.loadmore');
+        const searchBtn=document.querySelector("#search_btn");
+        let startFrom=0;
+        let html='';
+        async function getProduct(){
+            const limit = 6;
+            const url = window.location.href;
+            const init = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ startFrom,limit }),
+            };
+            try {
+                const res=await fetch(url,init);
+                const data= await res.json();
+                let index=startFrom;
+                const result=data.products.map((product)=>{                    
+                return `
+                    <tr>
+                        <td style="padding: 10px 0;">
+                        <div>${++index}</div>
+                        </td>
+                        <td>
+                        <div>${product.name}</div>
+                        </td>
+                        <td>
+                        <div>${product.brand}</div>
+                        </td>
+                        <td>
+                        <div>${product.price}</div>
+                        </td>
+                        <td>
+                        <div>${product.color}</div>
+                        </td>
+                        <td class="text-center">
+                        <button type="button" class="js-add-de" onclick="location.href='/${product.slug}">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button type="button" class="right js-add-up">
+                            <i class="fa fa-pencil-alt"></i>
+                        </button>              
+                        
+                        </td>
+                    </tr>
+                `
+                });
+                html+=result.join(' ');
+                table.innerHTML=html;
+                if (data.end===true){
+                    loadmoreBtn.style.display="none";
+                }
+                startFrom+=limit;
 
-        const modal3 = document.querySelector('.js-modal3')
+            } catch (error) {
+            console.log(error)
+            }
 
-        const modalClose = document.querySelector('.js-modal-close')
-        const modalClose1 = document.querySelector('.js-modal-close1')
-        const modalClose2 = document.querySelector('.js-modal-close2')
-
-        const modalClose3 = document.querySelector('.js-modal-close3')
-
-        const modalContent = document.querySelector('.js-modal-content')
-        const modalContent1 = document.querySelector('.js-modal-content1')
-        const modalContent2 = document.querySelector('.js-modal-content2')
-        const modalContent3 = document.querySelector('.js-modal-content3')
-
-        const details = document.querySelectorAll('.js-add-de')
-        const updates = document.querySelectorAll('.js-add-up')
-        const deles = document.querySelectorAll('.js-add-dele')
-        const cancel = document.querySelector('.js-cancel')
-
-        function showAdd() {
-            modal.classList.add("in")
         }
-
-        function showDetail() {
-            modal1.classList.add("in")
+        searchBtn.onclick=()=>{
+            const search=document.querySelector("#search-text").value;            
+            location.href=`/admin/manage-products?search=${search}`;
+            startFrom=0;
+            getProduct();
         }
-
-        function showUpdate() {
-            modal2.classList.add("in")
-        }
-
-        function showDelete() {
-            modal3.classList.add("in")
-        }
-
-        function hiden() {
-            modal.classList.remove("in")
-        }
-
-        function hiden1() {
-            modal1.classList.remove("in")
-        }
-
-        function hiden2() {
-            modal2.classList.remove("in")
-        }
-
-        function hiden3() {
-            modal3.classList.remove("in")
-        }
-
-        Addbtn.addEventListener('click', showAdd)
-        for (const detail of details) {
-            detail.addEventListener('click', showDetail)
-        }
-
-        for (const update of updates) {
-            update.addEventListener('click', showUpdate)
-        }
-
-        for (const dele of deles) {
-            dele.addEventListener('click', showDelete)
-        }
-        cancel.addEventListener('click', hiden3)
-        modalClose.addEventListener('click', hiden)
-        modalClose1.addEventListener('click', hiden1)
-        modalClose2.addEventListener('click', hiden2)
-        modalClose3.addEventListener('click', hiden3)
-
-        modal.addEventListener('click', hiden)
-        modalContent.addEventListener('click', function(event) {
-            event.stopPropagation()
-        })
-
-        modal1.addEventListener('click', hiden1)
-        modalContent1.addEventListener('click', function(event) {
-            event.stopPropagation()
-        })
-
-        modal2.addEventListener('click', hiden2)
-        modalContent2.addEventListener('click', function(event) {
-            event.stopPropagation()
-        })
-
-        modal3.addEventListener('click', hiden3)
-        modalContent3.addEventListener('click', function(event) {
-            event.stopPropagation()
-        })
+        getProduct();
     </script>
 
-
-
+    
 </body>
 
 </html>

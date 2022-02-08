@@ -50,6 +50,9 @@ const auth = {
       if (!isPasswordValid) {
         return res.render('login',{message:"Tên đăng nhập hoặc mật khẩu không đúng!"});
       }
+      if (user.active===false){
+        return res.render('login',{message:"Tài khoản bị vô hiệu. Liên hệ quản trị viên để giải quyết!!"});
+      }
       //   all good
       const accessToken = jwt.sign(
         { _id: user._id },

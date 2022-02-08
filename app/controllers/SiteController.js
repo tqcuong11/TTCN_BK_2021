@@ -35,33 +35,37 @@ const SiteController = {
   getProduct: async (req,res)=>{
     try {
       const startFrom=req.body.startFrom;
-    const limit=6;
-    let products=await Product.find();
-    if (req.query.c&&req.query.c.length){
-      products=products.filter(product=>product.brand===req.query.c);
-    }
-    if (req.query.s&&req.query.s.length){
-      products=products.filter(product=>product.storage.toString()===req.query.s);
-    }
-    const length=products.length;
-    const result=products.slice(startFrom,startFrom+limit);
-    if (startFrom+limit>=length){
-      res.json({products:result,end:true})
-    } else res.json({products:result});
-    } catch (error) {
-      res.render("error", {
-        error,
-        message: "Có lỗi khi nhận dữ liệu từ server, xin thử lại",
-      });
-    }
+      const limit=6;
+      let products=await Product.find();
+      if (req.query.c&&req.query.c.length){
+        products=products.filter(product=>product.brand===req.query.c);
+      }
+      if (req.query.s&&req.query.s.length){
+        products=products.filter(product=>product.storage.toString()===req.query.s);
+      }
+      if (req.query.search&&req.query.search.length){
+        products=products.filter(product=>product.name.includes(req.query.search));
+      }
+      const length=products.length;      
+      const result=products.slice(startFrom,startFrom+limit);
+      if (startFrom+limit>=length){        
+        res.json({products:result,end:true})
+      } else res.json({products:result});
+      } catch (err) {
+        res.render("error", {
+          err,
+          message: "Có lỗi khi nhận dữ liệu từ server, xin thử lại",
+        });
+      }
     
-
   },
 
   // [GET] / detail
   detail: async (req, res, next) => {
-    const product_slug = req.params.slug;
+    try {
+      const product_slug = req.params.slug;
     const product = await Product.findOne({ slug: product_slug }).exec();
+    console.log(product)
     const sameProducts=await Product.find({brand:product.brand});
     if (req.user) {
       const user = await User.findOne({ _id: req.user });
@@ -71,6 +75,13 @@ const SiteController = {
       if (product) res.render("product-detail", { product, user: "",sameProducts });
       else next();
     }
+    } catch (err) {
+      res.render("error", {
+        err,
+        message: "Có lỗi khi nhận dữ liệu từ server, xin thử lại",
+      });
+    }
+    
   },
 
   // [GET] / login
@@ -131,9 +142,9 @@ const SiteController = {
         }
         res.render('orders',{user,orders});
       }
-    } catch (error) {
+    } catch (err) {
       return res.render("error", {
-        error,
+        err,
         message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
       });
     }
@@ -159,9 +170,9 @@ const SiteController = {
          );   
        res.json({mes:'success'}) ;
       } 
-    } catch (error) {
+    } catch (err) {
       return res.render("error", {
-        error,
+        err,
         message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
       });
     }
@@ -174,9 +185,9 @@ const SiteController = {
         res.render("info_customer",{user});
       }
       
-    } catch (error) {
+    } catch (err) {
       return res.render("error", {
-        error,
+        err,
         message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
       });
     }
@@ -189,9 +200,9 @@ const SiteController = {
         await User.updateOne({_id:req.params.customerId},req.body);
         res.redirect('/info');
       }
-    } catch (error) {
+    } catch (err) {
       return res.render("error", {
-        error,
+        err,
         message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
       });
     }

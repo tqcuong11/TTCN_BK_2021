@@ -11,7 +11,10 @@ const AdminController = {
     try {
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
-        const employees = await User.find({ role_id: 1 });
+        let employees = await User.find({ role_id: 1 });
+        if (req.query.search&&req.query.search.length){
+          employees=employees.filter(employee=>employee.full_name.includes(req.query.search));
+        }
         res.render("admin", { user, employees });
       } else {
         res.redirect("/");
@@ -94,14 +97,22 @@ const AdminController = {
 
   manageCustomers: async (req, res) => {
     try {
-      const customers = await User.find({ role_id: 0 });
+      let customers = await User.find({ role_id: 0 });
+      if (req.query.search&&req.query.search.length){
+        customers=customers.filter(customer=>customer.full_name.includes(req.query.search));
+      }
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
         res.render("customers", { customers, user });
       } else {
         res.render("customers", { user: "" });
       }
-    } catch (error) {}
+    } catch (err) {
+      return res.status(500).render("error", {
+        err,
+        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+      });
+    }
   },
 
   manageBills: async (req, res) => {
@@ -114,6 +125,24 @@ const AdminController = {
       }
     } catch (error) {}
   },
+  blockActive: async (req,res)=>{
+    try {
+      const userId=req.params.userId;
+      const operation=req.query.m;
+      if (operation==="active"){
+        await User.updateOne({_id:userId},{active:true});
+      } else if (operation==="block"){
+        await User.updateOne({_id:userId},{active:false});
+      }
+      res.json("done");
+      
+    } catch (err) {
+      return res.status(500).render("error", {
+        err,
+        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+      });
+    }
+  }
 };
 
 module.exports = AdminController;

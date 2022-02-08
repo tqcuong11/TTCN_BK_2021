@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const AdminController = require("../controllers/AdminController");
-const auth = require("../controllers/Auth");
+const siteController=require("../controllers/SiteController");
 const verifyToken = require("../middlewares/verifyToken");
 
+
+router.post('/manage/:userId',AdminController.blockActive);
+router.post("/manage-products", siteController.getProduct);
 router.get("/manage-products", AdminController.listProducts);
 router.get("/manage-employees", AdminController.newEmployee);
 router.post("/addEmployee", AdminController.addEmployee);

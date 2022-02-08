@@ -36,6 +36,10 @@ const User = new Schema(
     cart: {
       type: [{ type: ObjectId, ref: "products" }],
     },
+    active:{
+      type:Boolean,
+      default:true,
+    },
     refreshToken: {
       type: String,
     },

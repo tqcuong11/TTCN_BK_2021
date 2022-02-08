@@ -23,7 +23,7 @@
             <div class="h_content">
               <div class="form-group form-inline">
                 <div class="col-sm-4">
-                  <input type="text" name="" class="form-control left" id="" placeholder="Mã/Tên/SĐT" />
+                  <input type="text" name="" class="form-control left" id="search-text" placeholder="Tên khách hàng" />
                 </div>
                 <div class="col-sm-4">
                   <button id="search_btn" type="button" class="btn btn-primary left">
@@ -34,137 +34,66 @@
             </div>
 
             <div class="col-md-12 col-sm-12">
-              <table class="table_e">
+              <table class="table_e text-center" >
                 <thead>
                   <tr>
                     <th>STT</th>
                     <th>Tên khách hàng</th>
                     <th>Email</th>
-                    <th>Trạng thái</th>
-                    <th></th>
+                    <th>Trạng thái</th>                    
                   </tr>
                 </thead>
                 <tbody>
                   <% for(var i = 0; i < customers.length; i++) { %>
-                  <tr>
-                    <td><%- i + 1 %></td>
+                  <tr >
+                    <td style="padding: 10px 0;"><%- i + 1 %></td>
                     <td>
                       <div><%- customers[i].full_name %></div>
                     </td>
                     <td>
                       <div><%- customers[i].email %></div>
-                    </td>
-                    <td></td>
+                    </td>                    
+                    
                     <td>
-                      <button type="button" class="right js-add-up">
-                        <i class="fa fa-pencil-alt"></i>
-                      </button>
-
-                      <button type="button" class="right js-add-dele" id="btn-delete">
-                        <i class="fa fa-trash-alt"></i>
-                      </button>
+                      <% if (customers[i].active===true){ %>
+                        <button class="active-btn " style="
+                          background-color: aqua; 
+                          border-radius: 5px; border: 1px solid #ccc; 
+                          padding: 5px ; opacity: 0.5;">Active</button>
+                        <button class="block-btn " style="
+                          background-color: red; 
+                          border-radius: 5px; 
+                          border: 1px solid #ccc; 
+                          padding: 5px ;" 
+                          onclick="blockOrActive('<%- customers[i]._id %>', '<%- customers[i].full_name %>','block')"
+                          >Block</button>
+                      <% } else { %>
+                        <button class="active-btn "style="
+                          background-color: aqua; 
+                          border-radius: 5px; 
+                          border: 1px solid #ccc; 
+                          padding: 5px ;"  
+                          onclick="blockOrActive('<%- customers[i]._id %>', '<%- customers[i].full_name %>','active')"
+                          >Active</button>
+                        <button class="block-btn" style="
+                          background-color: red; 
+                          border-radius: 5px; 
+                          border: 1px solid #ccc; 
+                          padding: 5px ; opacity: 0.5;">Block</button>
+                      <%} %>
+                     
                     </td>
                   </tr>
                   <% } %>
                 </tbody>
               </table>
             </div>
-
-            <div class="paging">
-              <ul class="pagination right">
-                <li><a href="#">Trang đầu</a></li>
-                <li class="active"><a href="">1</a></li>
-                <li><a href="#">Trang cuối</a></li>
-              </ul>
-            </div>
           </div>
         </div>
 
         <!-- /page content -->
 
-        <!--Modal detail-->
-        <div id="detailform" class="modal fade js-modal1">
-          <div class="modal-dialog">
-            <div class="modal-content js-modal-content1">
-              <div class="modal-header">
-                <button type="button" class="close js-modal-close1">
-                  <span>x</span>
-                </button>
-                <h4 class="modal-title">Thông tin chi tiết</h4>
-              </div>
-
-              <form action="" id="demo2" class="form-horizontal form-label-left">
-                <div class="modal-body">
-                  <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <input type="hidden" name="id" value="0" />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Mã khách hàng</label>
-                    <div class="col-md-7 col-xs-12">
-                      <label for="" class="form-control">KH01</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Tên khách hàng</label>
-                    <div class="col-md-7 col-xs-12">
-                      <label for="" class="form-control">Lê Thị Tình</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Địa chỉ</label>
-                    <div class="col-md-7 col-xs-12">
-                      <label for="" class="form-control">Sen Thủy</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">SĐT</label>
-                    <div class="col-md-7 col-xs-12">
-                      <label for="" class="form-control">0968699534</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="" class="control-label col-md-3 col-sm-2 col-xs-12">Gmail</label>
-                    <div class="col-md-7 col-xs-12">
-                      <label for="" class="form-control">tinhle@gmail.com</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-default">Thoát</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!--/modal detail-->
-
-        <!--Modal delete-->
-        <div id="deleteform" class="modal fade js-modal3">
-          <div class="modal-dialog">
-            <div class="modal-content js-modal-content3">
-              <div class="modal-header">
-                <button type="button" class="close js-modal-close3">
-                  <span>x</span>
-                </button>
-                <h4 class="modal-title">Xóa mục này</h4>
-              </div>
-              <div class="modal-body">Bạn chắc chắn muốn xóa mục này chứ?</div>
-              <div class="modal-footer">
-                <button class="btn btn-danger">Xóa</button>
-                <button class="btn btn-default js-cancel">Hủy bỏ</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/modal delete-->
-
+        
         <!-- footer content -->
         <%- include("partials/admin-footer") %>
         <!-- /footer content -->
@@ -172,60 +101,31 @@
     </div>
 
     <%- include("partials/admin-scripts") %>
-
     <script>
-      const modal1 = document.querySelector(".js-modal1");
-
-      const modal3 = document.querySelector(".js-modal3");
-
-      const modalClose1 = document.querySelector(".js-modal-close1");
-
-      const modalClose3 = document.querySelector(".js-modal-close3");
-
-      const modalContent1 = document.querySelector(".js-modal-content1");
-      const modalContent3 = document.querySelector(".js-modal-content3");
-
-      const details = document.querySelectorAll(".js-add-de");
-      const updates = document.querySelectorAll(".js-add-up");
-      const deles = document.querySelectorAll(".js-add-dele");
-      const cancel = document.querySelector(".js-cancel");
-
-      function showDetail() {
-        modal1.classList.add("in");
+      async function blockOrActive(userId,userName,mes){
+        const agree=confirm(`Bạn chắc chắn muốn ${mes} đối với ${userName}`);
+        if (agree){
+          const res=await fetch(`/admin/manage/${userId}?m=${mes}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },          
+          });
+          const data= await res.json();
+          if (data==='done'){
+            location.reload();
+          }
+        }
       }
-
-      function showDelete() {
-        modal3.classList.add("in");
+      const searchBtn=document.querySelector("#search_btn");
+      searchBtn.onclick=()=>{
+        const search=document.querySelector("#search-text").value;
+        location.href=`/admin/customers?search=${search}`;
       }
+      
 
-      function hiden1() {
-        modal1.classList.remove("in");
-      }
-
-      function hiden3() {
-        modal3.classList.remove("in");
-      }
-
-      for (const detail of details) {
-        detail.addEventListener("click", showDetail);
-      }
-
-      for (const dele of deles) {
-        dele.addEventListener("click", showDelete);
-      }
-      cancel.addEventListener("click", hiden3);
-      modalClose1.addEventListener("click", hiden1);
-      modalClose3.addEventListener("click", hiden3);
-
-      modal1.addEventListener("click", hiden1);
-      modalContent1.addEventListener("click", function (event) {
-        event.stopPropagation();
-      });
-
-      modal3.addEventListener("click", hiden3);
-      modalContent3.addEventListener("click", function (event) {
-        event.stopPropagation();
-      });
+        
     </script>
+
   </body>
 </html>
