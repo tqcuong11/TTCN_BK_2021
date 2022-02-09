@@ -85,17 +85,19 @@
               </li>
 
               <!-- login -->
-              <% if(user.full_name) { %>
-              <li>
-                <a href="/cart">
-                  <i class="fa fa-shopping-cart"></i>
-                  <% if (user.cart.length) { %>
-                  <span class="cart_quantity " >
-                    <b> <%- user.cart.length %></b>
-                  </span>
-                  <% } %>
-                </a>
-              </li>
+              <% if(user.full_name) { 
+                if (user.role_id!==2){%>
+                  <li>
+                    <a href="/cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <% if (user.cart.length) { %>
+                    <span class="cart_quantity " >
+                      <b> <%- user.cart.length %></b>
+                    </span>
+                    <% } %>
+                    </a>
+                  </li>
+                <%} %>
               <li class="dropdown">
                 <a href="">
                   <i class="fa fa-user"></i> 
@@ -109,7 +111,7 @@
                   </ul>
                 <% } else if (user.role_id===1){ %>                  
                   <ul role="menu" class="sub-menu">
-                    <li><a href="/employee">Quản lý khách hàng</a></li>
+                    <li><a href="/employee">Quản lý</a></li>
                     <li><a href="/info">Cập nhật thông tin</a></li>
                     <li><a href="/logout" class="active">Đăng xuất</a></li>
                   </ul>
