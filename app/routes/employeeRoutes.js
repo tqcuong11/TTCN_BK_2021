@@ -6,8 +6,8 @@ const adminControler=require("../controllers/AdminController");
 const verifyToken = require("../middlewares/verifyToken");
 
 router.post("/:orderId",employeeController.mangeOrders);
-router.get("/customers", adminControler.manageCustomers);
 router.get('/hoadon',verifyToken,employeeController.manageBills);
-router.get("/", verifyToken,adminControler.dashboard);
+router.get("/", adminControler.manageCustomers);
+
 
 module.exports = router;
