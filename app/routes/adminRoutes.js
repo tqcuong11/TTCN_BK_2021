@@ -5,6 +5,7 @@ const siteController=require("../controllers/SiteController");
 const verifyToken = require("../middlewares/verifyToken");
 
 
+router.delete("/employee/:employeeId",AdminController.deleteEmployee);
 router.post('/manage/:userId',AdminController.blockActive);
 router.post("/manage-products", siteController.getProduct);
 router.get("/manage-products", AdminController.listProducts);

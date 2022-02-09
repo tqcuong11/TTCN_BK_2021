@@ -217,35 +217,43 @@
     //  handle active order btn
     activeOrderBtns.forEach(activeOrderBtn => {      
       activeOrderBtn.onclick= async  ()=>{
-        console.log("abc")
         const orderId=activeOrderBtn.getAttribute("data");
-        const userId=activeOrderBtn.getAttribute('user-id');               
-        const res=await fetch(`/employee/${orderId}?status=active&userId=${userId}`,{
+        const userId=activeOrderBtn.getAttribute('user-id'); 
+        const agree=confirm(`Bạn chắc chắn muốn xác nhận đơn hàng ${orderId}`); 
+        if (agree){
+          const res=await fetch(`/employee/${orderId}?status=active&userId=${userId}`,{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           }
-        });
-        const data= await res.json();
-        if(data.mes==="done"){
-          location.reload();
-        }
+          });
+          const data= await res.json();
+          if(data.mes==="done"){
+            location.reload();
+          }
+
+        }             
+        
       }
     }) ;
     // handle cancle order btn
     cancelOrderBtns.forEach(cancelOrderBtn=>{
       cancelOrderBtn.onclick= async  ()=>{
         const orderId=cancelOrderBtn.getAttribute("data");
-        const res=await fetch(`/employee/${orderId}?status=cancel`,{
+        const agree=confirm(`Bạn chắc chắn muốn hủy đơn hàng ${orderId}`);
+        if (agree){
+          const res=await fetch(`/employee/${orderId}?status=cancel`,{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           }
-        });
-        const data= await res.json();
-        if(data.mes==="done"){
-          location.reload();
+          });
+          const data= await res.json();
+          if(data.mes==="done"){
+            location.reload();
+          }
         }
+        
       }
     })
     // filter with status

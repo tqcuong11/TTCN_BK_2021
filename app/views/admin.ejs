@@ -48,6 +48,7 @@
                     <th>STT</th>
                     <th>Tên nhân viên</th>
                     <th>Email</th>
+                    <th>Thao tác</th>
                     
                   </tr>
                 </thead>
@@ -61,13 +62,21 @@
                     <td>
                       <div><%- employees[i].email %></div>
                     </td>
+                    <td>
+                      <button class="delete-btn" style="
+                      background-color: #e82d2d;
+                      border-radius: 5px; 
+                      border: 1px solid #ccc; 
+                      padding: 5px ; "
+                      data="<%- employees[i]._id %>">Xóa nhân viên</button>
+                    </td>
                    
                   </tr>
                   <% } %>
                 </tbody>
               </table>
             </div>
-
+            <form action="" method="POST" id="delete-form"></form>
           </div>
         </div>
 
@@ -76,11 +85,28 @@
         
     <%- include("partials/admin-scripts") %>
     <script>
+
       const searchBtn=document.querySelector("#search_btn");
+      const deleteBtns=document.querySelectorAll(".delete-btn");
+
+      // handle search btn
       searchBtn.onclick=()=>{
         const search=document.querySelector("#search-text").value;
         location.href=`/admin?search=${search}`;
       }
+      // handle delete btn
+      deleteBtns.forEach(deleteBtn=>{
+        deleteBtn.onclick=()=>{
+          const employeeId=deleteBtn.getAttribute("data");
+          const agree=confirm(`Bạn chắc chắn muốn xóa nhân viên ${employeeId}`);
+          if (agree){
+            const deleteForm=document.querySelector('#delete-form');
+            deleteForm.action=`admin/employee/${employeeId}?_method=DELETE`;
+            deleteForm.submit();            
+          }
+        }
+      })
+    
     </script>
   </body>
 </html>

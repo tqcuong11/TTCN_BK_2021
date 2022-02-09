@@ -146,6 +146,18 @@ const AdminController = {
         message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
       });
     }
+  },
+  deleteEmployee: async (req,res)=>{
+    try {
+      const employeeId=req.params.employeeId;
+      await User.deleteOne({_id:employeeId});
+      res.redirect("/admin");
+    } catch (err) {
+      return res.status(500).render("error", {
+        err,
+        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+      });
+    }
   }
 };
 
