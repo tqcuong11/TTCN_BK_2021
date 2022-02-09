@@ -64,7 +64,7 @@
                                     <th>Dòng sản phẩm</th>
                                     <th>Giá nhập</th>
                                     <th>Màu sắc</th>
-                                    <th>Thao tác</th>
+                                    <th>Chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,10 +88,7 @@
                                   <td class="text-center">
                                     <button type="button" class="js-add-de" onclick="location.href='/<%- products[i].slug %>'">
                                       <i class="fa fa-eye"></i>
-                                    </button>
-                                    <button type="button" class="right js-add-up">
-                                      <i class="fa fa-pencil-alt"></i>
-                                    </button>  
+                                    </button>     
                                   </td>
                                 </tr>
                                 <% } %>
@@ -157,13 +154,9 @@
                         <div>${product.color}</div>
                         </td>
                         <td class="text-center">
-                        <button type="button" class="js-add-de" onclick="location.href='/${product.slug}">
+                        <button type="button" class="js-add-de" onclick="location.href='/${product.slug}'">
                             <i class="fa fa-eye"></i>
                         </button>
-                        <button type="button" class="right js-add-up">
-                            <i class="fa fa-pencil-alt"></i>
-                        </button>              
-                        
                         </td>
                     </tr>
                 `
