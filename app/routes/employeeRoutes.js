@@ -9,5 +9,4 @@ router.post("/:orderId",employeeController.mangeOrders);
 router.get('/hoadon',verifyToken,employeeController.manageBills);
 router.get("/", adminControler.manageCustomers);
 
-
 module.exports = router;

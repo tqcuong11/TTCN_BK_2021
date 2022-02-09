@@ -40,9 +40,8 @@
                     <th>STT</th>
                     <th>Tên khách hàng</th>
                     <th>Email</th>
-                    <th>Chi tiết</th>  
                     <th>Trạng thái</th> 
-                                     
+                    <th>Chi tiết</th>                    
                   </tr>
                 </thead>
                 <tbody>
@@ -134,13 +133,13 @@
               </div>
               <div class="modal-body form-horizontal">
                 <h1 class="text-center">Chi tiết khách hàng</h1>
-                <h2 class="text-center"><%- customer._id %></h2>
                 <div class="row">
-                  
-                  <h3>Chi tiết sản phẩm</h3>
-
                   <table class="table">
                     <thead>
+                      <tr>
+                        <th class="text-center">Mã khách hàng</th>
+                        <td><%- customer._id %></td>
+                      </tr>
                       <tr>
                         <th class="text-center">Tên khách hàng</th>
                         <td><%- customer.full_name %></td>
