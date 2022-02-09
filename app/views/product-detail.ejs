@@ -70,13 +70,71 @@
                     </div>
                     <!--/product-details-->
 
-                    <div class="category-tab shop-details-tab">
-                        <!--category-tab-->
-                        <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li><a href="#details" data-toggle="tab">Chi tiết sản phẩm</a></li>
-                                <li class="active"><a href="#reviews" data-toggle="tab">Đánh giá </a></li>
-                            </ul>
+                    <div class="review" style="margin-bottom: 20px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="<% if ((user.products&&user.products.includes(product._id))&&!!!reviews.find(review=>review.user_id._id.toString()===user._id.toString())){ %>
+                                    col-sm-8 
+                                <%} else {%>
+                                    col-sm-12
+                                <%}%>
+                                    review_general">
+                                    <h2 class="title">NHẬN XÉT</h2>
+                                    
+                                    <% if (reviews.length){
+                                        reviews.forEach(review=>{ %>
+                                            <div class="review_item" style="margin-left: 30px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+                                                <div class="user">
+                                                    <i class="fa fa-user" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                    <% if (user._id&&(review.user_id._id.toString()===user._id.toString())){%>
+                                                        <span style="color: #0b0443;font-size: 20px;font-weight: bold;">Bạn</span>
+                                                    <%} else{%>
+                                                        <span style="color: #0b0443;font-size: 20px;font-weight: bold;"><%- review.user_id.full_name %></span>
+                                                    <%}%>
+                                                   
+                                                    <p>
+                                                        <span class="star_rate me-3 d-flex mt-1" style="margin-left: 25px;font-size: 15px;">
+                                                            <% for (let i=0;i<5 ;i++){
+                                                                if (i<review.star){  %>                                                                   
+                                                                    <i class="review fa fa-star co-or" aria-hidden="true" style="color: #eb8a2f;" ></i>
+                                                                <%} else {%>
+                                                                    <i class="review fa fa-star co-or" aria-hidden="true" style="color: #333;"></i>
+                                                                <%}
+                                                            }%>
+                                                          </span>
+                                                    </p>
+                                                    
+                                                </div>
+                                                <div class="content" style="margin-top: 10px; margin-left: 20px;">
+                                                    <%- review.content %>
+                                                </div>
+                                            </div>
+                                        <%})
+                                    } %>
+                                </div>
+                                <% if ((user.products&&user.products.includes(product._id))&&!!!reviews.find(review=>review.user_id._id.toString()===user._id.toString())){ %>
+                                    <div class="col-sm-4">
+                                        <h2 class="title">ĐÁNH GIÁ SẢN PHẨM</h2>
+                                        <input type="hidden" name="rating" id="rating_star" course_id="" value='0'>
+                                        <div class="title d-flex align-items-flex-start" style="margin-bottom: 10px;">
+                                          <span class="star_rate me-3 d-flex mt-1">
+                                            <i class="review fa fa-star co-or" aria-hidden="true" onclick="star(1)"></i>
+                                            <i class="review fa fa-star co-or" aria-hidden="true" onclick="star(2)"></i>
+                                            <i class="review fa fa-star co-or" aria-hidden="true" onclick="star(3)"></i>
+                                            <i class="review fa fa-star co-or" aria-hidden="true" onclick="star(4)"></i>
+                                            <i class="review fa fa-star co-or" aria-hidden="true" onclick="star(5)"></i>
+                                          </span>
+                                          
+                                        </div>
+                                        <textarea class='comment_review p-3 mb-3' name="comment_review" id="review" rows="4"
+                                          placeholder="Nhập nội dung đánh giá"></textarea>                                        
+                                        <button class='btn-send-review rate' style="margin-top: 10px;" data="<%- product._id %>"> Gửi đánh giá</button>
+                                      </div>
+                                <%}%>
+
+                                                             
+                                
+                            </div>
                         </div>
 
                     </div>
@@ -134,3 +192,37 @@
 
     <%- include("partials/footer") %>
     <script src="/js/product-detail.js"></script>
+    <script>
+        const starsElement = document.querySelectorAll('.review.fa-star');
+        const rateBtn = document.querySelector('button.rate');
+        const reviewInput = document.querySelector('#review');
+
+        function star(currentRating){
+            for (i = currentRating; i > 0; i--) {
+                starsElement[i - 1].style.color = '#eb8a2f';
+            }
+            for (j = currentRating; j < 5; j++) {
+             starsElement[j].style.color = '#333';
+            }
+            rateBtn.onclick= async ()=>{
+                const productId=rateBtn.getAttribute("data");
+                const init = {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ rate: currentRating, review: reviewInput.value }),
+                };
+                if (!reviewInput.value) {
+                    window.alert('Xin vui lòng nhập nội dung đánh giá');
+                } else {
+                    const res= await fetch(`/review/${productId}`,init);
+                    const data=await res.json();
+                    location.reload();
+                }
+        }
+        }
+        
+
+
+    </script>

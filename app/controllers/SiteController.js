@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const User = require("../models/User");
 const Order=require("../models/Order");
+const Review=require("../models/Review");
 
 const SiteController = {
   // [GET] / home
@@ -64,17 +65,20 @@ const SiteController = {
   detail: async (req, res, next) => {
     try {
       const product_slug = req.params.slug;
-    const product = await Product.findOne({ slug: product_slug }).exec();
-   
-    const sameProducts=await Product.find({brand:product.brand});
-    if (req.user) {
-      const user = await User.findOne({ _id: req.user });
-      if (product) res.render("product-detail", { product, user,sameProducts });
-      else next();
-    } else {
-      if (product) res.render("product-detail", { product, user: "",sameProducts });
-      else next();
-    }
+      const product = await Product.findOne({ slug: product_slug }).exec();
+      const reviews= await Review.find({product_id:product._id}).populate("user_id");
+     
+    
+      const sameProducts=await Product.find({brand:product.brand});
+      if (req.user) {
+        const user = await User.findOne({ _id: req.user });
+        
+        if (product) res.render("product-detail", { product, user,sameProducts,reviews });
+        else next();
+      } else {
+        if (product) res.render("product-detail", { product, user: "",sameProducts,reviews });
+        else next();
+      }
     } catch (err) {
       res.render("error", {
         err,
@@ -82,6 +86,29 @@ const SiteController = {
       });
     }
     
+  },
+  addReview: async (req,res)=>{
+    try {
+      if (req.user){
+        const body=req.body;
+        const product_id=req.params.productId;
+        await Review.create({
+          user_id:req.user,
+          product_id:product_id,
+          content:body.review,
+          star:Number(body.rate),
+        })
+        const product= await Product.findOne({_id:product_id});
+        await Product.updateOne({_id:product_id},{ review_count : product.review_count +1})
+        res.json({});
+      }
+      
+    } catch (err) {
+      res.render("error", {
+        err,
+        message: "Có lỗi khi nhận dữ liệu từ server, xin thử lại",
+      });
+    }
   },
 
   // [GET] / login
