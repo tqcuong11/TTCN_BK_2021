@@ -22,7 +22,7 @@ const AdminController = {
     } catch (err) {
       return res.render("error", {
         err,
-        message: "Xảy ra lỗi khi nhận dữ liệu từ server, xin thử lại",
+        message: "Xảy ra lỗi khi nhận dữ liệu từ server khi nhận dữ liệu từ server, xin thử lại",
       });
     }
   },
@@ -71,7 +71,7 @@ const AdminController = {
       
       return res.status(500).render("error", {
         err,
-        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+        message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
       });
     }
   },
@@ -114,7 +114,7 @@ const AdminController = {
     } catch (err) {
       return res.status(500).render("error", {
         err,
-        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+        message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
       });
     }
   },
@@ -132,7 +132,7 @@ const AdminController = {
     } catch (err) {
       return res.status(500).render("error", {
         err,
-        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+        message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
       });
     }
   },
@@ -144,7 +144,20 @@ const AdminController = {
     } catch (err) {
       return res.status(500).render("error", {
         err,
-        message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
+        message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
+      });
+    }
+  },
+  updatePrice: async (req,res)=>{
+    try {
+      const product_id=req.params.productId;
+      const newPrice=req.query.newprice;
+      await Product.updateOne({_id:product_id},{price:Number(newPrice)});
+      res.redirect("/admin/manage-products");
+    } catch (err) {
+      return res.status(500).render("error", {
+        err,
+        message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
       });
     }
   }

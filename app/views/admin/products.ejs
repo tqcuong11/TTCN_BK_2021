@@ -102,6 +102,78 @@
                 </div>
 
             </div>
+            <div id="update-price" class="modal fade js-modal1 in">
+                <div class="modal-dialog">
+                  <div class="modal-content js-modal-content1">
+                    <div class="modal-header">
+                      <button type="button" class="close js-modal-close1">
+                        <span> X </span>
+                      </button>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                      <h1 class="text-center">Chi tiết sản phẩm</h1>
+                      <div class="row">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th class="text-center">Tên sản phẩm</th>
+                              <td class="product-name"></td>
+                            </tr>
+                            <tr>
+                              <th class="text-center">Thương hiệu</th>
+                              <td class="product-brand"></td>
+                            </tr>                           
+                            <tr>
+                              <th class="text-center">Màu sắc</th>
+                              <td class="product-color"></td>
+                            </tr>
+                            <tr>
+                              <th class="text-center">Dung lượng</th>
+                              <td class="product-storage"></td>
+                            </tr>
+                            <tr>
+                              <th class="text-center">Giá hiện tại</th>
+                              <td class="present-price"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Giá mới</th>
+                                <td class="new-price">
+                                    <input type="text" id="new-price" 
+                                    style="
+                                    width: 100%;
+                                    border-radius: 5px;
+                                    border: 1px solid #ccc;">
+                                </td>
+                            </tr>                       
+                            
+                          </thead>
+                         
+                        </table>
+                      </div>                  
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default update-btn" 
+                        style="
+                        color: #000;
+                        background-color: #26f04f;
+                        opacity: 1;
+                        padding: 10px;
+                        margin-left: 10px;"
+                        product-id="">Cập nhật</button>
+                        <button class="btn btn-default close" 
+                        style="
+                        color: #000;
+                        background-color: #e4dfe0;
+                        opacity: 1;
+                        padding: 12px;
+                        font-size: 16px;
+                        font-weight: unset;">Thoát</button>
+                      </div>
+                   
+                  </div>
+                </div>
+              </div>
+              <form action="" id="update-form" method="POST"></form>
 
             <!-- /page content -->
 
@@ -119,6 +191,9 @@
         const table=document.querySelector('.table_e tbody');
         const loadmoreBtn=document.querySelector('.loadmore');
         const searchBtn=document.querySelector("#search_btn");
+        let detailProductBtns=document.querySelectorAll(".detail-product");
+        const closeBtns=document.querySelectorAll(".close");
+        const updateBtn=document.querySelector(".update-btn"); 
         let startFrom=0;
         let html='';
         async function getProduct(){
@@ -157,11 +232,33 @@
                         <button type="button" class="js-add-de" onclick="location.href='/${product.slug}'">
                             <i class="fa fa-eye"></i>
                         </button>
+                        <button type="button" class="right js-add-up detail-product"  
+                        product='${JSON.stringify(product)}' 
+                        data-toggle="modal" data-target="#update-price"
+                        >                            
+                            <i class="fa fa-pencil-alt"></i>
+                        </button>              
+                        
                         </td>
                     </tr>
                 `
                 });
                 html+=result.join(' ');
+                setTimeout(()=> {
+                    detailProductBtns=document.querySelectorAll(".detail-product")
+                    detailProductBtns.forEach(detailProductBtn=>{
+                    detailProductBtn.onclick=()=>{
+                        const product=JSON.parse(detailProductBtn.getAttribute("product"));
+                        document.querySelector(".product-name").innerHTML=product.name;
+                        document.querySelector(".product-brand").innerHTML=product.brand;
+                        document.querySelector(".product-color").innerHTML=product.color;
+                        document.querySelector(".product-storage").innerHTML=product.storage;
+                        document.querySelector(".present-price").innerHTML=product.price;                       
+                        document.querySelector(".update-btn").setAttribute("product-id",product._id);
+                        document.querySelector("#new-price").value=""; 
+                        }                    
+                     })
+                },500);                
                 table.innerHTML=html;
                 if (data.end===true){
                     loadmoreBtn.style.display="none";
@@ -182,6 +279,37 @@
             getProduct();
         }
         getProduct();
+        // Handle close btn
+        closeBtns.forEach(closeBtn=>{
+            closeBtn.onclick=()=>{
+                const modal=document.querySelector(".modal.show.in");
+                modal.classList.remove("show");
+                modal.classList.remove("in");
+        }
+        }) 
+        // Handle update btn
+        updateBtn.onclick=()=>{
+            const updateForm=document.querySelector("#update-form");
+            const product_id=updateBtn.getAttribute("product-id");
+            const newPrice=document.querySelector("#new-price").value; 
+            console.log(newPrice)           
+            if (!newPrice.length){
+                alert("Vui lòng nhập giá tiền mới trước khi cập nhật!");
+            } else if (newPrice.length&&!Number(Number(newPrice))){
+                alert("Vui lòng nhập giá trị hợp lệ!");
+            } else{
+                const agree=confirm(`Bạn chắc chắn muốn cập nhật sản phẩm ${product_id}`);            
+                if (agree){
+                updateForm.action=`/admin/${product_id}?newprice=${newPrice}&_method=PATCH`;
+                updateForm.submit();}
+
+            }
+                
+            }
+        
+
+        
+        
     </script>
 
     
