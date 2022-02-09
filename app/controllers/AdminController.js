@@ -30,9 +30,13 @@ const AdminController = {
   listProducts: async (req, res) => {
     try {
       if (req.user) {
+        let brands=[];
         const products = await Product.find({});
+        products.map(product=>{
+          if (!brands.includes(product.brand))
+            brands.push(product.brand);});
         const user = await User.findOne({ _id: req.user });
-        res.render("products", { products, user });
+        res.render("products", { products, user,brands});
       } else {
         res.render("products", { user: "" });
       }

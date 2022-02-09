@@ -29,6 +29,12 @@
                                 <button id="search_btn" type="button" class="btn btn-primary right">
                                     <i class="fa fa-search"></i>
                                 </button>
+                                <select name="" id="category" class="right form-control">
+                                    <option value="">Danh mục</option>
+                                    <% brands.forEach(brand=>{ %>
+                                        <option value="<%- brand %>"><%- brand %></option>
+                                    <%})%>
+                                </select>
                                 <div class="col-sm-7"><input type="text" name="" class="form-control right " id="search-text" placeholder="Tên sản phẩm"></div>
                             </div>
 
@@ -175,8 +181,10 @@
 
         }
         searchBtn.onclick=()=>{
-            const search=document.querySelector("#search-text").value;            
-            location.href=`/admin/manage-products?search=${search}`;
+            const search=document.querySelector("#search-text").value; 
+            const category=document.querySelector("select#category")  ;
+            const select=category.options[category.selectedIndex].value;    
+            location.href=`/admin/manage-products?search=${search}&c=${select}`;
             startFrom=0;
             getProduct();
         }

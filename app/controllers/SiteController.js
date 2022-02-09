@@ -65,7 +65,7 @@ const SiteController = {
     try {
       const product_slug = req.params.slug;
     const product = await Product.findOne({ slug: product_slug }).exec();
-    console.log(product)
+   
     const sameProducts=await Product.find({brand:product.brand});
     if (req.user) {
       const user = await User.findOne({ _id: req.user });
