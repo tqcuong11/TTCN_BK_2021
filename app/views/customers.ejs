@@ -40,7 +40,9 @@
                     <th>STT</th>
                     <th>Tên khách hàng</th>
                     <th>Email</th>
-                    <th>Trạng thái</th>                    
+                    <th>Chi tiết</th>  
+                    <th>Trạng thái</th> 
+                                     
                   </tr>
                 </thead>
                 <tbody>
@@ -54,7 +56,13 @@
                     <td>
                       <div><%- customers[i].email %></div>
                     </td>                    
+                    <td class="text-center">
+                        
+                      <button type="button" class="js-add-de" data-toggle="modal" data-target="#detailform1_<%-  i+1 %>">
+                        <i class="fa fa-eye"></i>
+                      </button>
                     
+                  </td> 
                     <td>
                       <% if (customers[i].active===true){ %>
                         <button class="active-btn " style="
@@ -84,6 +92,7 @@
                       <%} %>
                      
                     </td>
+                    
                   </tr>
                   <% }} else if (user.role_id===1){ 
                    customers.forEach((customer,index)=>{ %>
