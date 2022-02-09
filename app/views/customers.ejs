@@ -95,13 +95,13 @@
                         <td>active</td>
                       <% } else{ %>
                         <td>block</td>
-                      <%}%> %>
+                      <%}%>
                       <td class="text-center">
-                        <a href="">
-                          <button type="button" class="right js-add-up">
+                        
+                          <button type="button" class="js-add-de" data-toggle="modal" data-target="#detailform1_<%-  index+1 %>">
                             <i class="fa fa-eye"></i>
                           </button>
-                        </a>
+                        
                       </td>                      
                       
                     </tr>
@@ -113,7 +113,72 @@
         </div>
 
         <!-- /page content -->
+        <!--modal detail-->
+        <% customers.forEach((customer,index)=>{ %>
+        <div id="detailform1_<%-  index+1 %>" class="modal fade js-modal1">
+          <div class="modal-dialog">
+            <div class="modal-content js-modal-content1">
+              <div class="modal-header">
+                <button type="button" class="close js-modal-close1">
+                  <span> X </span>
+                </button>
+              </div>
+              <div class="modal-body form-horizontal">
+                <h1 class="text-center">Chi tiết khách hàng</h1>
+                <h2 class="text-center"><%- customer._id %></h2>
+                <div class="row">
+                  
+                  <h3>Chi tiết sản phẩm</h3>
 
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Tên khách hàng</th>
+                        <td><%- customer.full_name %></td>
+                      </tr>
+                      <tr>
+                        <th class="text-center">Email</th>
+                        <td><%- customer.email %></td>
+                      </tr>
+                      <% console.log(customer.phone);%>
+                      <tr>
+                        <th class="text-center">Số điện thoại</th>
+                        <td><%- customer.phone %></td>
+                      </tr>
+                      <tr>
+                        <th class="text-center">Địa chỉ</th>
+                        <td><%- customer.address %></td>
+                      </tr>
+                      <tr>
+                        <th class="text-center">Số lượng sản phẩm đã mua</th>
+                        <td><%- customer.products.length %></td>
+                      </tr>
+                      
+                      <tr>
+                        <th class="text-center">Ngày tham gia</th>
+                        <td><%-new Date(customer.createdAt).getDate() %>/<%-new Date(customer.createdAt).getMonth() %>/<%-new Date(customer.createdAt).getFullYear() %></td>
+                      </tr>
+                      
+                    </thead>
+                   
+                  </table>
+                </div>                  
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-default close" 
+                style="
+                color: #000;
+                background-color: #e4dfe0;
+                opacity: 1;
+                padding: 10px;">Thoát</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%}) %>
+      
+      <!--/modal detail-->
         
         <!-- footer content -->
         <%- include("partials/admin-footer") %>
@@ -123,6 +188,8 @@
 
     <%- include("partials/admin-scripts") %>
     <script>
+      const detailBtns=document.querySelectorAll(".js-add-de");
+      const closeBtns=document.querySelectorAll(".close");
       const role='<%- user.role_id %>';
       async function blockOrActive(userId,userName,mes){
         const agree=confirm(`Bạn chắc chắn muốn ${mes} đối với ${userName}`);
@@ -147,7 +214,20 @@
         else if (role==='1')
         location.href=`/employee/customers?search=${search}`;
       }
-      
+      detailBtns.forEach((detailBtn,index)=>{
+        const detailModal=document.querySelector(`#detailform1_${index+1}`);
+        detailBtn.onclick=()=>{
+          detailModal.classList.add('in');
+        }
+      })
+      // Handle close btn in modal
+     closeBtns.forEach(closeBtn=>{
+       closeBtn.onclick=()=>{
+         const modal=document.querySelector(".modal.show.in");
+         modal.classList.remove("show");
+         modal.classList.remove("in");
+       }
+     })  
 
         
     </script>
