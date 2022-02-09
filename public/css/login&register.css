@@ -121,7 +121,7 @@ body {
     border: none;
   }
   .form_btn {
-    width: 100%;
+    width: 98%;
     background-color: #38aae6;
     font-family: Montserrat-Medium;
     font-size: 20px;
@@ -130,7 +130,7 @@ body {
     position: relative;
     margin-top: 10px;
     border-radius: 10px;
-    padding: 8px;
+    padding: 8px 0;
   }
   .form_btn:hover {
     background: linear-gradient(45deg, #00dbde, #fc00ff);
