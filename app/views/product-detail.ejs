@@ -83,7 +83,7 @@
                                     
                                     <% if (reviews.length){
                                         reviews.forEach(review=>{ %>
-                                            <div class="review_item" style="margin-left: 30px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+                                            <div class="review_item" style="margin-left: 30px;margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
                                                 <div class="user">
                                                     <i class="fa fa-user" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                     <% if (user._id&&(review.user_id._id.toString()===user._id.toString())){%>
