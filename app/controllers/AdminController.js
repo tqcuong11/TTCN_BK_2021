@@ -15,7 +15,7 @@ const AdminController = {
         if (req.query.search&&req.query.search.length){
           employees=employees.filter(employee=>employee.full_name.includes(req.query.search));
         }
-        res.render("admin", { user, employees });
+        res.render("admin/admin", { user, employees });
       } else {
         res.redirect("/");
       }
@@ -36,16 +36,16 @@ const AdminController = {
           if (!brands.includes(product.brand))
             brands.push(product.brand);});
         const user = await User.findOne({ _id: req.user });
-        res.render("products", { products, user,brands});
+        res.render("admin/products", { products, user,brands});
       } else {
-        res.render("products", { user: "" });
+        res.render("admin/products", { user: "" });
       }
     } catch (error) {}
   },
   //
   newEmployee: async (req, res) => {
     const user = await User.findOne({ _id: req.user });
-    res.render("newEmployee", { user });
+    res.render("admin/newEmployee", { user });
   },
   // [POST] / add employee
   addEmployee: async (req, res) => {
@@ -55,7 +55,7 @@ const AdminController = {
       // check for existing user
       const employee = await User.findOne({ email });
       if (employee) {
-        return res.render("newEmployee", { message: "Email đã tồn tại! Vui lòng đăng nhập hoặc dùng email khác" });
+        return res.render("admin/newEmployee", { message: "Email đã tồn tại! Vui lòng đăng nhập hoặc dùng email khác" });
       } else {
         //   all good
         const hashedPassword = await argon2.hash(password);
@@ -79,7 +79,7 @@ const AdminController = {
   //
   newProduct: async (req, res) => {
     const user = await User.findOne({ _id: req.user });
-    res.render("newProduct", { user });
+    res.render("admin/newProduct", { user });
   },
   // [POST] / add employee
   addProduct: async (req, res) => {
@@ -107,9 +107,9 @@ const AdminController = {
       }
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
-        res.render("customers", { customers, user });
+        res.render("admin/customers", { customers, user });
       } else {
-        res.render("customers", { user: "" });
+        res.render("admin/customers", { user: "" });
       }
     } catch (err) {
       return res.status(500).render("error", {
@@ -117,17 +117,6 @@ const AdminController = {
         message: "Xảy ra lỗi trong quá trình đăng ký, xin thử lại",
       });
     }
-  },
-
-  manageBills: async (req, res) => {
-    try {
-      if (req.user) {
-        const user = await User.findOne({ _id: req.user });
-        res.render("hoadon", { user });
-      } else {
-        res.render("hoadon", { user: "" });
-      }
-    } catch (error) {}
   },
   blockActive: async (req,res)=>{
     try {

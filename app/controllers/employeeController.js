@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 const Order=require("../models/Order");
 
-const employeeController = {
+const EmployeeController = {
   
   manageBills: async (req, res) => {
     try {
@@ -20,9 +20,9 @@ const employeeController = {
         }
         const user = await User.findOne({ _id: req.user });
 
-        res.render("hoadon", { user, bills });
+        res.render("employee/hoadon", { user, bills });
       } else {
-        res.render("hoadon", { user: "" });
+        res.render("employee/hoadon", { user: "" });
       }
     } catch (error) {}
   },
@@ -60,4 +60,4 @@ const employeeController = {
  
   
 };
-module.exports = employeeController;
+module.exports = EmployeeController;

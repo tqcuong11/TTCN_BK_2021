@@ -14,7 +14,6 @@ router.post("/addEmployee", AdminController.addEmployee);
 router.get("/new-product", AdminController.newProduct);
 router.post("/addProduct", AdminController.addProduct);
 router.get("/customers", AdminController.manageCustomers);
-router.get("/hoadon", AdminController.manageBills);
 router.get("/", AdminController.dashboard);
 
 module.exports = router;
