@@ -1,7 +1,11 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="/admin" class="site_title"><i class="fa fa-user-circle"></i> <span>Admin</span></a>
+            <% if (user.role_id == 2) { %>
+                <a href="/admin" class="site_title"><i class="fa fa-user-circle"></i> <span>Admin</span></a>
+            <%} else { %>
+                <a href="/employee/customers" class="site_title"><i class="fa fa-user-circle"></i> <span>Employee</span></a>
+            <%}%>
         </div>
 
         <div class="clearfix"></div>
@@ -30,10 +34,15 @@
                     </a>
                     <li><a><i class="fa fa-edit"></i> Quản lý <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="/admin/">Quản lý nhân viên</a></li>
-                            <li><a href="/admin/manage-products">Quản lý hàng hóa</a></li>
-                            <li><a href="/admin/customers">Quản lý khách hàng</a></li>
-                            <li><a href="/admin/hoadon">Quản lý hóa đơn</a></li>
+                            <% if (user.role_id == 2) { %>
+                                <li><a href="/admin/">Quản lý nhân viên</a></li>
+                                <li><a href="/admin/products">Quản lý hàng hóa</a></li>
+                                <li><a href="/admin/customers">Quản lý khách hàng</a></li>
+                            <%} else { %>
+                                <li><a href="/employee/customers">Quản lý khách hàng</a></li>
+                                <li><a href="/employee/hoadon">Quản lý hóa đơn</a></li>
+                            <% }%>
+                            
                         </ul>
                     </li>
 
@@ -46,8 +55,13 @@
                     </li>
 
                     <li><a><i class="fa fa-user"></i> Tài khoản <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">                            
-                            <li><a href="/logout">Thoát</a></li>
+                        <ul class="nav child_menu"> 
+                            
+                            <%if(user.role_id===1){ %>
+                                <li><a href="/info">Cập nhật thông tin</a></li>
+                            <% } %>       
+                            <li><a href="/logout">Thoát</a></li>               
+                            
                         </ul>
                     </li>
                 </ul>

@@ -44,7 +44,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% for(var i = 0; i < customers.length; i++) { %>
+                  <%if (user.role_id===2) {
+                  for(var i = 0; i < customers.length; i++) { %>
                   <tr >
                     <td style="padding: 10px 0;"><%- i + 1 %></td>
                     <td>
@@ -84,7 +85,27 @@
                      
                     </td>
                   </tr>
-                  <% } %>
+                  <% }} else if (user.role_id===1){ 
+                   customers.forEach((customer,index)=>{ %>
+                    <tr id="file">
+                      <td><%- index+1 %></td>
+                      <td><a href="#"><%- customer.full_name %></a></td>
+                      <td><%- customer.email %></td>
+                      <% if (customer.active ) { %>
+                        <td>active</td>
+                      <% } else{ %>
+                        <td>block</td>
+                      <%}%> %>
+                      <td class="text-center">
+                        <a href="">
+                          <button type="button" class="right js-add-up">
+                            <i class="fa fa-eye"></i>
+                          </button>
+                        </a>
+                      </td>                      
+                      
+                    </tr>
+                  <% })} %> 
                 </tbody>
               </table>
             </div>
@@ -102,6 +123,7 @@
 
     <%- include("partials/admin-scripts") %>
     <script>
+      const role='<%- user.role_id %>';
       async function blockOrActive(userId,userName,mes){
         const agree=confirm(`Bạn chắc chắn muốn ${mes} đối với ${userName}`);
         if (agree){
@@ -120,7 +142,10 @@
       const searchBtn=document.querySelector("#search_btn");
       searchBtn.onclick=()=>{
         const search=document.querySelector("#search-text").value;
-        location.href=`/admin/customers?search=${search}`;
+        if (role==='2')
+          location.href=`/admin/customers?search=${search}`;
+        else if (role==='1')
+        location.href=`/employee/customers?search=${search}`;
       }
       
 

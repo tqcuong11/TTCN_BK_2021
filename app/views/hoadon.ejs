@@ -32,10 +32,15 @@
                 </div>
               </div>
             </div> -->
-            <div class="h_content">
+            <div class="h_content ">
               <div class="form-group form-inline">
-                <div class="col-sm-4">
-                  <input type="datetime-local" name="" class="form-control right" id="" placeholder="" />
+                <div class="col-sm-2">
+                  <select name="" id="status" class="left form-control">
+                    <option value="">Danh mục</option>                    
+                    <option value="1">Đã xác nhận</option>
+                    <option value="0">Chưa xác nhận</option>
+                    <option value="-1">Đã hủy</option>                    
+                  </select>
                 </div>
                 <div class="col-sm-4">
                   <button id="search_btn" type="button" class="btn btn-primary left">
@@ -59,128 +64,126 @@
                     <th class="text-center">Hủy đơn hàng</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr id="file">
-                    <td>DH01</td>
-                    <td><a href="#">Lê Thị Tình</a></td>
-                    <td>Sen thủy</td>
-                    <td>096869954</td>
-                    <td>21/06/2022</td>
+                <tbody >
+                  <% bills.forEach((bill,index)=>{ %>
+                  <tr id="file">                   
+                    <td class="text-center"><%- bill._id %></td>
+                    <td class="text-center"><%- bill.user_id.full_name %></td>
+                    <td class="text-center"><%- bill.user_id.address %></td>
+                    <td class="text-center"><%- bill.user_id.phone %></td>
+                    <td class="text-center"><%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() %>/<%-new Date(bill.createdAt).getFullYear() %></td>
                     <td class="text-center">
-                      <button type="button" class="js-add-de">
+                      <button type="button" class="js-add-de" data-toggle="modal" data-target="#detailform_<%- index+1 %>">
                         <i class="fa fa-eye"></i>
                       </button>
                     </td>
                     <td class="text-center">
-                      <input type="checkbox" />
+                      <% if(bill.status===1){ %>
+                        <p style="padding: 5px; background-color: chartreuse; color: #000;">Đã xác nhận</p>
+                      <%}else if (bill.status===-1){ %>
+                        <p style="padding: 5px; background-color: red; color: #000;">Đã hủy</p>
+                      <%}else {%>
+                        <button type="button" class="right active-order-btn" data="<%- bill._id %>" user-id="<%- bill.user_id._id %>">
+                          Xác nhận 
+                        </button>
+                        
+                      <%}%>
+                      
                     </td>
                     <td class="text-center">
-                      <button type="button" class="right js-add-dele">
-                        <i class="fa fa-trash-alt"></i>
-                      </button>
+                      <% if (bill.status===0){ %>                        
+                        <button type="button" class="right cancel-order-btn" data="<%- bill._id %>">
+                          <i class="fa fa-trash-alt"></i>
+                        </button>
+                      <%}%>
+                      
                     </td>
                   </tr>
+                  <%})%>
                 </tbody>
               </table>
-            </div>
-
-            <div class="paging">
-              <ul class="pagination right">
-                <li><a href="#">Trang đầu</a></li>
-                <li class="active"><a href="">1</a></li>
-                <li><a href="#">Trang cuối</a></li>
-              </ul>
             </div>
           </div>
         </div>
         <!-- /page content -->
 
         <!--Modal detail-->
-        <div id="detailform" class="modal fade js-modal1">
-          <div class="modal-dialog">
-            <div class="modal-content js-modal-content1">
-              <div class="modal-header">
-                <button type="button" class="close js-modal-close1">
-                  <span>x</span>
-                </button>
-              </div>
-              <div class="modal-body form-horizontal">
-                <h1 class="text-center">Hóa đơn bán hàng</h1>
-                <h2 class="text-center">[Mã HĐ:HD01]</h2>
-                <div class="row">
-                  <div class="col-md-12">
-                    <p>
-                      <span>
-                        <i class="icon-user"></i>
-                        Người bán:
-                      </span>
-                      Lê Thị Tình
-                    </p>
-                    <p><span> Ngày: </span> 21/06/2000</p>
-                    <p><span>Tên khách hàng:</span> Lê Mỹ An</p>
-                    <p><span> Địa chỉ nhận hàng: </span> Sen Thủy</p>
-                    <p><span>Sđt:</span> 0968699534</p>
+        <% bills.forEach((bill,index)=>{ %>
+          <div id="detailform_<%- index+1 %>" class="modal fade js-modal1">
+            <div class="modal-dialog">
+              <div class="modal-content js-modal-content1">
+                <div class="modal-header">
+                  <button type="button" class="close js-modal-close1">
+                    <span>x</span>
+                  </button>
+                </div>
+                <div class="modal-body form-horizontal">
+                  <h1 class="text-center">Hóa đơn bán hàng</h1>
+                  <h2 class="text-center"><%- bill._id %></h2>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p><span> Ngày đặt hàng: </span> <%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() %>/<%-new Date(bill.createdAt).getFullYear() %></p>
+                      <p><span>Tên khách hàng:</span> <%- bill.user_id.full_name%></p>
+                      <p><span> Địa chỉ nhận hàng: </span> <%- bill.user_id.address%></p>
+                      <p><span>Sđt:</span> <%- bill.user_id.phone%></p>
+                    </div>
+                    <h3>Chi tiết sản phẩm</h3>
+  
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center">STT</th>
+                          <th class="text-center">Sản phẩm</th>
+                          <th class="text-center">Số lượng</th>
+                          <th class="text-center">Đơn vị</th>
+                          <th class="text-center">Giá</th>
+                          <th class="text-center">Thành tiền</th>
+                          <th class="text-center">Chi tiết</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% bill.order.forEach((order,index)=>{ %>
+                          <tr>
+                            <td class="text-center"><%- index+1 %></td>
+                            <td class="text-center"><%- order.product.name%></td>
+                            <td class="text-center"><%- order.count%></td>
+                            <td class="text-center">Cái</td>
+                            <td class="text-center"><%- order.product.price%></td>
+                            <td class="text-center"><%- order.product.price*order.count %></td>
+                            <td>                             
+                                <a href="/<%- order.product.slug %>">
+                                  <button>
+                                    <i class="fa fa-eye"></i>
+                                  </button>
+                                </a>        
+                            </td>
+                          </tr>
+                        <%})%>
+                        
+                      </tbody>
+                    </table>
+                  </div>                  
+                  <div class="bold text-right">
+                    <h4>Tổng cộng : <%- bill.order.reduce((total,cur)=>{
+                      return total+cur.product.price*cur.count;
+                    },0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></h4>
                   </div>
-                  <h3>Chi tiết sản phẩm</h3>
-
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="text-center">STT</th>
-                        <th class="text-center">Sản phẩm</th>
-                        <th class="text-center">Số lượng</th>
-                        <th class="text-center">Đơn vị</th>
-                        <th class="text-center">Giá</th>
-                        <th class="text-center">Thành tiền</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">Iphone 13 mini</td>
-                        <td class="text-center">01</td>
-                        <td class="text-center">Cái</td>
-                        <td class="text-center">20.000.000 VNĐ</td>
-                        <td class="text-center">20.000.000 VNĐ</td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
-                <div class="bold text-right">
-                  <h4>Thuế GTGT :10%</h4>
+  
+                <div class="modal-footer">
+                  <button class="btn btn-default close" 
+                  style="
+                  color: #000;
+                  background-color: #e4dfe0;
+                  opacity: 1;
+                  padding: 10px;">Thoát</button>
                 </div>
-                <div class="bold text-right">
-                  <h4>Tổng cộng :22.000.000 VNĐ</h4>
-                </div>
-              </div>
-
-              <div class="modal-footer">
-                <button class="btn btn-default">Thoát</button>
               </div>
             </div>
           </div>
-        </div>
-        <!--/modal detail-->
-
-        <!--Modal delete-->
-        <div id="deleteform" class="modal fade js-modal3">
-          <div class="modal-dialog">
-            <div class="modal-content js-modal-content3">
-              <div class="modal-header">
-                <button type="button" class="close js-modal-close3">
-                  <span>x</span>
-                </button>
-                <h4 class="modal-title">Xóa mục này</h4>
-              </div>
-              <div class="modal-body">Bạn chắc chắn muốn xóa mục này chứ?</div>
-              <div class="modal-footer">
-                <button class="btn btn-danger">Xóa</button>
-                <button class="btn btn-default js-cancel">Hủy bỏ</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/modal delete-->
+        <%}) %>
+        
+        <!--/modal detail-->        
 
         <!-- footer content -->
         <%- include("partials/admin-footer") %>
@@ -189,57 +192,68 @@
     </div>
     <%- include("partials/admin-scripts") %>
     <script>
-      const modal1 = document.querySelector(".js-modal1");
-
-      const modal3 = document.querySelector(".js-modal3");
-
-      const modalClose1 = document.querySelector(".js-modal-close1");
-
-      const modalClose3 = document.querySelector(".js-modal-close3");
-
-      const modalContent1 = document.querySelector(".js-modal-content1");
-      const modalContent3 = document.querySelector(".js-modal-content3");
-
-      const details = document.querySelectorAll(".js-add-de");
-      const deles = document.querySelectorAll(".js-add-dele");
-      const cancel = document.querySelector(".js-cancel");
-
-      function showDetail() {
-        modal1.classList.add("in");
+      
+      const detailBtns=document.querySelectorAll(".js-add-de");
+      const closeBtns=document.querySelectorAll(".close");
+      const activeOrderBtns=document.querySelectorAll(".active-order-btn");
+      const cancelOrderBtns=document.querySelectorAll(".cancel-order-btn");
+      const searchBtn=document.querySelector("#search_btn");
+      
+      // Handle detail btn
+      detailBtns.forEach((detailBtn,index)=>{
+        const detailModal=document.querySelector(`#detailform_${index+1}`);
+        detailBtn.onclick=()=>{
+          detailModal.classList.add('in');
+        }
+      })
+      // Handle close btn in modal
+     closeBtns.forEach(closeBtn=>{
+       closeBtn.onclick=()=>{
+         const modal=document.querySelector(".modal.show.in");
+         modal.classList.remove("show");
+         modal.classList.remove("in");
+       }
+     })
+    //  handle active order btn
+    activeOrderBtns.forEach(activeOrderBtn => {      
+      activeOrderBtn.onclick= async  ()=>{
+        console.log("abc")
+        const orderId=activeOrderBtn.getAttribute("data");
+        const userId=activeOrderBtn.getAttribute('user-id');               
+        const res=await fetch(`/employee/${orderId}?status=active&userId=${userId}`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+        const data= await res.json();
+        if(data.mes==="done"){
+          location.reload();
+        }
       }
-
-      function showDelete() {
-        modal3.classList.add("in");
+    }) ;
+    // handle cancle order btn
+    cancelOrderBtns.forEach(cancelOrderBtn=>{
+      cancelOrderBtn.onclick= async  ()=>{
+        const orderId=cancelOrderBtn.getAttribute("data");
+        const res=await fetch(`/employee/${orderId}?status=cancel`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+        const data= await res.json();
+        if(data.mes==="done"){
+          location.reload();
+        }
       }
-
-      function hiden1() {
-        modal1.classList.remove("in");
-      }
-
-      function hiden3() {
-        modal3.classList.remove("in");
-      }
-
-      for (const detail of details) {
-        detail.addEventListener("click", showDetail);
-      }
-
-      for (const dele of deles) {
-        dele.addEventListener("click", showDelete);
-      }
-      cancel.addEventListener("click", hiden3);
-      modalClose1.addEventListener("click", hiden1);
-      modalClose3.addEventListener("click", hiden3);
-
-      modal1.addEventListener("click", hiden1);
-      modalContent1.addEventListener("click", function (event) {
-        event.stopPropagation();
-      });
-
-      modal3.addEventListener("click", hiden3);
-      modalContent3.addEventListener("click", function (event) {
-        event.stopPropagation();
-      });
+    })
+    // filter with status
+    searchBtn.onclick=()=>{            
+      const status=document.querySelector("select#status")  ;
+      const select=status.options[status.selectedIndex].value;    
+      location.href=`/employee/hoadon?status=${select}`;            
+    }
     </script>
   </body>
 </html>

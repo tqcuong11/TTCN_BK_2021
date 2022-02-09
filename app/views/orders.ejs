@@ -29,11 +29,13 @@
                 <div class="col-sm-2">
                     <%-new Date(order.createdAt).getDate() %>/<%-new Date(order.createdAt).getMonth() %>/<%-new Date(order.createdAt).getFullYear() %>
                 </div>
-                <% if(order.status===false) { %>
-                    <div class="col-sm-2" style="color:red; font-weight: bold;"> Chưa xác nhận </div>
-                <%} else if(order.status===true){ %>
+                <% if(order.status===0) { %>
+                    <div class="col-sm-2" style="color:rgb(175, 172, 172); font-weight: bold;"> Chưa xác nhận </div>
+                <%} else if(order.status===1){ %>
                     <div class="col-sm-2"style="color: green; font-weight: bold;"> Đã xác nhận </div>                
-                <%}%> 
+                <%}else if(order.status===-1){ %>
+                    <div class="col-sm-2" style="color: red; font-weight: bold;"> Đã Hủy</div>   
+                 <%} %> 
             </div>
         <% })%>
         

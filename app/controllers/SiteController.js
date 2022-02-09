@@ -157,6 +157,9 @@ const SiteController = {
         const order=req.body.order;
         await Order.create({
           user_id: req.user,
+          user_name: req.user.name,
+          user_address: req.user.address,
+          user_phone: req.user.phone,         
           order:order,        
         })
        const user=await User.findOne({_id:req.user});

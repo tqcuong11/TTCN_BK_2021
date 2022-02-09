@@ -6012,7 +6012,8 @@ button.close {
 }
 
 .modal-header .close {
-    margin-top: -2px
+    margin-top: -10px;
+    color:#fff
 }
 
 .modal-title {
@@ -6565,7 +6566,7 @@ button.close {
 }
 
 .show {
-    display: block!important
+    display: block!important;
 }
 
 .invisible {
