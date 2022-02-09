@@ -3,7 +3,13 @@
       <div class="col-sm-12 padding-right">
         <div class="features_items">
           <!--features_items-->
-          <h2 class="title text-center">Kết quả tìm kiếm</h2>
+          <% if (!products.length){ %>
+            <h3 class="title text-center" style="margin-top: 20px; margin-bottom: 200px;" >Không có kết quả tìm kiếm phù hợp! </h3>
+            
+          <% }else { %>
+            <h2 class="title text-center" style="margin-top: 20px; " >Kết quả tìm kiếm</h2>
+             
+          <%} %>         
 
           <% products.forEach(product=>{ %>
           <div class="col-sm-4">
