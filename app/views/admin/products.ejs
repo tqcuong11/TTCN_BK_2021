@@ -249,6 +249,7 @@
                     detailProductBtns.forEach(detailProductBtn=>{
                     detailProductBtn.onclick=()=>{
                         const product=JSON.parse(detailProductBtn.getAttribute("product"));
+                        document.querySelector("#update-price").classList.add("in");
                         document.querySelector(".product-name").innerHTML=product.name;
                         document.querySelector(".product-brand").innerHTML=product.brand;
                         document.querySelector(".product-color").innerHTML=product.color;
@@ -282,7 +283,7 @@
         // Handle close btn
         closeBtns.forEach(closeBtn=>{
             closeBtn.onclick=()=>{
-                const modal=document.querySelector(".modal.show.in");
+                const modal=document.querySelector(".modal.show.in");                
                 modal.classList.remove("show");
                 modal.classList.remove("in");
         }

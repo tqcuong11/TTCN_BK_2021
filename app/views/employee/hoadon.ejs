@@ -71,7 +71,7 @@
                     <td class="text-center"><%- bill.user_id.full_name %></td>
                     <td class="text-center"><%- bill.user_id.address %></td>
                     <td class="text-center"><%- bill.user_id.phone %></td>
-                    <td class="text-center"><%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() %>/<%-new Date(bill.createdAt).getFullYear() %></td>
+                    <td class="text-center"><%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() +1 %>/<%-new Date(bill.createdAt).getFullYear() %></td>
                     <td class="text-center">
                       <button type="button" class="js-add-de" data-toggle="modal" data-target="#detailform_<%- index+1 %>">
                         <i class="fa fa-eye"></i>
@@ -122,7 +122,7 @@
                   <h2 class="text-center"><%- bill._id %></h2>
                   <div class="row">
                     <div class="col-md-12">
-                      <p><span> Ngày đặt hàng: </span> <%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() %>/<%-new Date(bill.createdAt).getFullYear() %></p>
+                      <p><span> Ngày đặt hàng: </span> <%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() +1 %>/<%-new Date(bill.createdAt).getFullYear() %></p>
                       <p><span>Tên khách hàng:</span> <%- bill.user_id.full_name%></p>
                       <p><span> Địa chỉ nhận hàng: </span> <%- bill.user_id.address%></p>
                       <p><span>Sđt:</span> <%- bill.user_id.phone%></p>
