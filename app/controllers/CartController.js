@@ -21,7 +21,6 @@ const CartController = {
           for (let index = 0; index < cart.length; index++) products.push(await Product.findOne({ _id: cart[index] }));
         }
         user.cart = products;
-        // console.log(user);
         res.render("cart", { user });
       }
     } catch (error) {}
