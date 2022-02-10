@@ -53,12 +53,14 @@
                                     <span> <img src="img/product-details/rating.png" alt="" /></span>
                                     <span>| <%- product.review_count %> Đánh giá</span>
                                 </span>
+                                <% if (user.role_id===0){ %>
                                 <div>
                                     <button type="button" class="btn btn-fefault cart add-btn" data-id='<%- product._id %>'>
 										<i class="fa fa-shopping-cart"></i>
 										Thêm vào giỏ hàng
-								</button>
+								    </button>
                                 </div>
+                                <%} %>
                                 <p style="margin-top: 15px; color: #fe980f;">Sản phẩm đẹp.<br> Thiết kế sang trọng, tinh tế.<br> Dung lượng lớn đảm bảo nhu cầu của người dùng.<br>
                                 Tích hợp nhiều tính năng.<br></p>
 

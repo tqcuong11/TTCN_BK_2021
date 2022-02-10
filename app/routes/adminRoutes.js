@@ -4,7 +4,7 @@ const AdminController = require("../controllers/AdminController");
 const siteController=require("../controllers/SiteController");
 const verifyToken = require("../middlewares/verifyToken");
 
-
+router.patch("/:productId",AdminController.updatePrice);
 router.delete("/employee/:employeeId",AdminController.deleteEmployee);
 router.post('/manage/:userId',AdminController.blockActive);
 router.post("/manage-products", siteController.getProduct);
