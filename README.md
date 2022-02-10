@@ -6,10 +6,7 @@ A phone selling platform
 
 - [Built With](#built-with)
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Setup](#setup)
-- [Project Status](#project-status)
-- [Database](#database)
 - [Contributors](#contributors)
 
 ## Built With
@@ -28,8 +25,6 @@ A phone selling platform
 - Admin create,read, update, delete, search employee account
 - Admin block or activate user account
 
-## Screenshots
-
 ## Setup
 
 ```shell
@@ -47,12 +42,6 @@ npm install
 ```shell
 npm start
 ```
-
-## Project Status
-
-Completed
-
-## Database
 
 ## Contributors
 
