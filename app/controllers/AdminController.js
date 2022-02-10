@@ -90,7 +90,6 @@ const AdminController = {
       color: req.body.color,
       price: req.body.price,
       img: [req.body.image1, req.body.image2, req.body.image3],
-      slug: req.body.slug,
       review_count: 1000,
     });
     res.redirect("/admin/manage-products");

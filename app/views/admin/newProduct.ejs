@@ -1,74 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thêm sản phẩm</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link href="../css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../css/nprogress.css" rel="stylesheet" />
-    <link href="../css/animate.min.css" rel="stylesheet" />
-    <link href="../css/main.css" rel="stylesheet" />
-    <link href="../css/custom.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/4611f582cf.js"></script>
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/login&register.css" />
+    <style>
+      #form .wrap_input {
+        margin-bottom: 0;
+      }
+      .facebook_btn {
+        width: 100%;
+      }
+      #form h3 {
+        margin-bottom: 20px;
+      }
+      #form .form-group {
+        margin-bottom: 15px;
+      }
+      .or {
+        margin: 5px 0;
+      }
+      .other {
+        margin: 10px 0 5px 0;
+      }
+    </style>
   </head>
-  <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form action="/admin/addProduct" method="POST">
-              <h1>Thêm sản phẩm</h1>
-              <div>
-                <input id="name" type="text" name="name" class="form-control" placeholder="Name" required="" />
-              </div>
-              <div>
-                <input id="type" type="text" readonly name="type" class="form-control" value="Phone" />
-              </div>
-              <div>
-                <input id="name" type="text" name="name" class="form-control" placeholder="Name" required="" />
-              </div>
-              <div>
-                <input id="storage" type="number" name="storage" class="form-control" placeholder="Storage" required="" />
-              </div>
-              <div>
-                <input id="color" type="text" name="color" class="form-control" placeholder="Color" required="" />
-              </div>
-              <div>
-                <input id="price" type="number" name="price" class="form-control" placeholder="Price" required="" />
-              </div>
-              <div>
-                <input id="slug" type="text" name="slug" class="form-control" placeholder="Slug" required="" />
-              </div>
-              <!-- img -->
-              <div>
-                <input id="image1" type="text" name="image1" class="form-control" placeholder="Image 1" required="" />
-              </div>
-              <div>
-                <input id="image2" type="text" name="image2" class="form-control" placeholder="Image 2" />
-              </div>
-              <div>
-                <input id="image3" type="text" name="image3" class="form-control" placeholder="Image 3" />
-              </div>
-              <!-- /img -->
-              <div>
-                <button type="submit" class="btn" id="sendMessageButton">Thêm</button>
-              </div>
-              <div>
-                <a href="/admin/manage-products">Quay lại</a>
-              </div>
-            </form>
-          </section>
-        </div>
+  <body>
+    <div class="container">
+      <div class="wrap">
+        <form id="form" action="/admin/addEmployee" method="POST">
+          <h3 class="txt">THÊM SẢN PHẨM</h3>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="brand" type="text" name="brand" placeholder="Hãng" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="phone" readonly class="form-control-plaintext" type="text" name="phone" value="Điện thoại" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="name" type="text" name="name" placeholder="Tên sản phẩm" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="storage" type="number" name="storage" min="1" placeholder="Dung lượng" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="color" type="text" name="color" placeholder="Màu" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="price" type="number" name="price" min="1" placeholder="Giá" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="image1" type="text" name="image1" placeholder="Hình 1" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="image2" type="text" name="image2" placeholder="Hình 2" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="image3" type="text" name="image3" placeholder="Hình 3" />
+            </div>
+          </div>
+          <div class="btn form_btn txt" style="width: 100%">THÊM</div>
+          <span class="form-message"></span>
+          <div class="other txt">
+            <a href="/admin/manage-products" class="login" style="text-decoration: none">Quay lại</a>
+            <br />
+          </div>
+        </form>
       </div>
     </div>
+    <script src="/js/add-product.js"></script>
   </body>
 </html>
