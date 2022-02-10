@@ -126,43 +126,42 @@ function calTotalCost() {
 }
 paymentBtn.addEventListener("click", async () => {
   if (getCookie("isLoggedIn") === "true") {
-    if (paymentBtn.getAttribute("user-address").length&&paymentBtn.getAttribute("user-phone").length){
-      const agreeOrder=confirm("Bạn chắc chắn muốn mua sản phẩn này!!");
-      if (agreeOrder){
+    if (paymentBtn.getAttribute("user-address").length && paymentBtn.getAttribute("user-phone").length) {
+      const agreeOrder = confirm("Bạn chắc chắn muốn mua sản phẩm này!!");
+      if (agreeOrder) {
         let order = [];
         cartList.forEach((e) => {
-        const cartItemId = e.getAttribute("id");
-        const selectItem = $(`#${cartItemId} .select-item`);
-        if (selectItem.checked) {
-          let quantity = $(`#${cartItemId} .quantity-item`).innerHTML;
-          order.push({
-            product_id: e.getAttribute("data"),
-            count: Number(quantity),
-          });
-        }
-      });
-      if (order.length) {
-        try {
-          const res = await fetch("/order", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ order: order }),
-          });
-          const data = await res.json();
-          if (data.mes) {
-            location.href="/order"
+          const cartItemId = e.getAttribute("id");
+          const selectItem = $(`#${cartItemId} .select-item`);
+          if (selectItem.checked) {
+            let quantity = $(`#${cartItemId} .quantity-item`).innerHTML;
+            order.push({
+              product_id: e.getAttribute("data"),
+              count: Number(quantity),
+            });
           }
-        } catch (error) {
-          console.log(error);
+        });
+        if (order.length) {
+          try {
+            const res = await fetch("/order", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ order: order }),
+            });
+            const data = await res.json();
+            if (data.mes) {
+              location.href = "/order";
+            }
+          } catch (error) {
+            console.log(error);
+          }
         }
-      }    
       }
     } else {
-      window.alert("Cập nhật số điện thoại và địa chỉ trước khi đặt hàng!!!");      
+      window.alert("Cập nhật số điện thoại và địa chỉ trước khi đặt hàng!!!");
     }
-    
   } else {
     location.href = "/login";
   }

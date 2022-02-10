@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thêm nhân viên</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../css/nprogress.css" rel="stylesheet" />
-    <link href="../css/animate.min.css" rel="stylesheet" />
-    <link href="../css/main.css" rel="stylesheet" />
-    <link href="../css/custom.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/4611f582cf.js"></script>
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/login&register.css" />
+    <style>
+      #form .wrap_input {
+        margin-bottom: 0;
+      }
+      .facebook_btn {
+        width: 100%;
+      }
+      #form h3 {
+        margin-bottom: 20px;
+      }
+      #form .form-group {
+        margin-bottom: 15px;
+      }
+      .or {
+        margin: 5px 0;
+      }
+      .other {
+        margin: 10px 0 5px 0;
+      }
+    </style>
   </head>
-  <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form action="/admin/addEmployee" method="POST">
-              <h1>Thêm nhân viên</h1>
-              <div>
-                <input id="fullname" type="text" name="full_name" class="form-control" placeholder="Họ và tên" required="" />
-              </div>
-              <div>
-                <input id="email" type="text" name="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input id="password" type="password" name="password" class="form-control" placeholder="Mật khẩu" required="" />
-              </div>
+  <body>
+    <div class="container">
+      <div class="wrap">
+        <form id="form" action="/admin/addEmployee" method="POST">
+          <h3 class="txt">THÊM NHÂN VIÊN</h3>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="fullname" type="text" name="full_name" placeholder="Họ và tên" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="email" type="text" name="email" placeholder="Email" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="password" type="password" name="password" placeholder="Mật khẩu, lớn hơn 6 ký tự" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="wrap_input">
+              <input id="password_confirmation" type="password" placeholder="Nhập lại mật khẩu" />
+              <span class="focus-input"></span>
+            </div>
+          </div>
 
-              <div>
-                <button type="submit" class="btn" id="sendMessageButton">Thêm</button>
-              </div>
-              <div>
-                <a href="/admin/">Quay lại</a>
-              </div>
-            </form>
-          </section>
-        </div>
+          <div class="btn form_btn txt" style="width: 100%">THÊM</div>
+          <span class="form-message"></span>
+          <div class="other txt">
+            <a href="/admin/" class="login" style="text-decoration: none">Quay lại</a>
+            <br />
+          </div>
+        </form>
       </div>
     </div>
+    <script src="/js/add-employee.js"></script>
   </body>
 </html>

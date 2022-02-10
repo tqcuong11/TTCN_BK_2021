@@ -32,14 +32,14 @@
                 </div>
               </div>
             </div> -->
-            <div class="h_content ">
+            <div class="h_content">
               <div class="form-group form-inline">
                 <div class="col-sm-2">
                   <select name="" id="status" class="left form-control">
-                    <option value="">Danh mục</option>                    
+                    <option value="">Danh mục</option>
                     <option value="1">Đã xác nhận</option>
                     <option value="0">Chưa xác nhận</option>
-                    <option value="-1">Đã hủy</option>                    
+                    <option value="-1">Đã hủy</option>
                   </select>
                 </div>
                 <div class="col-sm-4">
@@ -64,9 +64,9 @@
                     <th class="text-center">Hủy đơn hàng</th>
                   </tr>
                 </thead>
-                <tbody >
+                <tbody>
                   <% bills.forEach((bill,index)=>{ %>
-                  <tr id="file">                   
+                  <tr id="file">
                     <td class="text-center"><%- bill._id %></td>
                     <td class="text-center"><%- bill.user_id.full_name %></td>
                     <td class="text-center"><%- bill.user_id.address %></td>
@@ -79,24 +79,20 @@
                     </td>
                     <td class="text-center">
                       <% if(bill.status===1){ %>
-                        <p style="padding: 5px; background-color: chartreuse; color: #000;">Đã xác nhận</p>
+                      <p style="padding: 5px; background-color: chartreuse; color: #000">Đã xác nhận</p>
                       <%}else if (bill.status===-1){ %>
-                        <p style="padding: 5px; background-color: red; color: #000;">Đã hủy</p>
+                      <p style="padding: 5px; background-color: red; color: #000">Đã hủy</p>
                       <%}else {%>
-                        <button type="button" class="right active-order-btn" data="<%- bill._id %>" user-id="<%- bill.user_id._id %>">
-                          Xác nhận 
-                        </button>
-                        
+                      <button type="button" class="right active-order-btn" data="<%- bill._id %>" user-id="<%- bill.user_id._id %>">Xác nhận</button>
+
                       <%}%>
-                      
                     </td>
                     <td class="text-center">
-                      <% if (bill.status===0){ %>                        
-                        <button type="button" class="right cancel-order-btn" data="<%- bill._id %>">
-                          <i class="fa fa-trash-alt"></i>
-                        </button>
+                      <% if (bill.status===0){ %>
+                      <button type="button" class="right cancel-order-btn" data="<%- bill._id %>">
+                        <i class="fa fa-trash-alt"></i>
+                      </button>
                       <%}%>
-                      
                     </td>
                   </tr>
                   <%})%>
@@ -109,81 +105,73 @@
 
         <!--Modal detail-->
         <% bills.forEach((bill,index)=>{ %>
-          <div id="detailform_<%- index+1 %>" class="modal fade js-modal1">
-            <div class="modal-dialog">
-              <div class="modal-content js-modal-content1">
-                <div class="modal-header">
-                  <button type="button" class="close js-modal-close1">
-                    <span>x</span>
-                  </button>
-                </div>
-                <div class="modal-body form-horizontal">
-                  <h1 class="text-center">Hóa đơn bán hàng</h1>
-                  <h2 class="text-center"><%- bill._id %></h2>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <p><span> Ngày đặt hàng: </span> <%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() +1 %>/<%-new Date(bill.createdAt).getFullYear() %></p>
-                      <p><span>Tên khách hàng:</span> <%- bill.user_id.full_name%></p>
-                      <p><span> Địa chỉ nhận hàng: </span> <%- bill.user_id.address%></p>
-                      <p><span>Sđt:</span> <%- bill.user_id.phone%></p>
-                    </div>
-                    <h3>Chi tiết sản phẩm</h3>
-  
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th class="text-center">STT</th>
-                          <th class="text-center">Sản phẩm</th>
-                          <th class="text-center">Số lượng</th>
-                          <th class="text-center">Đơn vị</th>
-                          <th class="text-center">Giá</th>
-                          <th class="text-center">Thành tiền</th>
-                          <th class="text-center">Chi tiết</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% bill.order.forEach((order,index)=>{ %>
-                          <tr>
-                            <td class="text-center"><%- index+1 %></td>
-                            <td class="text-center"><%- order.product.name%></td>
-                            <td class="text-center"><%- order.count%></td>
-                            <td class="text-center">Cái</td>
-                            <td class="text-center"><%- order.product.price%></td>
-                            <td class="text-center"><%- order.product.price*order.count %></td>
-                            <td>                             
-                                <a href="/<%- order.product.slug %>">
-                                  <button>
-                                    <i class="fa fa-eye"></i>
-                                  </button>
-                                </a>        
-                            </td>
-                          </tr>
-                        <%})%>
-                        
-                      </tbody>
-                    </table>
-                  </div>                  
-                  <div class="bold text-right">
-                    <h4>Tổng cộng : <%- bill.order.reduce((total,cur)=>{
-                      return total+cur.product.price*cur.count;
-                    },0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></h4>
+        <div id="detailform_<%- index+1 %>" class="modal fade js-modal1">
+          <div class="modal-dialog">
+            <div class="modal-content js-modal-content1">
+              <div class="modal-header">
+                <button type="button" class="close js-modal-close1">
+                  <span>x</span>
+                </button>
+              </div>
+              <div class="modal-body form-horizontal">
+                <h1 class="text-center">Hóa đơn bán hàng</h1>
+                <h2 class="text-center"><%- bill._id %></h2>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p><span> Ngày đặt hàng: </span> <%-new Date(bill.createdAt).getDate() %>/<%-new Date(bill.createdAt).getMonth() +1 %>/<%-new Date(bill.createdAt).getFullYear() %></p>
+                    <p><span>Tên khách hàng:</span> <%- bill.user_id.full_name%></p>
+                    <p><span> Địa chỉ nhận hàng: </span> <%- bill.user_id.address%></p>
+                    <p><span>Sđt:</span> <%- bill.user_id.phone%></p>
                   </div>
+                  <h3>Chi tiết sản phẩm</h3>er 
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Sản phẩm</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-center">Đơn vị</th>
+                        <th class="text-center">Giá</th>
+                        <th class="text-center">Thành tiền</th>
+                        <th class="text-center">Chi tiết</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% bill.order.forEach((order,index)=>{ %>
+                      <tr>
+                        <td class="text-center"><%- index+1 %></td>
+                        <td class="text-center"><%- order.product.name %></td>
+                        <td class="text-center"><%- order.count%></td>
+                        <td class="text-center">Cái</td>
+                        <td class="text-center"><%- order.product.price%></td>
+                        <td class="text-center"><%- order.product.price*order.count %></td>
+                        <td>
+                          <a href="/<%- order.product.slug %>">
+                            <button>
+                              <i class="fa fa-eye"></i>
+                            </button>
+                          </a>
+                        </td>
+                      </tr>
+                      <%})%>
+                    </tbody>
+                  </table>
                 </div>
-  
-                <div class="modal-footer">
-                  <button class="btn btn-default close" 
-                  style="
-                  color: #000;
-                  background-color: #e4dfe0;
-                  opacity: 1;
-                  padding: 10px;">Thoát</button>
+                <div class="bold text-right">
+                  <h4>Tổng cộng : <%- bill.order.reduce((total,cur)=>{ return total+cur.product.price*cur.count; },0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %></h4>
                 </div>
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-default close" style="color: #000; background-color: #e4dfe0; opacity: 1; padding: 10px">Thoát</button>
               </div>
             </div>
           </div>
+        </div>
         <%}) %>
-        
-        <!--/modal detail-->        
+
+        <!--/modal detail-->
 
         <!-- footer content -->
         <%- include("../partials/admin-footer") %>
@@ -192,76 +180,72 @@
     </div>
     <%- include("../partials/admin-scripts") %>
     <script>
-      
-      const detailBtns=document.querySelectorAll(".js-add-de");
-      const closeBtns=document.querySelectorAll(".close");
-      const activeOrderBtns=document.querySelectorAll(".active-order-btn");
-      const cancelOrderBtns=document.querySelectorAll(".cancel-order-btn");
-      const searchBtn=document.querySelector("#search_btn");
-      
-      // Handle detail btn
-      detailBtns.forEach((detailBtn,index)=>{
-        const detailModal=document.querySelector(`#detailform_${index+1}`);
-        detailBtn.onclick=()=>{
-          detailModal.classList.add('in');
-        }
-      })
-      // Handle close btn in modal
-     closeBtns.forEach(closeBtn=>{
-       closeBtn.onclick=()=>{
-         const modal=document.querySelector(".modal.show.in");
-         modal.classList.remove("show");
-         modal.classList.remove("in");
-       }
-     })
-    //  handle active order btn
-    activeOrderBtns.forEach(activeOrderBtn => {      
-      activeOrderBtn.onclick= async  ()=>{
-        const orderId=activeOrderBtn.getAttribute("data");
-        const userId=activeOrderBtn.getAttribute('user-id'); 
-        const agree=confirm(`Bạn chắc chắn muốn xác nhận đơn hàng ${orderId}`); 
-        if (agree){
-          const res=await fetch(`/employee/${orderId}?status=active&userId=${userId}`,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          }
-          });
-          const data= await res.json();
-          if(data.mes==="done"){
-            location.reload();
-          }
+      const detailBtns = document.querySelectorAll(".js-add-de");
+      const closeBtns = document.querySelectorAll(".close");
+      const activeOrderBtns = document.querySelectorAll(".active-order-btn");
+      const cancelOrderBtns = document.querySelectorAll(".cancel-order-btn");
+      const searchBtn = document.querySelector("#search_btn");
 
-        }             
-        
-      }
-    }) ;
-    // handle cancle order btn
-    cancelOrderBtns.forEach(cancelOrderBtn=>{
-      cancelOrderBtn.onclick= async  ()=>{
-        const orderId=cancelOrderBtn.getAttribute("data");
-        const agree=confirm(`Bạn chắc chắn muốn hủy đơn hàng ${orderId}`);
-        if (agree){
-          const res=await fetch(`/employee/${orderId}?status=cancel`,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+      // Handle detail btn
+      detailBtns.forEach((detailBtn, index) => {
+        const detailModal = document.querySelector(`#detailform_${index + 1}`);
+        detailBtn.onclick = () => {
+          detailModal.classList.add("in");
+        };
+      });
+      // Handle close btn in modal
+      closeBtns.forEach((closeBtn) => {
+        closeBtn.onclick = () => {
+          const modal = document.querySelector(".modal.show.in");
+          modal.classList.remove("show");
+          modal.classList.remove("in");
+        };
+      });
+      //  handle active order btn
+      activeOrderBtns.forEach((activeOrderBtn) => {
+        activeOrderBtn.onclick = async () => {
+          const orderId = activeOrderBtn.getAttribute("data");
+          const userId = activeOrderBtn.getAttribute("user-id");
+          const agree = confirm(`Bạn chắc chắn muốn xác nhận đơn hàng ${orderId}`);
+          if (agree) {
+            const res = await fetch(`/employee/${orderId}?status=active&userId=${userId}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            const data = await res.json();
+            if (data.mes === "done") {
+              location.reload();
+            }
           }
-          });
-          const data= await res.json();
-          if(data.mes==="done"){
-            location.reload();
+        };
+      });
+      // handle cancle order btn
+      cancelOrderBtns.forEach((cancelOrderBtn) => {
+        cancelOrderBtn.onclick = async () => {
+          const orderId = cancelOrderBtn.getAttribute("data");
+          const agree = confirm(`Bạn chắc chắn muốn hủy đơn hàng ${orderId}`);
+          if (agree) {
+            const res = await fetch(`/employee/${orderId}?status=cancel`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            const data = await res.json();
+            if (data.mes === "done") {
+              location.reload();
+            }
           }
-        }
-        
-      }
-    })
-    // filter with status
-    searchBtn.onclick=()=>{            
-      const status=document.querySelector("select#status")  ;
-      const select=status.options[status.selectedIndex].value;    
-      location.href=`/employee/hoadon?status=${select}`;            
-    }
+        };
+      });
+      // filter with status
+      searchBtn.onclick = () => {
+        const status = document.querySelector("select#status");
+        const select = status.options[status.selectedIndex].value;
+        location.href = `/employee/hoadon?status=${select}`;
+      };
     </script>
   </body>
 </html>
