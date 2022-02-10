@@ -12,8 +12,8 @@ const AdminController = {
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
         let employees = await User.find({ role_id: 1 });
-        if (req.query.search&&req.query.search.length){
-          employees=employees.filter(employee=>employee.full_name.includes(req.query.search));
+        if (req.query.search && req.query.search.length) {
+          employees = employees.filter((employee) => employee.full_name.includes(req.query.search));
         }
         res.render("admin/admin", { user, employees });
       } else {
@@ -30,13 +30,13 @@ const AdminController = {
   listProducts: async (req, res) => {
     try {
       if (req.user) {
-        let brands=[];
+        let brands = [];
         const products = await Product.find({});
-        products.map(product=>{
-          if (!brands.includes(product.brand))
-            brands.push(product.brand);});
+        products.map((product) => {
+          if (!brands.includes(product.brand)) brands.push(product.brand);
+        });
         const user = await User.findOne({ _id: req.user });
-        res.render("admin/products", { products, user,brands});
+        res.render("admin/products", { products, user, brands });
       } else {
         res.render("admin/products", { user: "" });
       }
@@ -68,7 +68,6 @@ const AdminController = {
         return res.redirect("/admin/");
       }
     } catch (err) {
-      
       return res.status(500).render("error", {
         err,
         message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
@@ -85,14 +84,12 @@ const AdminController = {
   addProduct: async (req, res) => {
     await Product.create({
       brand: req.body.brand,
-      type: req.body.type,
+      type: "Phone",
       name: req.body.name,
       storage: req.body.storage,
       color: req.body.color,
       price: req.body.price,
       img: [req.body.image1, req.body.image2, req.body.image3],
-      // img: req.body.image2,
-      // img: req.body.image3,
       slug: req.body.slug,
       review_count: 1000,
     });
@@ -102,8 +99,8 @@ const AdminController = {
   manageCustomers: async (req, res) => {
     try {
       let customers = await User.find({ role_id: 0 });
-      if (req.query.search&&req.query.search.length){
-        customers=customers.filter(customer=>customer.full_name.includes(req.query.search));
+      if (req.query.search && req.query.search.length) {
+        customers = customers.filter((customer) => customer.full_name.includes(req.query.search));
       }
       if (req.user) {
         const user = await User.findOne({ _id: req.user });
@@ -118,17 +115,16 @@ const AdminController = {
       });
     }
   },
-  blockActive: async (req,res)=>{
+  blockActive: async (req, res) => {
     try {
-      const userId=req.params.userId;
-      const operation=req.query.m;
-      if (operation==="active"){
-        await User.updateOne({_id:userId},{active:true});
-      } else if (operation==="block"){
-        await User.updateOne({_id:userId},{active:false});
+      const userId = req.params.userId;
+      const operation = req.query.m;
+      if (operation === "active") {
+        await User.updateOne({ _id: userId }, { active: true });
+      } else if (operation === "block") {
+        await User.updateOne({ _id: userId }, { active: false });
       }
       res.json("done");
-      
     } catch (err) {
       return res.status(500).render("error", {
         err,
@@ -136,10 +132,10 @@ const AdminController = {
       });
     }
   },
-  deleteEmployee: async (req,res)=>{
+  deleteEmployee: async (req, res) => {
     try {
-      const employeeId=req.params.employeeId;
-      await User.deleteOne({_id:employeeId});
+      const employeeId = req.params.employeeId;
+      await User.deleteOne({ _id: employeeId });
       res.redirect("/admin");
     } catch (err) {
       return res.status(500).render("error", {
@@ -148,11 +144,11 @@ const AdminController = {
       });
     }
   },
-  updatePrice: async (req,res)=>{
+  updatePrice: async (req, res) => {
     try {
-      const product_id=req.params.productId;
-      const newPrice=req.query.newprice;
-      await Product.updateOne({_id:product_id},{price:Number(newPrice)});
+      const product_id = req.params.productId;
+      const newPrice = req.query.newprice;
+      await Product.updateOne({ _id: product_id }, { price: Number(newPrice) });
       res.redirect("/admin/manage-products");
     } catch (err) {
       return res.status(500).render("error", {
@@ -160,7 +156,7 @@ const AdminController = {
         message: "Xảy ra lỗi khi nhận dữ liệu từ server , xin thử lại",
       });
     }
-  }
+  },
 };
 
 module.exports = AdminController;
