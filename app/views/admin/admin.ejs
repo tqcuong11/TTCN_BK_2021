@@ -101,7 +101,7 @@
           const agree=confirm(`Bạn chắc chắn muốn xóa nhân viên ${employeeId}`);
           if (agree){
             const deleteForm=document.querySelector('#delete-form');
-            deleteForm.action=`admin/employee/${employeeId}?_method=DELETE`;
+            deleteForm.action=`/admin/employee/${employeeId}?_method=DELETE`;
             deleteForm.submit();            
           }
         }

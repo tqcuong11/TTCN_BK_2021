@@ -226,8 +226,9 @@ const SiteController = {
   updateInfo: async (req,res)=>{
     try {
       if (req.user){
-        
-        await User.updateOne({_id:req.params.customerId},req.body);
+        const body=req.body;
+        body.sex=Number(body.sex);
+        await User.updateOne({_id:req.params.customerId},body);
         res.redirect('/info');
       }
     } catch (err) {

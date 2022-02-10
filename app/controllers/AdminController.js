@@ -45,7 +45,7 @@ const AdminController = {
   //
   newEmployee: async (req, res) => {
     const user = await User.findOne({ _id: req.user });
-    res.render("admin/newEmployee", { user });
+    res.render("admin/newEmployee", { user ,message:""});
   },
   // [POST] / add employee
   addEmployee: async (req, res) => {
