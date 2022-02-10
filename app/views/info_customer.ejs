@@ -9,6 +9,7 @@
       <div style="margin-bottom: 10px;">
         <label  class="form-label">Họ và tên</label>
         <input
+          id="full_name"
           type="text"
           class="form-control"
           value="<%= user.full_name%>"
@@ -19,6 +20,7 @@
       <div style="margin-bottom: 10px;">
         <label  class="form-label">Email</label>
         <input
+          id="email"
           type="text"
           class="form-control"
           value="<%= user.email %>"
@@ -29,9 +31,10 @@
       <div style="margin-bottom: 10px;">
         <label  class="form-label">Số điện thoại</label>
         <input
+          id="phone"
           type="text"
           class="form-control"          
-          value="<% if (user.phone) %> <%- user.phone %>"
+          value="<%if (user.phone)%><%- user.phone %>"
           name="phone"
           required
         />
@@ -52,6 +55,7 @@
       <div style="margin-bottom: 10px;">
         <label  class="form-label">Địa chỉ</label>
         <input
+          id="address"
           type="text"
           class="form-control"
           value="<% if (user.address) %> <%- user.address %>"
@@ -59,7 +63,7 @@
           required
         />
       </div> 
-      <button type="submit" class="btn btn-primary" 
+      <button type="submit" class="btn btn-primary form_btn" 
         style="padding: 8px 20px;
         font-size: 16px;
         border-radius: 5px;">
@@ -68,6 +72,25 @@
   </div>
 <%- include("partials/footer") %>
 <%- include("partials/scripts") %>
+<script >
+  const phone=document.querySelector("#phone");
+  const formBtn=document.querySelector(".form_btn");
+  const  regexPhone =
+        /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
+  formBtn.onclick=()=>{
+    check(phone,regexPhone,"số điện thoại","Số điện thoại gồm 10 chứ số!")
+  }
+
+  function check(element,regex,string1,string2){    
+    const value=element.value;
+    if (!value.length){
+        alert(`Vui lòng không được để trống ${string1} `);  
+    }
+    else if (!regex.test(value)){
+        alert(`Vui lòng nhập ${string1}  hợp lệ. ${string2}`);
+    } 
+  }
+</script>
 
 </body>
 </html>

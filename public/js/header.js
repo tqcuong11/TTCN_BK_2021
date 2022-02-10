@@ -1,7 +1,6 @@
 $ = document.querySelector.bind(document)
    $$ = document.querySelectorAll.bind(document)
    var loginState = getCookie('isLoggedIn')
-   console.log('🚀 loginState', loginState)
    if (loginState == 'true') {
     //  var loginSuccessElement = $('#login-success')
     //  var loginBtn = $('#login')
